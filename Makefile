@@ -9,17 +9,20 @@ INC_DIR				= include/ libft/include/ $(SRC_DIR)
 LIB_DIR				= libft
 
 # Flags setup
-CC		= cc
-OPT		= 0
-WARN	= all extra error
-EXTRA	= -MP -MMD
+CC			=	cc
+OPT			=	0
+WARN		=	all extra error
+EXTRA		=	-MP -MMD
+MLXFLAGS	=	-framework OpenGL -framework AppKit
+MATH		=	-lm
 
 # Compiler flags
 override CFLAGS 	+= $(EXTRA) $(OPT:%=-O%) $(INC_DIR:%=-I%) $(WARN:%=-W%)
+
 # Linker flags
 override LDFLAGS	+= $(LIB_DIR:%=-L%) $(LIB:%=-l%)
 
-# Sources
+# Sources -- PLEASE ADD NEW FILES TO THE TOP --
 SRCS =				\
 main.c
 
@@ -35,8 +38,7 @@ $(LIBFT):
 	make -C libft OBJ_DIR="../obj/" OPT=$(OPT:%=-O%)
 
 $(NAME): $(OBJS) | $(LIBFT)
-	@echo ""
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS) -lmlx $(MLXFLAGS) $(MATH)
 
 $(OBJ_DIR)%.o: %.c | obj_dir
 	$(CC) $(CFLAGS) -c -o $@ $<
