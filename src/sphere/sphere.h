@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:56:56 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/17 12:58:30 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/17 14:58:58 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ typedef struct s_sphere
 	double	radius;
 }	t_sphere;
 
+t_sphere	*create_sphere(t_v3d center, double radius);
 
 #endif

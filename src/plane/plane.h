@@ -6,14 +6,14 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:59:18 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/17 14:04:06 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/17 14:43:46 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLANE_H
 # define PLANE_H
 
-#include "v3d.h"
+# include "v3d.h"
 
 typedef struct s_plane
 {
