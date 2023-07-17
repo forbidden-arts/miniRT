@@ -38,7 +38,7 @@ $(LIBFT):
 	make -C libft OBJ_DIR="../obj/" OPT=$(OPT:%=-O%)
 
 $(NAME): $(OBJS) | $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS) -lmlx $(MLXFLAGS) $(MATH)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)-lmlx $(MLXFLAGS) $(MATH)
 
 $(OBJ_DIR)%.o: %.c | obj_dir
 	$(CC) $(CFLAGS) -c -o $@ $<
