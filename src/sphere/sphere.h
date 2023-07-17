@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 13:04:20 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/17 13:14:24 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/07/17 12:56:56 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/07/17 12:58:30 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Placeholder
-#include "libft.h"
+#ifndef SPHERE_H
+# define SPHERE_H
 
-int	main(void)
+# include "v3d.h"
+
+typedef struct s_sphere
 {
-	ft_putchar_fd('c', 1);
-	return (0);
-}
+	t_v3d	center;
+	double	radius;
+}	t_sphere;
+
+
+#endif

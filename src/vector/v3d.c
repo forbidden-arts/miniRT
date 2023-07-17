@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   v3d.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 13:04:20 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/17 13:14:24 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/07/17 12:50:56 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/07/17 12:54:36 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Placeholder
-#include "libft.h"
+#include <math.h>
+#include "v3d.h"
 
-int	main(void)
+t_v3d	init_v3d(double x, double y, double z)
 {
-	ft_putchar_fd('c', 1);
-	return (0);
+	t_v3d	new;
+
+	new.x = x;
+	new.y = y;
+	new.z = z;
+	return (new);
 }
