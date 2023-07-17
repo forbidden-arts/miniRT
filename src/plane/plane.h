@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   plane.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 13:04:20 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/17 13:14:24 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/07/17 12:59:18 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/07/17 14:04:06 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Placeholder
-#include "libft.h"
+#ifndef PLANE_H
+# define PLANE_H
 
-int	main(void)
+#include "v3d.h"
+
+typedef struct s_plane
 {
-	ft_putchar_fd('c', 1);
-	return (0);
-}
+	t_v3d	origin;
+	t_v3d	normalized;
+}	t_plane;
+
+#endif

@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   v3d.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 13:04:20 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/17 13:14:24 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/07/17 12:22:03 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/07/17 12:52:39 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Placeholder
-#include "libft.h"
+#ifndef V3D_H
+# define V3D_H
 
-int	main(void)
+typedef struct s_v3d
 {
-	ft_putchar_fd('c', 1);
-	return (0);
-}
+	double	x;
+	double	y;
+	double	z;
+}	t_v3d;
+
+#endif

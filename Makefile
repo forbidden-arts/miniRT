@@ -1,69 +1,63 @@
 # Targets
 NAME		= miniRT
-LIBFT 		= libft/libft.a
 
-# Directories
-OBJ_DIR				= obj/
-SRC_DIR				= $(sort $(dir $(wildcard src/*/))) src/
-INC_DIR				= include/ libft/include/ $(SRC_DIR)
-LIB_DIR				= libft
+SRC_DIR		= $(sort $(dir $(wildcard src/*/))) src/
+OBJ_DIR		=	obj/
+INCLUDE	 	=	-I include
+LIBFT		=	libft
+LIBFT_A		=	$(LIBFT)/libft.a
 
-# Flags setup
 CC			=	cc
-OPT			=	0
-WARN		=	all extra error
-EXTRA		=	-MP -MMD
+CFLAGS		=	-O3 -Wall -Werror -Wextra
 MLXFLAGS	=	-framework OpenGL -framework AppKit
 MATH		=	-lm
 
-# Compiler flags
-override CFLAGS 	+= $(EXTRA) $(OPT:%=-O%) $(INC_DIR:%=-I%) $(WARN:%=-W%)
+# Colors
 
-# Linker flags
-override LDFLAGS	+= $(LIB_DIR:%=-L%) $(LIB:%=-l%)
+C_RESET = \033[0;39m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
+BLUE = \033[0;94m
+B_MAGENTA = \033[1;35m
+CYAN = \033[0;96m
 
-# Sources -- PLEASE ADD NEW FILES TO THE TOP --
-SRCS =				\
-main.c
+#Sources
 
-OBJS = $(SRCS:%.c=$(OBJ_DIR)%.o)
+SRC_FILES	=	main				\
+				plane
 
-DEPS = $(SRCS:%.c=$(OBJ_DIR)%.d)
 
-.PHONY: all clean fclean re obj_dir $(LIBFT)
+SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
+OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
-all: $(NAME)
+###
 
-$(LIBFT):
-	make -C libft OBJ_DIR="../obj/" OPT=$(OPT:%=-O%)
+all:		makelibs
+			@$(MAKE) $(NAME)
 
-$(NAME): $(OBJS) | $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)-lmlx $(MLXFLAGS) $(MATH)
+makelibs:
+			@$(MAKE) -C $(LIBFT)
 
-$(OBJ_DIR)%.o: %.c | obj_dir
-	$(CC) $(CFLAGS) -c -o $@ $<
+$(NAME):	$(OBJ)
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L. $(LIBFT_A) -L. -lmlx $(MLXFLAGS) $(MATH)
+			@echo "$(B_MAGENTA)\n...$(NAME) compiled successfully...\n$(C_RESET)"
 
-run: all
-	./$(NAME)
-
-leaks: all
-	leaks -q --atExit -- ./$(NAME)
-
-obj_dir:
-	@mkdir -p $(OBJ_DIR)
-
-re: fclean all
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+			@mkdir -p $(OBJ_DIR)
+			@echo "$(GREEN)Compiling: $(BLUE)$<$(C_RESET)"
+			$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_DIR)
+			@make clean -C $(LIBFT)
+			@rm -rf $(OBJ_DIR)
+			@echo "$(BLUE)MINILIB OBJECTS DELETED$(C_RESET)"
 
-fclean: clean
-	rm -rf $(NAME)
-	rm -rf $(LIBFT)
 
-debug: fclean
-	make -C libft OBJ_DIR="../obj/" FLAGS="-g -fsanitize=address" OPT=$(OPT:%=-O%)
-	make $(NAME) CFLAGS="-g -fsanitize=address"
+fclean:		clean
+			@rm -f $(NAME)
+			@rm -f $(LIBFT_A)
+			@echo "$(CYAN)EXECUTABLE DELETED$(C_RESET)"
 
-vpath %.c $(SRC_DIR)
--include $(DEPS)
+re:			fclean all
+
+.PHONY:		all clean fclean re makelibs
