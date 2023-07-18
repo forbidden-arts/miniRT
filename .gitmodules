@@ -1,3 +1,6 @@
 [submodule "libft"]
 	path = libft
 	url = https://github.com/forbidden-arts/libft.git
+[submodule "MinilibX"]
+	path = MinilibX
+	url = https://github.com/pbondoer/MinilibX.git
