@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 12:56:47 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/18 13:07:16 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/07/18 12:37:45 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/07/18 13:10:58 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "sphere.h"
+#include "cylinder.h"
 
-t_sphere	*create_sphere(t_v3d center, double radius)
+t_cylinder	*create_cylinder(t_v3d point, double radius, double height)
 {
-	t_sphere	*sphere;
+	t_cylinder	*cylinder;
 
-	if (!radius)
+	cylinder = malloc(sizeof(t_cylinder));
+	if (!cylinder)
 		return (NULL);
-	sphere = malloc(sizeof(t_sphere));
-	if (!sphere)
-		return (NULL);
-	sphere->point = center;
-	sphere->radius = radius;
-	return (sphere);
+	cylinder->point = point;
+	cylinder->radius = radius;
+	cylinder->height = height;
+	return (cylinder);
 }

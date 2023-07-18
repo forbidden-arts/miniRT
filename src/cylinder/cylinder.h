@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 12:56:47 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/18 13:07:16 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/07/18 12:18:30 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/07/18 12:37:31 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "sphere.h"
+#ifndef CYLINDER_H
+# define CYLINDER_H
 
-t_sphere	*create_sphere(t_v3d center, double radius)
+# include "v3d.h"
+
+typedef struct s_cylinder
 {
-	t_sphere	*sphere;
+	t_v3d	point;
+	t_v3d	normalized;
+	double	radius;
+	double	height;
+}	t_cylinder;
 
-	if (!radius)
-		return (NULL);
-	sphere = malloc(sizeof(t_sphere));
-	if (!sphere)
-		return (NULL);
-	sphere->point = center;
-	sphere->radius = radius;
-	return (sphere);
-}
+#endif
