@@ -6,12 +6,12 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:04:20 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/17 13:14:24 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/18 11:11:56 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Placeholder
-#include "libft.h"
+#include "../libft/include/libft.h"
 
 int	main(void)
 {

@@ -1,16 +1,20 @@
-# Targets
-NAME		= miniRT
+NAME = miniRT
 
-SRC_DIR		= $(sort $(dir $(wildcard src/*/))) src/
-OBJ_DIR		=	obj/
-INCLUDE	 	=	-I include
-LIBFT		=	libft
-LIBFT_A		=	$(LIBFT)/libft.a
+SRC_DIR = $(sort $(dir $(wildcard src/*/))) src/
+OBJ_DIR = obj/
+INC_DIR = include/ libft/include/
+TARGET_DIR = ./
+LIB_DIR = libft/
+LDIR = $(LIB_DIR:%=-L%)
 
-CC			=	cc
-CFLAGS		=	-O3 -Wall -Werror -Wextra
-MLXFLAGS	=	-framework OpenGL -framework AppKit
-MATH		=	-lm
+CC = cc
+OPT = -O3 -ffast-math
+EXTRA =-Wall -Werror -Wextra
+DEP = -MP -MMD
+LIBS = ft mlx
+LIB = $(LIBS:%=-l%)
+FRAMEWORKS = OpenGL AppKit
+FWK = $(FRAMEWORKS:%=-framework %)
 
 # Colors
 
@@ -21,43 +25,56 @@ BLUE = \033[0;94m
 B_MAGENTA = \033[1;35m
 CYAN = \033[0;96m
 
-#Sources
+# Sources
+SRCS = \
+main.c					\
+plane.c
 
-SRC_FILES	=	main				\
-				plane
+
+OBJS := $(SRCS:%.c=$(OBJ_DIR)%.o)
+DEPS = $(SRCS:%.c=$(OBJ_DIR)%.d)
 
 
-SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
-OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 ###
 
-all:		makelibs
-			@$(MAKE) $(NAME)
+all:		$(NAME)
 
-makelibs:
-			@$(MAKE) -C $(LIBFT)
+$(OBJS):	$(OBJ_DIR)%.o: %.c | $(OBJ_DIR)
+			@echo "$(GREEN)Compiling: $(BLUE)$<$(C_RESET)"
+			@$(CC) $(FLAGS) -c -o $@ $<
 
-$(NAME):	$(OBJ)
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L. $(LIBFT_A) -L. -lmlx $(MLXFLAGS) $(MATH)
+# Target
+$(NAME):	$(OBJS) | $(TARGET_DIR) libft
+			@$(CC) $(FLAGS) $(FWK) $(LDIR) $(LIB) -o $@ $^
 			@echo "$(B_MAGENTA)\n...$(NAME) compiled successfully...\n$(C_RESET)"
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-			@mkdir -p $(OBJ_DIR)
-			@echo "$(GREEN)Compiling: $(BLUE)$<$(C_RESET)"
-			$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+libft:
+			@make -C libft
 
 clean:
-			@make clean -C $(LIBFT)
-			@rm -rf $(OBJ_DIR)
-			@echo "$(BLUE)MINILIB OBJECTS DELETED$(C_RESET)"
+			rm -rf $(OBJ_DIR)
 
+fclean: clean
+			rm -rf $(NAME)
+			make fclean -C libft
 
-fclean:		clean
-			@rm -f $(NAME)
-			@rm -f $(LIBFT_A)
-			@echo "$(CYAN)EXECUTABLE DELETED$(C_RESET)"
+# Debug
+debug:
+			make fclean
+			make all FLAGS="-g -fsanitize=address"
 
-re:			fclean all
+re: 		fclean all
 
-.PHONY:		all clean fclean re makelibs
+# Dir creation
+$(OBJ_DIR) $(TARGET_DIR):
+	@mkdir -p $@
+
+-include $(DEPS)
+
+.PHONY: all clean fclean re debug libft
+
+vpath %.c $(SRC_DIR)
+override FLAGS +=\
+$(EXTRA) $(OPT) $(DEP) \
+$(INC_DIR:%=-I%) $(SRC_DIR:%=-I%)
