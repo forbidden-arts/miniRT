@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/18 15:11:32 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/19 15:06:06 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,8 @@ typedef enum e_object
 	CYLINDER,
 	PLANE
 }	t_object;
+
+// funcs
+int	scene_free_elems(t_scene *scene);
 
 #endif
