@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:55:49 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/19 13:59:17 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/19 14:17:03 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static double	parse_fraction(const char **s, int *e)
 	}
 	return (fraction);
 }
-
 
 /*	this is a simplified atof, it cannot handle anything
 	involving exponents (symbols e or E). Might want to
@@ -59,4 +58,3 @@ double	ft_atof_simple(const char *s)
 		a *= 0.1;
 	return (a);
 }
-
