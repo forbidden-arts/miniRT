@@ -28,7 +28,9 @@ CYAN = \033[0;96m
 # Sources
 SRCS = \
 main.c					\
-plane.c
+plane.c					\
+ft_atof_simple.c		\
+
 
 
 OBJS := $(SRCS:%.c=$(OBJ_DIR)%.o)
