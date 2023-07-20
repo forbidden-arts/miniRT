@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 11:57:51 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/18 16:17:27 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/20 15:51:08 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,21 @@
 #include "parser.h"
 #include <stdio.h>
 
+/*	this function free's everything malloced for file_parser_function_struct.
+	If you change the parser-struct remember to add the values to free here.*/
+void	parser_struct_free(t_file_parser_function *f)
+{
+	if (f->line)
+		free(f->line);
+	if (f->line_parts_array)
+		free(f->line_parts_array);
+}
+
 static void	init_file_parser_func_struct(t_file_parser_function *f)
 {
 	printf("rm later; init_file_parser_func_struct\n");
 	f->line = NULL;
+	f->line_nbr = 0;
 	f->elem_type = NULL;
 	f->error = 0;
 	f->ambient_light_bool = 0;
@@ -66,6 +77,7 @@ int	file_parser(int fd)
 			parser_errors(&f);
 		free(f.line);
 		f.line = get_next_line(fd);
+		f.line_nbr++;
 	}
 	return (0);
 }

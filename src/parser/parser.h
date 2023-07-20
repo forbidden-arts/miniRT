@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:51:22 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/20 16:57:32 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/20 17:37:05 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_file_parser_function
 {
 	char	*line;
+	char	*line_parts_array;
 	int		line_nbr;
 	char	*elem_type;
 	int		ambient_light_bool;
@@ -32,6 +33,7 @@ typedef struct s_file_parser_function
 // functions
 int		file_handler(int argc, char **argv);
 
+void	parser_struct_free(t_file_parser_function *f);
 int		file_parser(int fd);
 
 char	**minirt_split(char const *s);
