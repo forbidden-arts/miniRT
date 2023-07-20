@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 13:02:09 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/18 16:13:21 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/20 11:31:40 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 static int	parser_error_unknown_type(t_file_parser_function *f)
 {
 	printf("Unknown type: %s\n", f->elem_type);
-	printf("(in line: %s)\n", f->line);
+	printf("(in line: %d)\n", f->line_nbr);
 	return (0);
 }
-
 
 /*	This function is called if there is somekind of error when parsing
 	the file. It will first print error, after which it will go to function
@@ -31,7 +30,8 @@ static int	parser_error_unknown_type(t_file_parser_function *f)
 	
 	errors:
 	1. unknown element type
-	*/
+	
+	BEFORE EXIT FREE EVERYHTING MALLCODED!*/
 int	parser_errors(t_file_parser_function *f)
 {
 	printf("Error\n");
@@ -39,6 +39,5 @@ int	parser_errors(t_file_parser_function *f)
 		parser_error_unknown_type(f);
 	if (f->line != NULL)
 		free(f->line);
-	// free everything malloced in the scene-struct
 	exit(f->error);
 }
