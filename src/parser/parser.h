@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:51:22 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/20 15:59:46 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/20 17:37:05 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "libft.h"
-
-# define DELIMITERS		" \t"
 # define AMBIENT_LIGHT	"A"
 # define CAMERA		 	"C"
 # define LIGHT			"L"
@@ -39,7 +36,7 @@ int		file_handler(int argc, char **argv);
 void	parser_struct_free(t_file_parser_function *f);
 int		file_parser(int fd);
 
-void	error_exit(t_file_parser_function *f, t_scene *scene);
+char	**minirt_split(char const *s);
 
 int		parse_camera(t_file_parser_function *f);
 int		parse_ambient_light(t_file_parser_function *f);
