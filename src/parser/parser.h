@@ -6,12 +6,14 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:51:22 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/20 12:13:47 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/20 15:59:46 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
+
+# include "libft.h"
 
 # define DELIMITERS		" \t"
 # define AMBIENT_LIGHT	"A"
@@ -24,6 +26,7 @@
 typedef struct s_file_parser_function
 {
 	char	*line;
+	char	*line_parts_array;
 	int		line_nbr;
 	char	*elem_type;
 	int		ambient_light_bool;
@@ -33,7 +36,10 @@ typedef struct s_file_parser_function
 // functions
 int		file_handler(int argc, char **argv);
 
+void	parser_struct_free(t_file_parser_function *f);
 int		file_parser(int fd);
+
+void	error_exit(t_file_parser_function *f, t_scene *scene);
 
 int		parse_camera(t_file_parser_function *f);
 int		parse_ambient_light(t_file_parser_function *f);
