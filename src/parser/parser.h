@@ -6,14 +6,13 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:51:22 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/20 12:13:47 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/20 16:57:32 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# define DELIMITERS		" \t"
 # define AMBIENT_LIGHT	"A"
 # define CAMERA		 	"C"
 # define LIGHT			"L"
@@ -34,6 +33,8 @@ typedef struct s_file_parser_function
 int		file_handler(int argc, char **argv);
 
 int		file_parser(int fd);
+
+char	**minirt_split(char const *s);
 
 int		parse_camera(t_file_parser_function *f);
 int		parse_ambient_light(t_file_parser_function *f);
