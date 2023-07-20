@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parser_colors_checkset.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:36:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/19 17:37:39 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/20 11:47:17 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
 
-static int	check_color(char *str)
+/* Print error? on >255*/
+static BOOL	check_color(char *str)
 {
 	int	plus_bool;
 	int	i;
@@ -26,13 +27,13 @@ static int	check_color(char *str)
 			plus_bool = 1;
 		else
 			if (!ft_isdigit(str[i]))
-				return (1);
+				return (FALSE);
 	}
 	if (i == 4 && !plus_bool)
-		return (2);
+		return (FALSE);
 	if (ft_atoi(str) > 255)
-		return (3);
-	return (0);
+		return (FALSE);
+	return (TRUE);
 }
 
 /*	This function checks that the given color data is correct. If it

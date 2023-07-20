@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:22:44 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/18 14:47:47 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/20 11:52:03 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,39 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-static int	check_file_name(char *arg)
+/* Checking to see if the file ends in '.rt' */
+static BOOL	check_file_name(char *arg)
 {
 	int	len;
 
 	len = ft_strlen(arg);
 	if (len <= 3)
-		return (1);
+		return (FALSE);
 	if (ft_strncmp(&arg[len - 3], ".rt", 3) != 0)
-		return (2);
-	return (0);
+		return (FALSE);
+	return (FALSE);
 }
 
-static int	check_args(int argc, char **argv)
+static BOOL	check_args(int argc, char **argv)
 {
 	if (argc < 2)
 	{
-		printf("Error\nGive a valid rt-file to read as an argument!\n");
-		return (1);
+		perror("Error\nGive a valid rt-file to read as an argument!\n");
+		return (FALSE);
 	}
 	else if (argc > 2)
 	{
-		printf("Error\nToo many of arguments! "
+		perror("Error\nToo many of arguments! "
 			"(Give only one rt-file as argument)\n");
-		return (2);
+		return (FALSE);
 	}
 	if (check_file_name(argv[1]) != 0)
 	{
-		printf("Error\nInvalid argument given! "
+		perror("Error\nInvalid argument given! "
 			"(give a valid rt-file as an argument)\n");
-		return (3);
+		return (FALSE);
 	}
-	return (0);
+	return (TRUE);
 }
 
 static int	open_file(char *arg)
@@ -62,15 +63,14 @@ static int	open_file(char *arg)
 
 /*	This function handles the reading and parsing the file. Returns zero if
 	successfull.	*/
-int	file_handler(int argc, char **argv)
+BOOL	file_handler(int argc, char **argv)
 {
 	int	fd;
 
 	if (check_args(argc, argv) != 0)
-		exit (1);
+		return (FALSE);
 	fd = open_file(argv[1]);
 	if (fd == -1)
-		exit (2);
-	file_parser(fd);
-	return (0);
+		return (FALSE);
+	return (file_parser(fd));
 }

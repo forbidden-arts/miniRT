@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:34:03 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/19 17:35:07 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/20 11:53:18 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	free_str_array_and_return_code(char **str_array, int code)
 /*	this function is used to check that there aren't too many or few
 	of a certain char in a string.
 	returns 0 if everything is correct, else returns 1. */
-int	check_char_amount_in_str(char *str, char c, int correct_amount)
+BOOL	check_char_amount_in_str(char *str, char c, int correct_amount)
 {
 	int	i;
 	int	char_count;
@@ -44,6 +44,6 @@ int	check_char_amount_in_str(char *str, char c, int correct_amount)
 		if (str[i] == c)
 			char_count++;
 	if (char_count == correct_amount)
-		return (0);
-	return (1);
+		return (TRUE);
+	return (FALSE);
 }
