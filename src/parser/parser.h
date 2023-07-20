@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:51:22 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/19 17:35:40 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/20 12:13:47 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,8 @@ int		parser_errors(t_file_parser_function *f);
 void	str_array_free_everything(char **str_array);
 int		free_str_array_and_return_code(char **str_array, int code);
 int		check_char_amount_in_str(char *str, char c, int correct_amount);
+
+double	ft_atof_simple(const char *s);
+BOOL	ft_isdouble_simple(const char *s);
 
 #endif
