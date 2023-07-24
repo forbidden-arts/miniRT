@@ -28,7 +28,25 @@ CYAN = \033[0;96m
 # Sources
 SRCS = \
 main.c					\
-plane.c
+plane.c					\
+cylinder.c				\
+sphere.c				\
+v3d.c					\
+scene.c					\
+vector_math.c			\
+error_exit.c 			\
+file_handler.c			\
+file_parser.c			\
+ft_atof_simple.c		\
+ft_isdouble_simple.c	\
+minirt_split.c			\
+parser_checksets.c		\
+parser_non_objects.c	\
+parser_objects.c		\
+parser_testing.c		\
+parser_utils1.c			\
+parser_utils2.c			
+
 
 
 OBJS := $(SRCS:%.c=$(OBJ_DIR)%.o)
