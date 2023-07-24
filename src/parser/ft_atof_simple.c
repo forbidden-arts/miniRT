@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 12:01:35 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/20 12:13:17 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/23 18:10:31 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,21 @@ static double	parse_fraction(const char **s, int *e)
 	return (fraction);
 }
 
+static int	check_sign(const char **s)
+{
+	int	sign;
+
+	sign = 1;
+	if (**s == '-')
+	{
+		sign = -1;
+		(*s)++;
+	}
+	else if (**s == '+')
+		(*s)++;
+	return (sign);
+}
+
 /*	this is a simplified atof, it cannot handle anything
 	involving exponents (symbols e or E). Also doesn't skip whitespace. */
 double	ft_atof_simple(const char *s)
@@ -37,9 +52,11 @@ double	ft_atof_simple(const char *s)
 	double	a;
 	int		e;
 	int		c;
+	int		sign;
 
 	a = 0.0;
 	e = 0;
+	sign = check_sign(&s);
 	while (1)
 	{
 		c = *s;
@@ -55,5 +72,5 @@ double	ft_atof_simple(const char *s)
 	}
 	while (e++ < 0)
 		a *= 0.1;
-	return (a);
+	return (a * sign);
 }

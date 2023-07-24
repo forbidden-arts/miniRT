@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:22:44 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/20 11:52:03 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/21 16:07:28 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,11 @@ BOOL	file_handler(int argc, char **argv)
 {
 	int	fd;
 
-	if (check_args(argc, argv) != 0)
+	if (check_args(argc, argv) == FALSE)
 		return (FALSE);
 	fd = open_file(argv[1]);
 	if (fd == -1)
 		return (FALSE);
-	return (file_parser(fd));
+	file_parser(fd);
+	return (TRUE);
 }

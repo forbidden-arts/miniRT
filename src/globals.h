@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   globals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 13:04:20 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/24 11:02:14 by ssalmi           ###   ########.fr       */
+/*   Created: 2023/07/21 11:36:40 by ssalmi            #+#    #+#             */
+/*   Updated: 2023/07/21 15:28:59 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Placeholder
-#include "libft.h"
-#include "parser.h"
-#include "scene.h"
-#include "globals.h"
-#include <stdio.h>
+#ifndef GLOBALS_H
+# define GLOBALS_H
 
-t_scene	g_scene;
+# include "scene.h"
 
-int	main(int argc, char **argv)
-{
-	BOOL	parser_result;
+extern t_scene	g_scene;
 
-	scene_init(&g_scene);
-	parser_result = file_handler(argc, argv);
-	if (parser_result == TRUE)
-		printf("parsing successful\n");
-	return (0);
-}
+#endif

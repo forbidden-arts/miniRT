@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:13:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/18 18:45:56 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/24 10:43:54 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,30 @@ mandatory, but thought I'd toss it in.
 
 */
 
+/*	OBJECT TYPES (not required for lights or cameras because they
+	are in their own linked lists):
+	0. SPHERE
+	1. CYLINDER
+	2. PLANE
+*/
+typedef enum e_object_type
+{
+	SPHERE,
+	CYLINDER,
+	PLANE
+}	t_object_type;
+
 typedef struct s_object
 {
-	char	*type;
+	int		type;
 	t_v3d	point;
 	t_v3d	normalized;
 	t_v3d	axis;
 	int		color;
-	int		radius;
-	int		height;
-	int		width;
-	int		intensity;
+	double	radius;
+	double	height;
+	double	width;
+	double	intensity;
 	int		field_of_view;
 	BOOL	is_light;
 	BOOL	is_camera;
