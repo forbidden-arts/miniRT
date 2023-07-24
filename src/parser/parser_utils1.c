@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:34:03 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/20 11:53:18 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/21 16:20:04 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int	free_str_array_and_return_code(char **str_array, int code)
 }
 
 /*	this function is used to check that there aren't too many or few
-	of a certain char in a string.
-	returns 0 if everything is correct, else returns 1. */
+	of a certain char in a string.*/
 BOOL	check_char_amount_in_str(char *str, char c, int correct_amount)
 {
 	int	i;
@@ -46,4 +45,37 @@ BOOL	check_char_amount_in_str(char *str, char c, int correct_amount)
 	if (char_count == correct_amount)
 		return (TRUE);
 	return (FALSE);
+}
+
+/* this is function to check if the given string is an integer.*/
+int	ft_isinteger(char *s)
+{
+	int	digit_found;
+	int	i;
+
+	digit_found = 0;
+	i = 0;
+	while (s[i] && s[i] != '\n')
+	{
+		if (i == 0 && (s[i] == '+' || s[i] == '-'))
+			continue ;
+		if (ft_isdigit(s[i]))
+			digit_found = 1;
+		else
+			return (0);
+		i++;
+	}
+	return (digit_found);
+}
+
+/*	this function returns the amount of strings in
+	a null-terminating string array. */
+int	str_array_count_strings(char **str_array)
+{
+	int	i;
+
+	i = 0;
+	while (str_array[i])
+		i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/19 15:06:06 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/24 10:43:31 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,8 @@ typedef struct s_scene
 	int		current_camera;
 }	t_scene;
 
-// 0, 1, 2, 3
-typedef enum e_object
-{
-	SPHERE,
-	CYLINDER,
-	PLANE
-}	t_object;
-
 // funcs
-int	scene_free_elems(t_scene *scene);
+void	scene_init(t_scene *scene);
+void	scene_free_elems(t_scene *scene);
 
 #endif

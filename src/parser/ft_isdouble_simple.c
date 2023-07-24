@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:55:05 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/20 12:12:23 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/21 13:09:50 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ BOOL	ft_isdouble_simple(const char *s)
 			return (FALSE);
 		c = *s;
 	}
-	if (*s == '\0')
+	if (*s == '\0' || *s == '\n')
 		return (TRUE);
 	return (FALSE);
 }

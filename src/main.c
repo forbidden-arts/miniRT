@@ -3,18 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:04:20 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/18 11:11:56 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/24 11:02:14 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Placeholder
-#include "../libft/include/libft.h"
+#include "libft.h"
+#include "parser.h"
+#include "scene.h"
+#include "globals.h"
+#include <stdio.h>
 
-int	main(void)
+t_scene	g_scene;
+
+int	main(int argc, char **argv)
 {
-	ft_putchar_fd('c', 1);
+	BOOL	parser_result;
+
+	scene_init(&g_scene);
+	parser_result = file_handler(argc, argv);
+	if (parser_result == TRUE)
+		printf("parsing successful\n");
 	return (0);
 }

@@ -6,14 +6,13 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 16:09:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/20 17:00:16 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/21 15:43:03 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "parser.h"
 
-#define DELIMITERS " \t"
+#define DELIMITERS " \t\n"
 
 static char	**minirt_split_unwind(char **tab)
 {
