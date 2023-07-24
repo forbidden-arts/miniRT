@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   v3d.h                                              :+:      :+:    :+:   */
+/*   vector_math.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 12:22:03 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/24 12:11:47 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/07/24 12:05:00 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/07/24 12:10:51 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef V3D_H
-# define V3D_H
+#include "v3d.h"
 
-typedef struct s_v3d
+double	get_dot(t_v3d a, t_v3d b)
 {
-	double	x;
-	double	y;
-	double	z;
-}	t_v3d;
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
+}
 
-t_v3d	init_v3d(double x, double y, double z);
-t_v3d	normalize_vector(t_v3d input);
-double	vector_len(t_v3d input);
-double	get_dot(t_v3d a, t_v3d b);
-t_v3d	get_cross(t_v3d a, t_v3d b);
+t_v3d	get_cross(t_v3d a, t_v3d b)
+{
+	t_v3d	result;
 
-#endif
+	result.x = a.y * b.z - a.z * b.y;
+	result.y = a.z * b.x - a.x * b.z;
+	result.z = a.x * b.y - a.y * b.x;
+	return (result);
+}
