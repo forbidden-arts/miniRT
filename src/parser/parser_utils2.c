@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:44:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/23 18:22:48 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/24 11:08:31 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ BOOL	create_object_and_add_to_lst_end(t_list **lst)
 	ft_lstadd_back(lst, new_node);
 	return (TRUE);
 }
-
 
 /*	This function simply checks that the color data is an integer
 	and that it is in the bounds [0,255].
