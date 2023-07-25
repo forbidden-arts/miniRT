@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 12:50:41 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/24 10:52:02 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 11:16:32 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	parse_sphere(t_parser *f)
 	f->error_part = f->line;
 	if (str_array_count_strings(f->line_parts_array) != 4)
 		error_exit("Incorrect amount of element data parts", f);
-	if (create_object_and_add_to_lst_end(&g_scene.objects) == FALSE)
+	if (create_object_and_add_to_lst_end(&g_data.scene.objects) == FALSE)
 		error_exit("Malloc failure when creating element object", f);
-	sphere = ft_lstlast(g_scene.objects)->content;
+	sphere = ft_lstlast(g_data.scene.objects)->content;
 	sphere->type = SPHERE;
 	coordinate_checkset(f->line_parts_array[1], &sphere->point, f);
 	f->error_part = f->line_parts_array[2];
@@ -48,9 +48,9 @@ void	parse_cylinder(t_parser *f)
 	f->error_part = f->line;
 	if (str_array_count_strings(f->line_parts_array) != 6)
 		error_exit("Incorrect amount of element data parts", f);
-	if (create_object_and_add_to_lst_end(&g_scene.objects) == FALSE)
+	if (create_object_and_add_to_lst_end(&g_data.scene.objects) == FALSE)
 		error_exit("Malloc failure when creating element object", f);
-	cylinder = ft_lstlast(g_scene.objects)->content;
+	cylinder = ft_lstlast(g_data.scene.objects)->content;
 	cylinder->type = CYLINDER;
 	coordinate_checkset(f->line_parts_array[1], &cylinder->point, f);
 	three_d_normalized_vector_checkset(f->line_parts_array[2],
@@ -68,9 +68,9 @@ void	parse_plane(t_parser *f)
 	f->error_part = f->line;
 	if (str_array_count_strings(f->line_parts_array) != 4)
 		error_exit("Incorrect amount of element data parts", f);
-	if (create_object_and_add_to_lst_end(&g_scene.objects) == FALSE)
+	if (create_object_and_add_to_lst_end(&g_data.scene.objects) == FALSE)
 		error_exit("Malloc failure when creating element object", f);
-	plane = ft_lstlast(g_scene.objects)->content;
+	plane = ft_lstlast(g_data.scene.objects)->content;
 	plane->type = PLANE;
 	coordinate_checkset(f->line_parts_array[1], &plane->point, f);
 	three_d_normalized_vector_checkset(f->line_parts_array[2],

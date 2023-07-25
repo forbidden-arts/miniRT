@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:36:54 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/24 10:45:59 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 11:15:23 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	error_exit(char *error_msg, t_parser *f)
 	ft_putnbr_fd(f->line_nbr, 2);
 	ft_putstr_fd(": ", 2);
 	ft_putendl_fd(f->line, 2);
-	parser_error_exit(f, &g_scene);
+	parser_error_exit(f, &g_data.scene);
 }
 
 /*	This function is used if we find an error after finishing parsing
@@ -57,5 +57,5 @@ void	parser_finish_error_exit(char *error_msg, t_parser *f)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(error_msg, 2);
-	parser_error_exit(f, &g_scene);
+	parser_error_exit(f, &g_data.scene);
 }

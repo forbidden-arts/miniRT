@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 11:57:51 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/24 10:51:17 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 11:15:57 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,5 @@ void	file_parser(int fd)
 		f.line = get_next_line(fd);
 		f.line_nbr++;
 	}
-	file_parser_finish_check(&g_scene, &f);
+	file_parser_finish_check(&g_data.scene, &f);
 }

@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 12:42:57 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/24 10:51:45 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 11:16:14 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	parse_camera(t_parser *f)
 	f->error_part = f->line;
 	if (str_array_count_strings(f->line_parts_array) != 4)
 		error_exit("Incorrect amount of element data parts", f);
-	if (create_object_and_add_to_lst_end(&g_scene.cameras) == FALSE)
+	if (create_object_and_add_to_lst_end(&g_data.scene.cameras) == FALSE)
 		error_exit("Malloc failure when creating element object", f);
-	camera = ft_lstlast(g_scene.cameras)->content;
+	camera = ft_lstlast(g_data.scene.cameras)->content;
 	camera->is_camera = TRUE;
 	coordinate_checkset(f->line_parts_array[1], &camera->point, f);
 	three_d_normalized_vector_checkset(f->line_parts_array[2],
@@ -51,8 +51,8 @@ void	parse_ambient_light(t_parser *f)
 	if (str_array_count_strings(f->line_parts_array) != 3)
 		error_exit("Incorrect amount of element data parts", f);
 	brightness_ratio_checkset(f->line_parts_array[1],
-		&g_scene.ambient_intensity, f);
-	color_checkset(f->line_parts_array[2], &g_scene.ambient_color, f);
+		&g_data.scene.ambient_intensity, f);
+	color_checkset(f->line_parts_array[2], &g_data.scene.ambient_color, f);
 }
 
 void	parse_light(t_parser *f)
@@ -62,9 +62,9 @@ void	parse_light(t_parser *f)
 	f->error_part = f->line;
 	if (str_array_count_strings(f->line_parts_array) != 4)
 		error_exit("Incorrect amount of element data parts", f);
-	if (create_object_and_add_to_lst_end(&g_scene.lights) == FALSE)
+	if (create_object_and_add_to_lst_end(&g_data.scene.lights) == FALSE)
 		error_exit("Malloc failure when creating element object", f);
-	light = ft_lstlast(g_scene.lights)->content;
+	light = ft_lstlast(g_data.scene.lights)->content;
 	light->is_light = TRUE;
 	coordinate_checkset(f->line_parts_array[1], &light->point, f);
 	brightness_ratio_checkset(f->line_parts_array[2], &light->intensity, f);

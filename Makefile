@@ -45,7 +45,8 @@ parser_non_objects.c	\
 parser_objects.c		\
 parser_testing.c		\
 parser_utils1.c			\
-parser_utils2.c			
+parser_utils2.c			\
+buttons.c				
 
 
 
