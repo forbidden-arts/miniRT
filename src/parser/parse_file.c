@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:08:23 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/25 15:40:57 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/25 16:54:30 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,14 @@ BOOL	populate_array_scene(t_scene *scene, char *argv)
 		if (!line)
 			break ;
 		if (ft_strncmp(line, "sp", 2))
-			if (!parse_sphere(line, scene);)
+			if (!parse_sphere(line, scene))
+			{
+				// print the line where error happened
+				// (the error msg was already printed)
+				ft_putstr_fd("Error in line: ", 2);
+				ft_putendl_fd(line, 2);
 				// free some shit and quit.
+			}
 	}
 	return (TRUE);
 }
