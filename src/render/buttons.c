@@ -6,14 +6,14 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 10:51:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 12:01:15 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 12:12:42 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
-#include "stdio.h"
+#include "keys.h"
 
-#define KEY_ESC 53
+#include <stdio.h>
 
 int	get_key(int key_code, t_data *data)
 {
