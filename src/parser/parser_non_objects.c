@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 12:42:57 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 11:56:16 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 12:37:19 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	parse_camera(t_parser *f, t_scene *scene)
 	camera->is_camera = TRUE;
 	coordinate_checkset(f->line_parts_array[1], &camera->point, f, scene);
 	three_d_normalized_vector_checkset(f->line_parts_array[2],
-		&camera->normalized, f, scene);
+		&camera->axis, f, scene);
 	f->error_part = f->line_parts_array[3];
 	if (ft_isinteger(f->line_parts_array[3]) == FALSE)
 		error_exit("Given value is not a valid integer", f, scene);

@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:51:22 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 11:59:11 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 13:21:37 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "v3d.h"
 # include "scene.h"
+# include "object.h"
 
 # define AMBIENT_LIGHT_ID	"A"
 # define CAMERA_ID		 	"C"
@@ -74,5 +75,13 @@ BOOL	ft_isdouble_simple(const char *s);
 
 BOOL	create_object_and_add_to_lst_end(t_list **lst);
 void	check_color(char *str, t_parser *f, t_scene *scene);
+
+// THESE ARE FOR TESTING, RM LATER
+void	print_v3d_data(t_v3d *v3d);
+void	print_parser_results(t_scene *scene);
+
+void	print_sphere_data(t_object *sphere);
+void	print_cylinder_data(t_object *cylinder);
+void	print_plane_data(t_object *plane);
 
 #endif
