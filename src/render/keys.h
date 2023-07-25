@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   globals.h                                          :+:      :+:    :+:   */
+/*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 11:36:40 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 11:13:48 by ssalmi           ###   ########.fr       */
+/*   Created: 2023/07/25 11:25:49 by ssalmi            #+#    #+#             */
+/*   Updated: 2023/07/25 12:07:43 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GLOBALS_H
-# define GLOBALS_H
+#ifndef KEYS_H
+# define KEYS_H
 
-# include "scene.h"
-# include "mlx_data.h"
+# include "data.h"
 
-// extern t_scene		g_scene;
-extern t_mlx	g_data;
+# define KEY_ESC 53
+
+int	press_close(t_data *data);
+int	get_key(int key_code, t_data *data);
 
 #endif

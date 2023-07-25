@@ -6,14 +6,13 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:36:54 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 11:15:23 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 11:39:55 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
 #include "scene.h"
-#include "globals.h"
 
 /*	this function is used if an error occurs during parsing.
 	Will free everything malloced and exit with 1. */
@@ -33,7 +32,7 @@ static void	parser_error_exit(t_parser *f, t_scene *scene)
 	Then prints out the line number and line where the error was encountered.
 	Finally goes to error_exit function.
 	*/
-void	error_exit(char *error_msg, t_parser *f)
+void	error_exit(char *error_msg, t_parser *f, t_scene *scene)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(error_msg, 2);
@@ -46,16 +45,16 @@ void	error_exit(char *error_msg, t_parser *f)
 	ft_putnbr_fd(f->line_nbr, 2);
 	ft_putstr_fd(": ", 2);
 	ft_putendl_fd(f->line, 2);
-	parser_error_exit(f, &g_data.scene);
+	parser_error_exit(f, scene);
 }
 
 /*	This function is used if we find an error after finishing parsing
 	(errors like no ambient light, no cameras, etc.)
 	This is a separate function from error_exit because there isn't a
 	specific part or line where there would be an error.*/
-void	parser_finish_error_exit(char *error_msg, t_parser *f)
+void	parser_finish_error_exit(char *error_msg, t_parser *f, t_scene *scene)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(error_msg, 2);
-	parser_error_exit(f, &g_data.scene);
+	parser_error_exit(f, scene);
 }

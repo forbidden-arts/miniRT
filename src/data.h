@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_data.h                                         :+:      :+:    :+:   */
+/*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 10:43:57 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 11:12:26 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 11:29:46 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_DATA_H
-# define MLX_DATA_H
+#ifndef DATA_H
+# define DATA_H
 
 # include "mlx.h"
 # include "scene.h"
@@ -33,15 +33,15 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_mlx
+typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		img;
 	t_scene		scene;
-}	t_mlx;
+}	t_data;
 
-int	press_close(t_mlx *data);
-int	get_key(int key_code, t_mlx *data);
+int	press_close(t_data *data);
+int	get_key(int key_code, t_data *data);
 
 #endif
