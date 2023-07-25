@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   globals.h                                          :+:      :+:    :+:   */
+/*   buttons.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 11:36:40 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 11:13:48 by ssalmi           ###   ########.fr       */
+/*   Created: 2023/07/25 10:51:10 by ssalmi            #+#    #+#             */
+/*   Updated: 2023/07/25 11:13:06 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GLOBALS_H
-# define GLOBALS_H
+#include "mlx_data.h"
+#include "scene.h"
+#include "stdio.h"
 
-# include "scene.h"
-# include "mlx_data.h"
+#define KEY_ESC 53
 
-// extern t_scene		g_scene;
-extern t_mlx	g_data;
+int	get_key(int key_code, t_mlx *data)
+{
+	if (key_code == KEY_ESC)
+		return (press_close(data));
+	return (0);
+}
 
-#endif
+static void	end_program(void)
+{
+	exit (0);
+}
+
+int	press_close(t_mlx *data)
+{
+	(void)data;
+	printf("Closing program!\n");
+	end_program();
+	return (0);
+}
