@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 12:50:41 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 11:58:37 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 12:37:56 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	parse_cylinder(t_parser *f, t_scene *scene)
 	cylinder->type = CYLINDER;
 	coordinate_checkset(f->line_parts_array[1], &cylinder->point, f, scene);
 	three_d_normalized_vector_checkset(f->line_parts_array[2],
-		&cylinder->normalized, f, scene);
+		&cylinder->axis, f, scene);
 	object_dimension_checkset(f->line_parts_array[3], &cy_diameter, f, scene);
 	cylinder->radius = cy_diameter / 2;
 	object_dimension_checkset(f->line_parts_array[4], &cylinder->height,
@@ -74,6 +74,6 @@ void	parse_plane(t_parser *f, t_scene *scene)
 	plane->type = PLANE;
 	coordinate_checkset(f->line_parts_array[1], &plane->point, f, scene);
 	three_d_normalized_vector_checkset(f->line_parts_array[2],
-		&plane->normalized, f, scene);
+		&plane->axis, f, scene);
 	color_checkset(f->line_parts_array[3], &plane->color, f, scene);
 }

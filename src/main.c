@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:04:20 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/25 11:50:38 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 12:33:38 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	parser_result = file_handler(argc, argv, &data.scene);
 	if (parser_result == TRUE)
 		printf("parsing successful\n");
+	print_parser_results(&data.scene);
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH,
 			WINDOW_HEIGHT, "miniRT");
