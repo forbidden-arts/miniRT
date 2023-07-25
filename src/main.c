@@ -6,37 +6,34 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:04:20 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/25 11:14:45 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 11:50:38 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Placeholder
 #include "libft.h"
 #include "parser.h"
-#include "scene.h"
-#include "mlx_data.h"
-#include "globals.h"
+#include "data.h"
 #include <stdio.h>
-
-t_mlx	g_data;
 
 int	main(int argc, char **argv)
 {
+	t_data	data;
 	BOOL	parser_result;
 
-	scene_init(&g_data.scene);
-	parser_result = file_handler(argc, argv);
+	scene_init(&data.scene);
+	parser_result = file_handler(argc, argv, &data.scene);
 	if (parser_result == TRUE)
 		printf("parsing successful\n");
-	g_data.mlx_ptr = mlx_init();
-	g_data.win_ptr = mlx_new_window(g_data.mlx_ptr, WINDOW_WIDTH,
+	data.mlx_ptr = mlx_init();
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH,
 			WINDOW_HEIGHT, "miniRT");
-	g_data.img.img = mlx_new_image(g_data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-	g_data.img.addr = mlx_get_data_addr(g_data.img.img,
-			&g_data.img.bits_per_pixel,
-			&g_data.img.line_length, &g_data.img.endian);
-	mlx_hook(g_data.win_ptr, 17, 0, &press_close, &g_data);
-	mlx_key_hook(g_data.win_ptr, &get_key, &g_data);
-	mlx_loop(g_data.mlx_ptr);
+	data.img.img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+	data.img.addr = mlx_get_data_addr(data.img.img,
+			&data.img.bits_per_pixel,
+			&data.img.line_length, &data.img.endian);
+	mlx_hook(data.win_ptr, 17, 0, &press_close, &data);
+	mlx_key_hook(data.win_ptr, &get_key, &data);
+	mlx_loop(data.mlx_ptr);
 	return (0);
 }

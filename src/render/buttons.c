@@ -6,17 +6,16 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 10:51:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 11:13:06 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 12:01:15 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_data.h"
-#include "scene.h"
+#include "data.h"
 #include "stdio.h"
 
 #define KEY_ESC 53
 
-int	get_key(int key_code, t_mlx *data)
+int	get_key(int key_code, t_data *data)
 {
 	if (key_code == KEY_ESC)
 		return (press_close(data));
@@ -28,7 +27,7 @@ static void	end_program(void)
 	exit (0);
 }
 
-int	press_close(t_mlx *data)
+int	press_close(t_data *data)
 {
 	(void)data;
 	printf("Closing program!\n");

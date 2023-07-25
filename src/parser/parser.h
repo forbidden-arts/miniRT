@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:51:22 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/24 10:36:22 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 11:59:11 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "libft.h"
 # include "v3d.h"
-
-// rm later
 # include "scene.h"
 
 # define AMBIENT_LIGHT_ID	"A"
@@ -37,32 +35,33 @@ typedef struct s_parser
 }	t_parser;
 
 // functions
-BOOL	file_handler(int argc, char **argv);
+BOOL	file_handler(int argc, char **argv, t_scene *scene);
 
 void	parser_struct_free(t_parser *f);
-void	file_parser(int fd);
+void	file_parser(int fd, t_scene *scene);
 
-void	error_exit(char *error_msg, t_parser *f);
-void	parser_finish_error_exit(char *error_msg, t_parser *f);
+void	error_exit(char *error_msg, t_parser *f, t_scene *scene);
+void	parser_finish_error_exit(char *error_msg, t_parser *f, t_scene *scene);
 
 char	**minirt_split(char const *s);
 
-void	parse_camera(t_parser *f);
-void	parse_ambient_light(t_parser *f);
-void	parse_light(t_parser *f);
-void	parse_sphere(t_parser *f);
-void	parse_cylinder(t_parser *f);
-void	parse_plane(t_parser *f);
+void	parse_camera(t_parser *f, t_scene *scene);
+void	parse_ambient_light(t_parser *f, t_scene *scene);
+void	parse_light(t_parser *f, t_scene *scene);
+void	parse_sphere(t_parser *f, t_scene *scene);
+void	parse_cylinder(t_parser *f, t_scene *scene);
+void	parse_plane(t_parser *f, t_scene *scene);
 
 void	brightness_ratio_checkset(char *str, double *target_elems_data,
-			t_parser *f);
-void	color_checkset(char *str, int *target_elems_data, t_parser *f);
+			t_parser *f, t_scene *s);
+void	color_checkset(char *str, int *target_elems_data, t_parser *f,
+			t_scene *s);
 void	coordinate_checkset(char *str, t_v3d *target_elems_data,
-			t_parser *f);
+			t_parser *f, t_scene *s);
 void	three_d_normalized_vector_checkset(char *str, t_v3d *target_elems_data,
-			t_parser *f);
+			t_parser *f, t_scene *s);
 void	object_dimension_checkset(char *str, double *target_elems_data,
-			t_parser *f);
+			t_parser *f, t_scene *s);
 
 void	str_array_free_everything(char **str_array);
 int		free_str_array_and_return_code(char **str_array, int code);
@@ -74,6 +73,6 @@ double	ft_atof_simple(const char *s);
 BOOL	ft_isdouble_simple(const char *s);
 
 BOOL	create_object_and_add_to_lst_end(t_list **lst);
-void	check_color(char *str, t_parser *f);
+void	check_color(char *str, t_parser *f, t_scene *scene);
 
 #endif

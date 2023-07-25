@@ -6,14 +6,13 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 11:57:51 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 11:15:57 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 11:52:26 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
 #include "scene.h"
-#include "globals.h"
 #include <stdio.h>
 
 /*	this function free's everything malloced for file_parser_function_struct.
@@ -36,26 +35,26 @@ static void	init_file_parser_func_struct(t_parser *f)
 	f->ambient_light_bool = FALSE;
 }
 
-static void	find_matching_elem_type(t_parser *f)
+static void	find_matching_elem_type(t_parser *f, t_scene *scene)
 {
 	f->error_part = f->line_parts_array[0];
 	if (f->line_parts_array[0] == NULL
 		|| ft_strncmp(f->line_parts_array[0], "//", 2) == 0)
 		return ;
 	else if (ft_strncmp(f->line_parts_array[0], AMBIENT_LIGHT_ID, 2) == 0)
-		parse_ambient_light(f);
+		parse_ambient_light(f, scene);
 	else if (ft_strncmp(f->line_parts_array[0], CAMERA_ID, 2) == 0)
-		parse_camera(f);
+		parse_camera(f, scene);
 	else if (ft_strncmp(f->line_parts_array[0], LIGHT_ID, 2) == 0)
-		parse_light(f);
+		parse_light(f, scene);
 	else if (ft_strncmp(f->line_parts_array[0], SPHERE_ID, 3) == 0)
-		parse_sphere(f);
+		parse_sphere(f, scene);
 	else if (ft_strncmp(f->line_parts_array[0], CYLINDER_ID, 3) == 0)
-		parse_cylinder(f);
+		parse_cylinder(f, scene);
 	else if (ft_strncmp(f->line_parts_array[0], PLANE_ID, 3) == 0)
-		parse_plane(f);
+		parse_plane(f, scene);
 	else
-		error_exit("Unknown type given", f);
+		error_exit("Unknown type given", f, scene);
 }
 
 /*	This function is used after parsing the file, checks things like
@@ -63,11 +62,11 @@ static void	find_matching_elem_type(t_parser *f)
 static	void	file_parser_finish_check(t_scene *scene, t_parser *f)
 {
 	if (f->ambient_light_bool == FALSE)
-		parser_finish_error_exit("No ambient light element in file!", f);
+		parser_finish_error_exit("No ambient light element in file!", f, scene);
 	if (scene->cameras == NULL)
-		parser_finish_error_exit("No camera element in file!", f);
+		parser_finish_error_exit("No camera element in file!", f, scene);
 	if (scene->objects == NULL)
-		parser_finish_error_exit("No object element in file!", f);
+		parser_finish_error_exit("No object element in file!", f, scene);
 }
 
 /*	This is the function that reads through the given file and
@@ -87,7 +86,7 @@ static	void	file_parser_finish_check(t_scene *scene, t_parser *f)
 	
 	If the program has not quit (no errors),
 	it can continue to create the scene!*/
-void	file_parser(int fd)
+void	file_parser(int fd, t_scene *scene)
 {
 	t_parser	f;
 
@@ -97,13 +96,13 @@ void	file_parser(int fd)
 	{
 		f.line_parts_array = minirt_split(f.line);
 		if (!f.line_parts_array)
-			error_exit("split malloc failure", &f);
-		find_matching_elem_type(&f);
+			error_exit("split malloc failure", &f, scene);
+		find_matching_elem_type(&f, scene);
 		free(f.line);
 		free(f.line_parts_array);
 		f.line_parts_array = NULL;
 		f.line = get_next_line(fd);
 		f.line_nbr++;
 	}
-	file_parser_finish_check(&g_data.scene, &f);
+	file_parser_finish_check(scene, &f);
 }

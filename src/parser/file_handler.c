@@ -6,12 +6,14 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:22:44 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/21 16:07:28 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 11:49:31 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
+#include "scene.h"
+
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -63,7 +65,7 @@ static int	open_file(char *arg)
 
 /*	This function handles the reading and parsing the file. Returns zero if
 	successfull.	*/
-BOOL	file_handler(int argc, char **argv)
+BOOL	file_handler(int argc, char **argv, t_scene *scene)
 {
 	int	fd;
 
@@ -72,6 +74,6 @@ BOOL	file_handler(int argc, char **argv)
 	fd = open_file(argv[1]);
 	if (fd == -1)
 		return (FALSE);
-	file_parser(fd);
+	file_parser(fd, scene);
 	return (TRUE);
 }
