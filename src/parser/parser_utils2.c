@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:59:25 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/26 12:18:15 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/26 14:54:17 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,15 @@ BOOL	axis_part_checkset(char *str, double *target_data)
 	return (TRUE);
 }
 
-/*	This function checks (and sets) dimension data during parsing.
-	
-	If an error is encountered prints error and returns FALSE.*/
-BOOL	dimension_checkset(char *str, double *target_data)
+/*	Check that the identifier is in the correct format	*/
+BOOL	check_identifier(char *str, char *id)
 {
-	double	result;
+	int	len_id;
 
-	if (ft_isdouble_simple(str) == FALSE)
-		return (return_err("Not a valid double for dimension-data", NULL));
-	result = ft_atof_simple(str);
-	if (result <= 0)
-		return (return_err("A dimension must be greater than 0", NULL));
-	*target_data = result;
+	len_id = ft_strlen(id);
+	if (ft_strlen(str) != len_id)
+		return (FALSE);
+	if (ft_strncmp(str, id, len_id) != 0)
+		return (FALSE);
 	return (TRUE);
 }
