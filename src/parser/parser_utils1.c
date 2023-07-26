@@ -5,50 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/19 16:34:03 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/21 16:20:04 by ssalmi           ###   ########.fr       */
+/*   Created: 2023/07/23 13:44:28 by ssalmi            #+#    #+#             */
+/*   Updated: 2023/07/25 16:05:14 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	str_array_free_everything(char **str_array)
+/*	This function will print out the error message and return FALSE*/
+BOOL	return_err(char *error_msg)
 {
-	int	i;
-
-	i = -1;
-	while (str_array[++i])
-		free(str_array[i]);
-	free(str_array);
-}
-
-/*	this function simply frees the given str-array and returns the given
-	code. Used to save precious space. */
-int	free_str_array_and_return_code(char **str_array, int code)
-{
-	str_array_free_everything(str_array);
-	return (code);
-}
-
-/*	this function is used to check that there aren't too many or few
-	of a certain char in a string.*/
-BOOL	check_char_amount_in_str(char *str, char c, int correct_amount)
-{
-	int	i;
-	int	char_count;
-
-	char_count = 0;
-	i = -1;
-	while (str[++i])
-		if (str[i] == c)
-			char_count++;
-	if (char_count == correct_amount)
-		return (TRUE);
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(error_msg, 2);
 	return (FALSE);
 }
 
 /* this is function to check if the given string is an integer.*/
-int	ft_isinteger(char *s)
+BOOL	ft_isinteger(char *s)
 {
 	int	digit_found;
 	int	i;
@@ -65,17 +38,44 @@ int	ft_isinteger(char *s)
 			return (0);
 		i++;
 	}
-	return (digit_found);
+	if (!digit_found)
+		return (FALSE);
+	return (TRUE);
 }
 
-/*	this function returns the amount of strings in
-	a null-terminating string array. */
-int	str_array_count_strings(char **str_array)
+/*	This function simply checks that the color data is an integer
+	and that it is in the bounds [0,255].
+	If an error is encountered goes to error_exit().
+	
+	Used inside color_checkset.*/
+BOOL	check_color(char *color_data)
+{
+	int	result;
+
+	if (!ft_isinteger(color_data))
+		return_err("Not a valid integer in color data");
+	result = ft_atoi(color_data);
+	if (result < 0 || result > 255)
+		return_err("Color value not in bounds [0, 255]");
+	return (TRUE);
+}
+
+/*	this function is used to check that there aren't too many or few
+	of a certain char in a string.
+	
+	Use with coordinates, colors etc to check that there are the
+	correct amount of commas. */
+BOOL	check_char_amount_in_str(char *str, char c, int correct_amount)
 {
 	int	i;
+	int	char_count;
 
-	i = 0;
-	while (str_array[i])
-		i++;
-	return (i);
+	char_count = 0;
+	i = -1;
+	while (str[++i])
+		if (str[i] == c)
+			char_count++;
+	if (char_count == correct_amount)
+		return (TRUE);
+	return (FALSE);
 }

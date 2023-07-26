@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:04:20 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/25 12:33:38 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/25 15:11:36 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@
 #include <stdio.h>
 
 int	main(int argc, char **argv)
-{
+// {
+// 	1) get fd
+//		call count scene;
+// 	2) allocate
+//  3) populate;
 	t_data	data;
 	BOOL	parser_result;
 
