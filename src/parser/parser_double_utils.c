@@ -6,13 +6,13 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 16:04:35 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 16:15:30 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/26 11:24:02 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static BOOL	parse_fraction(const char **s)
+static BOOL	parse_fraction_isdouble(const char **s)
 {
 	BOOL	has_fraction;
 	int		c;
@@ -48,7 +48,7 @@ BOOL	ft_isdouble_simple(const char *s)
 	if (c == '.')
 	{
 		s++;
-		if (!parse_fraction(&s))
+		if (!parse_fraction_isdouble(&s))
 			return (FALSE);
 		c = *s;
 	}
