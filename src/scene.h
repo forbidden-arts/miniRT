@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/26 10:43:28 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/26 11:11:14 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_scene
 }	t_scene;
 
 // funcs
-void	scene_init(t_scene *scene);
-void	scene_free_elems(t_scene *scene);
+void	init_scene(t_scene *scene);
+void	free_scene(t_scene *scene);
 
 #endif

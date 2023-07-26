@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 10:43:57 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 11:29:46 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/26 11:11:32 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ typedef struct s_data
 	t_scene		scene;
 }	t_data;
 
-int	press_close(t_data *data);
-int	get_key(int key_code, t_data *data);
+int		press_close(t_data *data);
+int		get_key(int key_code, t_data *data);
+
+void	init_data(t_data *data);
+void	free_data(t_data *data);
 
 #endif
