@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:28:34 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/26 12:33:36 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/26 13:45:07 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,10 +128,8 @@ BOOL	brightness_ratio_checkset(char *str, double *target_data)
 /*	This function checks and sets a certain dimension, like height or radius,
 	for an object.
 
-	If the given value describes the diameter for an object, the value must
-	be divided by two and set for the object in the function that calls this
-	function.	*/
-BOOL	object_dimension_checkset(char *str, double *target_data)
+	If diameter BOOL is TRUE, then we half the resulting double	*/
+BOOL	dimension_checkset(char *str, double *target_data, BOOL diameter)
 {
 	double	result;
 
@@ -140,6 +138,9 @@ BOOL	object_dimension_checkset(char *str, double *target_data)
 	result = ft_atof_simple(str);
 	if (result <= 0)
 		return (return_err("Dimension value must be greater than 0", NULL));
-	*target_data = result;
+	if (diameter == TRUE)
+		*target_data = result / 2;
+	else
+		*target_data = result;
 	return (TRUE);
 }

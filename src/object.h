@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:13:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/24 10:43:54 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/26 13:48:44 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_object
 	t_v3d	point;
 	t_v3d	normalized;
 	t_v3d	axis;
-	int		color;
+	t_v3d	color;
 	double	radius;
 	double	height;
 	double	width;

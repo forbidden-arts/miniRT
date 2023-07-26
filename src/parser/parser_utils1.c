@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:44:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/26 12:19:16 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/26 14:53:50 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ BOOL	return_err(char *error_msg, char *optional_str_to_free)
 	return (FALSE);
 }
 
-/*	This function is used */
+/*	This function is used to free the given string and return NULL
+	Used or saving precious space in the functions this is called in. */
 BOOL	free_str_and_return_false(char *str)
 {
 	if (str)
@@ -86,6 +87,8 @@ BOOL	check_char_amount_in_str(char *str, char c, int correct_amount)
 
 	char_count = 0;
 	i = -1;
+	if (str == NULL)
+		return (FALSE);
 	while (str[++i])
 		if (str[i] == c)
 			char_count++;
