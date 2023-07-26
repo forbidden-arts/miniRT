@@ -6,17 +6,32 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:44:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/25 16:05:14 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/26 12:19:16 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*	This function will print out the error message and return FALSE*/
-BOOL	return_err(char *error_msg)
+/*	This function will print out the error message and return FALSE
+
+	You can also give it an optional string that it will free.
+	Leave the string as NULL otherwise (this part is for saving
+	precious space in the functions this function is used in)
+	*/
+BOOL	return_err(char *error_msg, char *optional_str_to_free)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(error_msg, 2);
+	if (optional_str_to_free)
+		free(optional_str_to_free);
+	return (FALSE);
+}
+
+/*	This function is used */
+BOOL	free_str_and_return_false(char *str)
+{
+	if (str)
+		free(str);
 	return (FALSE);
 }
 
@@ -43,20 +58,19 @@ BOOL	ft_isinteger(char *s)
 	return (TRUE);
 }
 
-/*	This function simply checks that the color data is an integer
-	and that it is in the bounds [0,255].
-	If an error is encountered goes to error_exit().
+/*	This function checks (and sets) a part of color data during parsing.
 	
-	Used inside color_checkset.*/
-BOOL	check_color(char *color_data)
+	If an error is encountered prints error and returns FALSE.*/
+BOOL	color_part_checkset(char *str, double *target_data)
 {
 	int	result;
 
-	if (!ft_isinteger(color_data))
-		return_err("Not a valid integer in color data");
-	result = ft_atoi(color_data);
+	if (ft_isinteger(str) == FALSE)
+		return_err("Not a valid integer in color data", NULL);
+	result = ft_atoi(str);
 	if (result < 0 || result > 255)
-		return_err("Color value not in bounds [0, 255]");
+		return_err("Color value not in bounds [0, 255]", NULL);
+	*target_data = result;
 	return (TRUE);
 }
 
