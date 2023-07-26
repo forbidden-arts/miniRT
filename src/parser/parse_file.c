@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:08:23 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/25 16:54:30 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/26 08:25:41 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,24 +73,31 @@ BOOL	populate_array_scene(t_scene *scene, char *argv)
 {
 	char	*line;
 	int		fd;
+	BOOL	result;
 
+	result = TRUE;
 	fd = get_fd(argv);
 	if (fd < 0)
 		return (FALSE);
-	while (TRUE)
+	while (result)
 	{
-		line =get_next_line(fd);
+		line = get_next_line(fd);
 		if (!line)
 			break ;
 		if (ft_strncmp(line, "sp", 2))
-			if (!parse_sphere(line, scene))
+			result = (parse_sphere(line, scene))
+		else if (ft_strncmp(line, ""))
 			{
+				/* SAKARI:
+					I agree with what you're wanting to do below, 
+					but would argue it belongs in the parse_sphere func
+				*/
 				// print the line where error happened
 				// (the error msg was already printed)
-				ft_putstr_fd("Error in line: ", 2);
-				ft_putendl_fd(line, 2);
+				// ft_putstr_fd("Error in line: ", 2);
+				// ft_putendl_fd(line, 2);
 				// free some shit and quit.
 			}
 	}
-	return (TRUE);
+	return (result);
 }
