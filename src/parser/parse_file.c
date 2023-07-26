@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:08:23 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/26 08:25:41 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/26 08:42:50 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,35 +69,41 @@ BOOL	allocate_array_scene(t_scene *scene)
 	return (TRUE);
 }
 
-BOOL	populate_array_scene(t_scene *scene, char *argv)
-{
-	char	*line;
-	int		fd;
-	BOOL	result;
-
-	result = TRUE;
-	fd = get_fd(argv);
-	if (fd < 0)
-		return (FALSE);
-	while (result)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		if (ft_strncmp(line, "sp", 2))
-			result = (parse_sphere(line, scene))
-		else if (ft_strncmp(line, ""))
-			{
+			// {
 				/* SAKARI:
 					I agree with what you're wanting to do below, 
-					but would argue it belongs in the parse_sphere func
+					but would argue it belongs in the parse_(obj) funcs
 				*/
 				// print the line where error happened
 				// (the error msg was already printed)
 				// ft_putstr_fd("Error in line: ", 2);
 				// ft_putendl_fd(line, 2);
 				// free some shit and quit.
-			}
+			// }
+BOOL	populate_array_scene(t_scene *scene, char *argv)
+{
+	char	*line;
+	int		fd;
+	int		index;
+	BOOL	result;
+
+	result = TRUE;
+	index = 0;
+	fd = get_fd(argv);
+	if (fd < 0)			//might consider removing these if we run out of space
+		return (FALSE);
+	while (result)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		if (!ft_strncmp(line, "sp", 2))
+			result = (parse_sphere(line, scene, index));
+		else if (!ft_strncmp(line, "pl", 2))
+			result = (parse_plane(line, scene, index));
+		else if (!ft_strncmp(line, "cy", 2))
+			result = (parse_cylinder(line, scene, index));
+		index++;
 	}
 	return (result);
 }
