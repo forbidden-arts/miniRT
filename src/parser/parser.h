@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:10:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/26 14:52:45 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/28 11:24:52 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 # include "libft.h"
 # include "v3d.h"
+# include "scene.h"
 
 # define AMBIENT_LIGHT_ID	"A"
 # define CAMERA_ID			"C"
-# define LIGHT_ID			"L"	
+# define LIGHT_ID			"L"
 # define SPHERE_ID			"sp"
 # define CYLINDER_ID		"cy"
 # define PLANE_ID			"pl"

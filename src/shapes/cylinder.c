@@ -6,22 +6,18 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 12:37:45 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/18 13:10:58 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/28 11:24:23 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "cylinder.h"
+#include "libft.h"
+#include "v3d.h"
+#include "scene.h"
 
-t_cylinder	*create_cylinder(t_v3d point, double radius, double height)
+BOOL	populate_cylinder(t_object *cylinder)
 {
-	t_cylinder	*cylinder;
-
-	cylinder = malloc(sizeof(t_cylinder));
 	if (!cylinder)
-		return (NULL);
-	cylinder->point = point;
-	cylinder->radius = radius;
-	cylinder->height = height;
-	return (cylinder);
+		return (FALSE);
+	cylinder->normalized = normalize_vector(cylinder->point);
+	return (TRUE);
 }

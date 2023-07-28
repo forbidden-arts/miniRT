@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:03:47 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/26 14:47:43 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/28 11:10:02 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "scene.h"
-#include "object.h"
 #include "v3d.h"
 
 static BOOL	parse_cylinder_check_parts1(char *token, t_object *cylinder, int *i)

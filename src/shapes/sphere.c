@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane.c                                            :+:      :+:    :+:   */
+/*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/18 09:52:40 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/18 18:46:47 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/07/17 12:56:47 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/07/28 11:47:21 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "plane.h"
+#include "libft.h"
+#include "scene.h"
+#include "v3d.h"
 
-t_plane	*create_plane(t_v3d point, t_v3d normalized)
+t_v3d	get_sphere_normal(t_v3d point, t_object *sphere)
 {
-	t_plane	*plane;
+	t_v3d	normal;
 
-	plane = malloc(sizeof(t_plane));
-	if (!plane)
-		return (NULL);
-	plane->point = point;
-	plane->normalized = normalized;
-	return (plane);
+	normal = vector_sub(point, sphere->point);
+	return (normalize_vector(normal));
 }
+

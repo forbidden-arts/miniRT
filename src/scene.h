@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/26 11:11:14 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/28 13:14:10 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,13 @@ typedef struct s_scene
 	int			n_lights;
 	int			n_cameras;
 	int			n_objects;
-
 }	t_scene;
+
+typedef struct s_ray
+{
+	t_v3d	origin;
+	t_v3d	direction;
+}	t_ray;
 
 // funcs
 void	init_scene(t_scene *scene);
