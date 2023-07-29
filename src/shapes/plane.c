@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 12:56:47 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/25 15:18:31 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/07/18 09:52:40 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/07/28 13:15:42 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
-#include "sphere.h"
 
-BOOL	*create_sphere(t_v3d center, double radius)
-{
-	t_sphere	*sphere;
+// t_plane	*create_plane(t_v3d point, t_v3d normalized)
+// {
+// 	t_plane	*plane;
 
-	if (!radius)
-		return (NULL);
-	sphere = malloc(sizeof(t_sphere));
-	if (!sphere)
-		return (NULL);
-	sphere->point = center;
-	sphere->radius = radius;
-	return (sphere);
-}
+// 	plane = malloc(sizeof(t_plane));
+// 	if (!plane)
+// 		return (NULL);
+// 	plane->point = point;
+// 	plane->normalized = normalized;
+// 	return (plane);
+// }
