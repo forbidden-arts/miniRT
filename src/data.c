@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:09:43 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/26 11:10:29 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/29 18:03:56 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,12 @@ void	init_data(t_data *data)
 {
 	init_scene(&data->scene);
 	init_mlx_data(data);
+}
+
+/*	This function frees everything allocated for data and exits with
+	the given exit code.*/
+void	exit_minirt(t_data *data, int exit_code)
+{
+	free_data(data);
+	exit(exit_code);
 }

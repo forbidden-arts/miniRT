@@ -3,43 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:08:23 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/26 08:42:50 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/31 17:50:22 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "libft.h"
 #include "scene.h"
 #include "parser.h"
 
-int	get_fd(char *argv)
-{
-	int		fd;
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		perror("Error\nCan not open file");
-	return (fd);
-}
-
-BOOL	check_extension(char *argv)
-{
-	int	len;
-
-	len = ft_strlen(argv);
-	if (len <= 3)
-		return (FALSE);
-	if (!ft_strncmp(&argv[len - 3], ".rt", 4))
-		return (FALSE);
-	return (TRUE);
-}
-
-BOOL	count_scene(int fd, t_scene *scene)
+static BOOL	count_scene(int fd, t_scene *scene)
 {
 	char	*line;
 
@@ -54,18 +31,38 @@ BOOL	count_scene(int fd, t_scene *scene)
 			scene->n_cameras++;
 		else if (ft_strncmp(line, "//", 3))
 			scene->n_objects++;
+		free(line);
 	}
 	close(fd);
 	return (TRUE);
 }
 
-BOOL	allocate_array_scene(t_scene *scene)
+/*	This function allocates the arrays for the scene.
+	We check already here that there are at least ONE camera
+	or shape element in the file.
+	
+	ASK DAN: should we give an error if there are no lights in file?*/
+static BOOL	allocate_array_scene(t_scene *scene)
 {
+	if (scene->n_cameras == 0)
+		return (return_err("No camera elem(s) given in file", NULL));
+	if (scene->n_objects == 0)
+		return (return_err("No shape elem(s) given in file", NULL));
 	scene->cameras = malloc(sizeof(t_camera) * scene->n_cameras);
 	scene->lights = malloc(sizeof(t_camera) * scene->n_lights);
 	scene->objects = malloc(sizeof(t_object) * scene->n_objects);
 	if (!scene->cameras || !scene->lights || !scene->objects)
 		return (FALSE);
+	return (TRUE);
+}
+
+/*	This function is used at the end of parsing. If this function is called,
+	it means that there haven't been any errors during the parsing of the
+	file's lines.	*/
+static BOOL	parsing_end_check(t_file_parser *parser)
+{
+	if (parser->ambient_light_found == FALSE)
+		return (return_err("No ambient light elem given in file", NULL));
 	return (TRUE);
 }
 
@@ -82,28 +79,50 @@ BOOL	allocate_array_scene(t_scene *scene)
 			// }
 BOOL	populate_array_scene(t_scene *scene, char *argv)
 {
-	char	*line;
-	int		fd;
-	int		index;
-	BOOL	result;
+	t_file_parser	parser;
+	BOOL			found_match;
 
-	result = TRUE;
-	index = 0;
-	fd = get_fd(argv);
-	if (fd < 0)			//might consider removing these if we run out of space
+	if (init_file_parser_struct(&parser, argv) == FALSE)
 		return (FALSE);
-	while (result)
+	while (parser.result)
 	{
-		line = get_next_line(fd);
-		if (!line)
+		parser.line = get_next_line(parser.fd);
+		if (!parser.line)
 			break ;
-		if (!ft_strncmp(line, "sp", 2))
-			result = (parse_sphere(line, scene, index));
-		else if (!ft_strncmp(line, "pl", 2))
-			result = (parse_plane(line, scene, index));
-		else if (!ft_strncmp(line, "cy", 2))
-			result = (parse_cylinder(line, scene, index));
-		index++;
+		found_match = FALSE;
+		found_match = find_shape_match(&parser, scene);
+		if (found_match == FALSE)
+			found_match = find_non_shape_match(&parser, scene);
+		if (found_match == FALSE)
+			parser.result = return_err("Unknown element type", NULL);
+		if (parser.result == FALSE)
+			print_error_line(parser.line);
+		parser.line = free_str_and_set_as_null(parser.line);
 	}
-	return (result);
+	close(parser.fd);
+	if (parser.result == TRUE)
+		parser.result = parsing_end_check(&parser);
+	return (parser.result);
+}
+
+/*	This function handles the start of the program and parsing of the file.
+	It will return TRUE if everything is correct.
+	If it returns FALSE, free everything allocated and exit program. */
+BOOL	minirt_start(int argc, char **argv, t_scene *scene)
+{
+	int	fd;
+
+	if (argc != 2)
+		return (FALSE);
+	if (check_extension(argv[1]) == FALSE)
+		return (FALSE);
+	fd = get_fd(argv[1]);
+	if (fd < 0)
+		return (FALSE);
+	count_scene(fd, scene);
+	if (allocate_array_scene(scene) == FALSE)
+		return (FALSE);
+	if (populate_array_scene(scene, argv[1]) == FALSE)
+		return (FALSE);
+	return (TRUE);
 }

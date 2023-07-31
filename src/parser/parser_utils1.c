@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:44:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/26 14:53:50 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/31 16:12:56 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,22 @@ BOOL	free_str_and_return_false(char *str)
 /* this is function to check if the given string is an integer.*/
 BOOL	ft_isinteger(char *s)
 {
-	int	digit_found;
-	int	i;
+	BOOL	digit_found;
+	int		i;
 
-	digit_found = 0;
+	digit_found = FALSE;
 	i = 0;
-	while (s[i] && s[i] != '\n')
+	while (s[i])
 	{
 		if (i == 0 && (s[i] == '+' || s[i] == '-'))
+		{
+			i++;
 			continue ;
+		}
 		if (ft_isdigit(s[i]))
-			digit_found = 1;
+			digit_found = TRUE;
 		else
-			return (0);
+			return (FALSE);
 		i++;
 	}
 	if (!digit_found)

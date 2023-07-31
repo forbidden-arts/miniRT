@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:35:24 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/26 14:40:41 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/31 17:45:54 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,42 @@
 #include "scene.h"
 #include "v3d.h"
 
-static BOOL	parse_light_check_parts(char *token, t_light *light, int *i)
+static BOOL	parse_light_check_parts1(char **token, t_light *light, int *i)
 {
-	while (token)
+	while (*token && *i <= 2)
 	{
 		if (*i == 0)
-			if (!check_identifier(token, LIGHT_ID))
+		{
+			if (!check_identifier(*token, LIGHT_ID))
 				return (return_err("Unknown element type", NULL));
+		}
 		else if (*i == 1)
-			if (!coordinate_checkset(ft_strdup(token), &light->location))
+		{
+			if (!coordinate_checkset(ft_strdup(*token), &light->location))
 				return (FALSE);
+		}
 		else if (*i == 2)
-			if (!brightness_ratio_checkset(token, light->intensity))
+		{
+			if (!brightness_ratio_checkset(*token, &light->intensity))
 				return (FALSE);
-		else if (*i == 3)
-			if (!color_checkset(ft_strdup(token), &light->color))
+		}
+		*token = ft_strtok(NULL, " \t\n");
+		*i += 1;
+	}
+	return (TRUE);
+}
+
+static BOOL	parse_light_check_parts2(char **token, t_light *light, int *i)
+{
+	while (*token)
+	{
+		if (*i == 3)
+		{
+			if (!color_checkset(ft_strdup(*token), &light->color))
 				return (FALSE);
-		token = ft_strtok(NULL, " \t\n");
-		*i++;
+		}
+		*token = ft_strtok(NULL, " \t\n");
+		*i += 1;
 	}
 	return (TRUE);
 }
@@ -42,10 +60,16 @@ BOOL	parse_light(char *line, t_scene *scene, int index)
 	int			i;
 	char		*token;
 
+	if (!line)
+		return (return_err("ft_strdup malloc failure", NULL));
 	i = 0;
 	light = &scene->lights[index];
 	token = ft_strtok(line, " \t\n");
-	if (!parse_light_check_parts(token, light, &i))
+	if (!parse_light_check_parts1(&token, light, &i))
+		return (free_str_and_return_false(line));
+	if (i != 3)
+		return (return_err("Incorrect format in light data", line));
+	if (!parse_light_check_parts2(&token, light, &i))
 		return (free_str_and_return_false(line));
 	if (i != 4)
 		return (return_err("Incorrect format in light data", line));

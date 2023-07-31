@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vector_math2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:22:52 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/28 13:12:09 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/31 17:55:52 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "v3d.h"
-
 
 /* Takes a vec3d struct and returns separate struct of the normalized values */
 t_v3d	normalize_vector(t_v3d input)
