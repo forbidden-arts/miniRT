@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_math.c                                      :+:      :+:    :+:   */
+/*   vector_arithmetic.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:05:00 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 11:55:28 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/01 13:01:56 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "v3d.h"
 
-t_v3d	vec3_add(const t_v3d *u, const t_v3d *v)
+t_v3d	v3d_add(const t_v3d *u, const t_v3d *v)
 {
 	t_v3d	result;
 
