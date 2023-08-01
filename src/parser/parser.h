@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:10:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/31 15:54:35 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 12:01:31 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ BOOL	free_str_array_and_return_false(char **str_array);
 
 // parser_utils3.c
 int		count_strings_in_array(char **str_array);
+BOOL	check_if_empty_line(char *str);
 
 // parser_checksets.c
 BOOL	color_checkset(char *str, t_v3d *target_data);

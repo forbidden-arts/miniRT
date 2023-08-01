@@ -6,9 +6,11 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:35:44 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/31 15:36:43 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 12:01:00 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	count_strings_in_array(char **str_array)
 {
@@ -20,4 +22,16 @@ int	count_strings_in_array(char **str_array)
 		i++;
 	}
 	return (i);
+}
+
+/*	this function checks if the string is empty (only whitespace).
+	(Used in find_non_shape_match) */
+BOOL	check_if_empty_line(char *str)
+{
+	char	*token;
+
+	token = ft_strtok(str, " \t\n");
+	if (token)
+		return (FALSE);
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:08:23 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/31 17:50:22 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 11:50:37 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,23 @@
 static BOOL	count_scene(int fd, t_scene *scene)
 {
 	char	*line;
+	char	*token;
 
 	while (TRUE)
 	{
-		line = ft_strtok(get_next_line(fd), " \t\n");
+		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (!ft_strncmp(line, "L", 2))
-			scene->n_lights++;
-		else if (!ft_strncmp(line, "C", 2))
+		token = ft_strtok(line, " \t\n");
+		if (token == NULL)
+			;
+		else if (!ft_strncmp(token, CAMERA_ID, 1))
 			scene->n_cameras++;
-		else if (ft_strncmp(line, "//", 3))
+		else if (!ft_strncmp(token, LIGHT_ID, 1))
+			scene->n_lights++;
+		else if (!ft_strncmp(token, AMBIENT_LIGHT_ID, 1))
+			;
+		else if (ft_strncmp(token, "//", 2))
 			scene->n_objects++;
 		free(line);
 	}
