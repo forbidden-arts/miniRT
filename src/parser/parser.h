@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:10:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 12:01:31 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 13:56:30 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,11 @@ char	*free_str_and_set_as_null(char *str);
 
 BOOL	minirt_start(int argc, char **argv, t_scene *scene);
 
+
+// print_results_utils1.c
+void	print_v3d_data(t_v3d *v3d);
+void	print_object_data(t_scene *scene);
+
+// print_results.c
+void	print_scene_data(t_scene *scene);
 #endif

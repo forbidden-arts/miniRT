@@ -53,6 +53,8 @@ parser_utils2.c			\
 parser_utils3.c			\
 parser_checksets.c		\
 parser_double_utils.c	\
+print_results.c			\
+print_results_utils1.c	\
 buttons.c
 
 
