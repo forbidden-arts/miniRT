@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/31 17:55:37 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 13:55:15 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include "libft.h"
 # include "v3d.h"
 
-# define SPHERE	0;
-# define CYLINDER 1;
-# define PLANE 2;
+# define SPHERE	0
+# define CYLINDER 1
+# define PLANE 2
 
 typedef struct s_object
 {

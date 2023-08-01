@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:59:25 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/31 16:02:14 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 14:58:39 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ BOOL	coordinate_part_checkset(char *str, double *target_data)
 {
 	if (ft_isdouble_simple(str) == FALSE)
 		return (return_err("Not a valid double in coordinate-data", NULL));
-	*target_data = ft_atof_simple(str);
+	*target_data = ft_atod(str);
 	return (TRUE);
 }
 
@@ -33,7 +33,7 @@ BOOL	axis_part_checkset(char *str, double *target_data)
 
 	if (ft_isdouble_simple(str) == FALSE)
 		return (return_err("Not a valid double in coordinate-data", NULL));
-	result = ft_atof_simple(str);
+	result = ft_atod(str);
 	if (result < -1 || result > 1)
 		return (return_err("axis-data part not in bounds [-1.0,1.0]", NULL));
 	*target_data = result;
