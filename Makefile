@@ -53,7 +53,8 @@ parser_utils2.c			\
 parser_utils3.c			\
 parser_checksets.c		\
 parser_double_utils.c	\
-buttons.c
+buttons.c				\
+parse_atod.c
 
 
 

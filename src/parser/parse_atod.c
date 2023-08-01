@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_atod.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 14:37:01 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 14:52:22 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/01 15:01:29 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ double	ft_atod(char *str)
 {
 	size_t	before;
 	size_t	after;
-	int		decimal;
 
 	before = (double)ft_atoi(str);
-	decimal = ft_strchr(str, '.');
-	if (!decimal)
+	if (!ft_strchr(str, '.'))
 		return (before);
 	while (*str != '.')
 		str++;
