@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_math2.c                                     :+:      :+:    :+:   */
+/*   vector_math.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:22:52 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 11:54:41 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/01 14:17:32 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ t_v3d	v3d_unit_vector(t_v3d *v)
 	double	len;
 
 	len = v3d_length(v);
-	return (v3d_divide_scalar(len, v));
+	return (v3d_divide_scalar(v, len));
 }
