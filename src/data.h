@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 10:43:57 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/26 11:11:32 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/29 18:04:05 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ int		get_key(int key_code, t_data *data);
 
 void	init_data(t_data *data);
 void	free_data(t_data *data);
+
+void	exit_minirt(t_data *data, int exit_code);
 
 #endif

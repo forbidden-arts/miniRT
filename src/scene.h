@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/28 13:14:10 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/31 17:55:37 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_light
 {
 	t_v3d	location;
 	t_v3d	color;
-	int		intensity;
+	double	intensity;
 }	t_light;
 
 typedef struct s_ambient
@@ -51,7 +51,6 @@ typedef struct s_ambient
 	t_v3d	color;
 	double	intensity;
 }	t_ambient;
-
 
 typedef struct s_scene
 {
@@ -73,7 +72,6 @@ typedef struct s_ray
 	t_v3d	direction;
 }	t_ray;
 
-// funcs
 void	init_scene(t_scene *scene);
 void	free_scene(t_scene *scene);
 

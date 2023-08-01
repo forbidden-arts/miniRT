@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   v3d.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:22:03 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/28 12:26:07 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/31 10:41:40 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef V3D_H
 # define V3D_H
+
+# include "math.h"
 
 # include "libft.h"
 

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   parser_utils3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 12:56:47 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/29 18:16:33 by ssalmi           ###   ########.fr       */
+/*   Created: 2023/07/31 15:35:44 by ssalmi            #+#    #+#             */
+/*   Updated: 2023/07/31 15:36:43 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "scene.h"
-#include "v3d.h"
-
-t_v3d	get_sphere_normal(t_v3d point, t_object *sphere)
+int	count_strings_in_array(char **str_array)
 {
-	t_v3d	normal;
+	int	i;
 
-	normal = vector_sub(point, sphere->point);
-	return (normalize_vector(normal));
+	i = 0;
+	while (str_array[i])
+	{
+		i++;
+	}
+	return (i);
 }

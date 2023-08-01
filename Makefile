@@ -32,20 +32,24 @@ plane.c					\
 cylinder.c				\
 sphere.c				\
 v3d.c					\
-scene.c					\
 vector_math.c			\
-error_exit.c 			\
-file_handler.c			\
-file_parser.c			\
-ft_atof_simple.c		\
-ft_isdouble_simple.c	\
-minirt_split.c			\
-parser_checksets.c		\
-parser_non_objects.c	\
-parser_objects.c		\
-parser_testing.c		\
+vector_math2.c			\
+scene.c					\
+data.c					\
+parse_ambient.c			\
+parse_camera.c			\
+parse_light.c			\
+parse_sphere.c			\
+parse_cylinder.c		\
+parse_plane.c			\
+parse_file.c			\
+parse_file_utils1.c		\
+parse_file_utils2.c		\
 parser_utils1.c			\
 parser_utils2.c			\
+parser_utils3.c			\
+parser_checksets.c		\
+parser_double_utils.c	\
 buttons.c				
 
 

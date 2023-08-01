@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:10:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/28 11:24:52 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/07/31 15:54:35 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@
 # define CYLINDER_ID		"cy"
 # define PLANE_ID			"pl"
 
+typedef struct s_file_parser
+{
+	char	*line;
+	int		fd;
+	int		index_sphape;
+	int		index_camera;
+	int		index_light;
+	BOOL	result;
+	BOOL	ambient_light_found;
+	BOOL	found_elem_match;
+}	t_file_parser;
+
 // parser_utils1.c
 BOOL	return_err(char *error_msg, char *optional_str_to_free);
 BOOL	free_str_and_return_false(char *str);
@@ -34,6 +46,12 @@ BOOL	check_char_amount_in_str(char *str, char c, int correct_amount);
 // parser_utils2.c
 BOOL	coordinate_part_checkset(char *str, double *target_data);
 BOOL	axis_part_checkset(char *str, double *target_data);
+BOOL	check_identifier(char *str, char *id);
+void	print_error_line(char *line);
+BOOL	free_str_array_and_return_false(char **str_array);
+
+// parser_utils3.c
+int		count_strings_in_array(char **str_array);
 
 // parser_checksets.c
 BOOL	color_checkset(char *str, t_v3d *target_data);
@@ -46,14 +64,25 @@ BOOL	dimension_checkset(char *str, double *target_data,
 // parser_double_utils.c
 BOOL	ft_isdouble_simple(const char *s);
 double	ft_atof_simple(const char *s);
-BOOL	check_identifier(char *str, char *id);
 
 // parse_NAME.c
-BOOL	parse_ambient(char *line, t_scene *scene, int index);
+BOOL	parse_ambient(char *line, t_scene *scene);
 BOOL	parse_camera(char *line, t_scene *scene, int index);
 BOOL	parse_light(char *line, t_scene *scene, int index);
 BOOL	parse_sphere(char *line, t_scene *scene, int index);
 BOOL	parse_cylinder(char *line, t_scene *scene, int index);
 BOOL	parse_plane(char *line, t_scene *scene, int index);
+
+// parse_file_utils1.c
+int		get_fd(char *argv);
+BOOL	check_extension(char *argv);
+BOOL	init_file_parser_struct(t_file_parser *file_parser, char *argv);
+BOOL	find_shape_match(t_file_parser *p, t_scene *scene);
+BOOL	find_non_shape_match(t_file_parser *p, t_scene *scene);
+
+// parse_file_utils2.c
+char	*free_str_and_set_as_null(char *str);
+
+BOOL	minirt_start(int argc, char **argv, t_scene *scene);
 
 #endif

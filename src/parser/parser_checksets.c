@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:28:34 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/26 13:45:07 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/31 17:43:31 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,68 +16,57 @@
 
 /*
 	BE AWARE: In the functions that check for data that has multiple parts
-	like color or coordinates (0,0,0), you pass a malloced copy of the original
-	line_part (done because of how strtok works).
+	like color or coordinates (0,0,0), the string will be split with ft_split.
 
-	It is vital that you always free that string when exiting the function
+	It is vital that you always free that str-array when exiting the function
 	because otherwise it will cause a leak!
 */
 
 /*	This function checks and sets the given objects color data.	*/
 BOOL	color_checkset(char *str, t_v3d *target_data)
 {
-	char	*token;
-	int		i;
+	char	**split_array;
 
-	if (check_char_amount_in_str(str, ',', 2) == FALSE)
-		return_err("Incorrect format in color-data", str);
-	token = ft_strtok(str, ",");
-	i = 0;
-	while (token)
+	split_array = ft_split(str, ',');
+	if (!split_array)
+		return (return_err("ft_split malloc failure", NULL));
+	if (count_strings_in_array(split_array) != 3
+		|| check_char_amount_in_str(str, ',', 2) == FALSE)
 	{
-		if (i == 0)
-			if (!color_part_checkset(token, &target_data->x))
-				return (free_str_and_return_false(str));
-		else if (i == 1)
-			if (!color_part_checkset(token, &target_data->y))
-				return (free_str_and_return_false(str));
-		else if (i == 2)
-			if (!color_part_checkset(token, &target_data->z))
-				return (free_str_and_return_false(str));
-		token = ft_strtok(NULL, ",");
-		i++;
+		free_str_array_and_return_false(split_array);
+		return (return_err("Incorrect format in color-data", NULL));
 	}
-	if (i != 3)
-		return (return_err("Incorrect format in color-data", str));
+	if (!color_part_checkset(split_array[0], &target_data->x))
+		return (free_str_array_and_return_false(split_array));
+	if (!color_part_checkset(split_array[1], &target_data->y))
+		return (free_str_array_and_return_false(split_array));
+	if (!color_part_checkset(split_array[2], &target_data->z))
+		return (free_str_array_and_return_false(split_array));
+	free_str_array_and_return_false(split_array);
 	return (TRUE);
 }
 
 /*	This function checks and sets the object's coordinate data.	*/
 BOOL	coordinate_checkset(char *str, t_v3d *target_data)
 {
-	char	*token;
-	int		i;
+	char	**split_array;
 
-	if (check_char_amount_in_str(str, ',', 2) == FALSE)
-		return_err("Incorrect format in coordinate-data", str);
-	token = ft_strtok(str, ",");
-	i = 0;
-	while (token)
+	split_array = ft_split(str, ',');
+	if (!split_array)
+		return (return_err("ft_split malloc failure", NULL));
+	if (count_strings_in_array(split_array) != 3
+		|| check_char_amount_in_str(str, ',', 2) == FALSE)
 	{
-		if (i == 0)
-			if (!coordinate_part_checkset(token, &target_data->x))
-				return (free_str_and_return_false(str));
-		else if (i == 1)
-			if (!coordinate_part_checkset(token, &target_data->y))
-				return (free_str_and_return_false(str));
-		else if (i == 2)
-			if (!coordinate_part_checkset(token, &target_data->z))
-				return (free_str_and_return_false(str));
-		token = ft_strtok(NULL, ",");
-		i++;
+		free_str_array_and_return_false(split_array);
+		return (return_err("Incorrect format in coordinate-data", NULL));
 	}
-	if (i != 3)
-		return (return_err("Incorrect format in coordinate-data", str));
+	if (!coordinate_part_checkset(split_array[0], &target_data->x))
+		return (free_str_array_and_return_false(split_array));
+	if (!coordinate_part_checkset(split_array[1], &target_data->y))
+		return (free_str_array_and_return_false(split_array));
+	if (!coordinate_part_checkset(split_array[2], &target_data->z))
+		return (free_str_array_and_return_false(split_array));
+	free_str_array_and_return_false(split_array);
 	return (TRUE);
 }
 
@@ -85,29 +74,24 @@ BOOL	coordinate_checkset(char *str, t_v3d *target_data)
 	for an object.	*/
 BOOL	axis_checkset(char *str, t_v3d *target_data)
 {
-	char	*token;
-	int		i;
+	char	**split_array;
 
-	if (check_char_amount_in_str(str, ',', 2) == FALSE)
-		return_err("Incorrect format in axis-data", str);
-	token = ft_strtok(str, ",");
-	i = 0;
-	while (token)
+	split_array = ft_split(str, ',');
+	if (!split_array)
+		return (return_err("ft_split malloc failure", NULL));
+	if (count_strings_in_array(split_array) != 3
+		|| check_char_amount_in_str(str, ',', 2) == FALSE)
 	{
-		if (i == 0)
-			if (!axis_part_checkset(token, &target_data->x))
-				return (free_str_and_return_false(str));
-		else if (i == 1)
-			if (!axis_part_checkset(token, &target_data->y))
-				return (free_str_and_return_false(str));
-		else if (i == 2)
-			if (!axis_part_checkset(token, &target_data->z))
-				return (free_str_and_return_false(str));
-		token = ft_strtok(NULL, ",");
-		i++;
+		free_str_array_and_return_false(split_array);
+		return (return_err("Incorrect format in axis-data", NULL));
 	}
-	if (i != 3)
-		return (return_err("Incorrect format in axis-data", str));
+	if (!axis_part_checkset(split_array[0], &target_data->x))
+		return (free_str_array_and_return_false(split_array));
+	if (!axis_part_checkset(split_array[1], &target_data->y))
+		return (free_str_array_and_return_false(split_array));
+	if (!axis_part_checkset(split_array[2], &target_data->z))
+		return (free_str_array_and_return_false(split_array));
+	free_str_array_and_return_false(split_array);
 	return (TRUE);
 }
 
@@ -128,7 +112,7 @@ BOOL	brightness_ratio_checkset(char *str, double *target_data)
 /*	This function checks and sets a certain dimension, like height or radius,
 	for an object.
 
-	If diameter BOOL is TRUE, then we half the resulting double	*/
+	If diameter BOOL is TRUE, then we divide the resulting double by two.	*/
 BOOL	dimension_checkset(char *str, double *target_data, BOOL diameter)
 {
 	double	result;

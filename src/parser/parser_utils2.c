@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:59:25 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/26 14:54:17 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/07/31 16:02:14 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ BOOL	axis_part_checkset(char *str, double *target_data)
 /*	Check that the identifier is in the correct format	*/
 BOOL	check_identifier(char *str, char *id)
 {
-	int	len_id;
+	size_t	len_id;
 
 	len_id = ft_strlen(id);
 	if (ft_strlen(str) != len_id)
@@ -51,4 +51,26 @@ BOOL	check_identifier(char *str, char *id)
 	if (ft_strncmp(str, id, len_id) != 0)
 		return (FALSE);
 	return (TRUE);
+}
+
+// print the line where the error was encountered
+void	print_error_line(char *line)
+{
+	ft_putstr_fd("Error in line: ", 2);
+	ft_putstr_fd(line, 2);
+}
+
+BOOL	free_str_array_and_return_false(char **str_array)
+{
+	int	i;
+
+	i = 0;
+	while (str_array[i])
+	{
+		ft_bzero(str_array[i], ft_strlen(str_array[i]));
+		free(str_array[i]);
+		i++;
+	}
+	free(str_array);
+	return (FALSE);
 }

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   parse_file_utils2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 12:56:47 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/29 18:16:33 by ssalmi           ###   ########.fr       */
+/*   Created: 2023/07/31 10:57:03 by ssalmi            #+#    #+#             */
+/*   Updated: 2023/07/31 17:51:27 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "scene.h"
-#include "v3d.h"
+#include "parser.h"
 
-t_v3d	get_sphere_normal(t_v3d point, t_object *sphere)
+char	*free_str_and_set_as_null(char *str)
 {
-	t_v3d	normal;
-
-	normal = vector_sub(point, sphere->point);
-	return (normalize_vector(normal));
+	free(str);
+	return (NULL);
 }
