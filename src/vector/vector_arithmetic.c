@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:05:00 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 13:01:56 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/01 14:15:06 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_v3d	v3d_multiply(const t_v3d *u, const t_v3d *v)
 	return (result);
 }
 
-t_v3d	v3d_multiply_scalar(double t, const t_v3d *v)
+t_v3d	v3d_multiply_scalar(const t_v3d *v, double t)
 {
 	t_v3d	result;
 
@@ -52,7 +52,7 @@ t_v3d	v3d_multiply_scalar(double t, const t_v3d *v)
 	return (result);
 }
 
-t_v3d	v3d_divide_scalar(double t, const t_v3d *v)
+t_v3d	v3d_divide_scalar(const t_v3d *v, double t)
 {
-	return (v3d_multiply_scalar(1.0 / t, v));
+	return (v3d_multiply_scalar(v, 1.0 / t));
 }

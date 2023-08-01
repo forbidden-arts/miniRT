@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 13:55:15 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 13:49:00 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SCENE_H
 
 # include "libft.h"
+# include "ray.h"
 # include "v3d.h"
 
 # define SPHERE	0
@@ -65,12 +66,6 @@ typedef struct s_scene
 	int			n_cameras;
 	int			n_objects;
 }	t_scene;
-
-typedef struct s_ray
-{
-	t_v3d	origin;
-	t_v3d	direction;
-}	t_ray;
 
 void	init_scene(t_scene *scene);
 void	free_scene(t_scene *scene);

@@ -37,6 +37,7 @@ vector_in_place.c		\
 vector_math.c			\
 vector_quad.c			\
 vector_utils.c			\
+ray.c					\
 scene.c					\
 data.c					\
 parse_ambient.c			\
