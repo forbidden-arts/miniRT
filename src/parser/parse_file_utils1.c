@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file_utils1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 13:32:49 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/01 10:25:12 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/01 12:02:02 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ BOOL	find_non_shape_match(t_file_parser *p, t_scene *scene)
 		p->ambient_light_found = TRUE;
 		return (TRUE);
 	}
-	else if (!ft_strncmp(p->line, "//", 2))
+	else if (!ft_strncmp(p->line, "//", 2) || check_if_empty_line(p->line))
 		return (TRUE);
 	return (FALSE);
 }
