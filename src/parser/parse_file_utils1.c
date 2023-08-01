@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file_utils1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 13:32:49 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/31 17:54:29 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 10:25:12 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ BOOL	check_extension(char *argv)
 	}
 	if (!ft_strncmp(&argv[len - 3], ".rt", 4))
 		return (TRUE);
-	ft_putendl_fd("Error\nInvalid file given (must be a valud .rt-file)", 2);
+	ft_putendl_fd("Error\nInvalid file given (must be a valid .rt-file)", 2);
 	return (FALSE);
 }
 

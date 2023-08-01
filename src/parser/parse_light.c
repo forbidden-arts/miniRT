@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:35:24 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/31 17:45:54 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 10:30:56 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static BOOL	parse_light_check_parts1(char **token, t_light *light, int *i)
 		}
 		else if (*i == 1)
 		{
-			if (!coordinate_checkset(ft_strdup(*token), &light->location))
+			if (!coordinate_checkset(*token, &light->location))
 				return (FALSE);
 		}
 		else if (*i == 2)
@@ -45,7 +45,7 @@ static BOOL	parse_light_check_parts2(char **token, t_light *light, int *i)
 	{
 		if (*i == 3)
 		{
-			if (!color_checkset(ft_strdup(*token), &light->color))
+			if (!color_checkset(*token, &light->color))
 				return (FALSE);
 		}
 		*token = ft_strtok(NULL, " \t\n");
