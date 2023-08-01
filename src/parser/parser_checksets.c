@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:28:34 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/31 17:43:31 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 12:53:00 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ BOOL	color_checkset(char *str, t_v3d *target_data)
 		free_str_array_and_return_false(split_array);
 		return (return_err("Incorrect format in color-data", NULL));
 	}
-	if (!color_part_checkset(split_array[0], &target_data->x))
+	if (!color_part_checkset(split_array[0], &target_data->e[0]))
 		return (free_str_array_and_return_false(split_array));
-	if (!color_part_checkset(split_array[1], &target_data->y))
+	if (!color_part_checkset(split_array[1], &target_data->e[1]))
 		return (free_str_array_and_return_false(split_array));
-	if (!color_part_checkset(split_array[2], &target_data->z))
+	if (!color_part_checkset(split_array[2], &target_data->e[2]))
 		return (free_str_array_and_return_false(split_array));
 	free_str_array_and_return_false(split_array);
 	return (TRUE);
@@ -60,11 +60,11 @@ BOOL	coordinate_checkset(char *str, t_v3d *target_data)
 		free_str_array_and_return_false(split_array);
 		return (return_err("Incorrect format in coordinate-data", NULL));
 	}
-	if (!coordinate_part_checkset(split_array[0], &target_data->x))
+	if (!coordinate_part_checkset(split_array[0], &target_data->e[0]))
 		return (free_str_array_and_return_false(split_array));
-	if (!coordinate_part_checkset(split_array[1], &target_data->y))
+	if (!coordinate_part_checkset(split_array[1], &target_data->e[1]))
 		return (free_str_array_and_return_false(split_array));
-	if (!coordinate_part_checkset(split_array[2], &target_data->z))
+	if (!coordinate_part_checkset(split_array[2], &target_data->e[2]))
 		return (free_str_array_and_return_false(split_array));
 	free_str_array_and_return_false(split_array);
 	return (TRUE);
@@ -85,11 +85,11 @@ BOOL	axis_checkset(char *str, t_v3d *target_data)
 		free_str_array_and_return_false(split_array);
 		return (return_err("Incorrect format in axis-data", NULL));
 	}
-	if (!axis_part_checkset(split_array[0], &target_data->x))
+	if (!axis_part_checkset(split_array[0], &target_data->e[0]))
 		return (free_str_array_and_return_false(split_array));
-	if (!axis_part_checkset(split_array[1], &target_data->y))
+	if (!axis_part_checkset(split_array[1], &target_data->e[1]))
 		return (free_str_array_and_return_false(split_array));
-	if (!axis_part_checkset(split_array[2], &target_data->z))
+	if (!axis_part_checkset(split_array[2], &target_data->e[2]))
 		return (free_str_array_and_return_false(split_array));
 	free_str_array_and_return_false(split_array);
 	return (TRUE);

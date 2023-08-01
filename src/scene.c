@@ -6,13 +6,14 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:55:26 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/26 11:11:57 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 12:55:20 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "scene.h"
 #include "data.h"
+#include "v3d.h"
 
 /*	Free everything malloced for scene	*/
 void	free_scene(t_scene *scene)
@@ -31,7 +32,7 @@ void	init_scene(t_scene *scene)
 	scene->objects = NULL;
 	scene->lights = NULL;
 	scene->cameras = NULL;
-	scene->ambient.color = init_v3d(0, 0, 0);
+	v3d_init(&scene->ambient.color);
 	scene->ambient.intensity = 0;
 	scene->width = WINDOW_WIDTH;
 	scene->height = WINDOW_HEIGHT;
