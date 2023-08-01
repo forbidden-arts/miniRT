@@ -1,58 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_math.c                                      :+:      :+:    :+:   */
+/*   vector_math2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 12:05:00 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/24 12:34:06 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/07/28 12:22:52 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/08/01 11:54:41 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "v3d.h"
 
-double	get_dot(t_v3d a, t_v3d b)
+double	v3d_length(const t_v3d *v)
 {
-	return (a.x * b.x + a.y * b.y + a.z * b.z);
+	return (sqrt(v3d_length_squared(v)));
 }
 
-t_v3d	get_cross(t_v3d a, t_v3d b)
+double	v3d_length_squared(const t_v3d *v)
+{
+	return (v->e[0] * v->e[0] + v->e[1] * v->e[1] + v->e[2] * v->e[2]);
+}
+
+double	v3d_dot(const t_v3d *u, const t_v3d *v)
+{
+	return (u->e[0] * v->e[0] + u->e[1] * v->e[1] + u->e[2] * v->e[2]);
+}
+
+t_v3d	v3d_cross(const t_v3d *u, const t_v3d *v)
 {
 	t_v3d	result;
 
-	result.x = a.y * b.z - a.z * b.y;
-	result.y = a.z * b.x - a.x * b.z;
-	result.z = a.x * b.y - a.y * b.x;
+	result.e[0] = u->e[1] * v->e[2] - u->e[2] * v->e[1];
+	result.e[1] = u->e[2] * v->e[0] - u->e[0] * v->e[2];
+	result.e[2] = u->e[0] * v->e[1] - u->e[1] * v->e[0];
 	return (result);
 }
 
-t_v3d	vector_add(t_v3d a, t_v3d b)
+t_v3d	v3d_unit_vector(t_v3d *v)
 {
-	t_v3d	result;
+	double	len;
 
-	result.x = a.x + b.x;
-	result.y = a.y + b.y;
-	result.z = a.z + b.z;
-	return (result);
-}
-
-t_v3d	vector_sub(t_v3d a, t_v3d b)
-{
-	t_v3d	result;
-
-	result.x = a.x - b.x;
-	result.y = a.y - b.y;
-	result.z = a.z - b.z;
-	return (result);
-}
-
-t_v3d	vector_multiply_by_t(t_v3d a, double t)
-{
-	t_v3d	result;
-
-	result.x = a.x * t;
-	result.y = a.x * t;
-	result.z = a.z * t;
-	return (result);
+	len = v3d_length(v);
+	return (v3d_divide_scalar(len, v));
 }

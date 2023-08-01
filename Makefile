@@ -32,8 +32,11 @@ plane.c					\
 cylinder.c				\
 sphere.c				\
 v3d.c					\
+vector_arithmetic.c		\
+vector_in_place.c		\
 vector_math.c			\
-vector_math2.c			\
+vector_quad.c			\
+vector_utils.c			\
 scene.c					\
 data.c					\
 parse_ambient.c			\
@@ -50,7 +53,7 @@ parser_utils2.c			\
 parser_utils3.c			\
 parser_checksets.c		\
 parser_double_utils.c	\
-buttons.c				
+buttons.c
 
 
 
