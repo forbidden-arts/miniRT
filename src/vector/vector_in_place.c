@@ -1,43 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   v3d.c                                              :+:      :+:    :+:   */
+/*   vector_math_in_place.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 12:50:56 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 11:16:42 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/07/24 12:05:00 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/08/01 11:48:35 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "v3d.h"
 
-void	v3d_init(t_v3d *v)
+void	v3d_add_in_place(t_v3d *v, const t_v3d *other)
 {
-	v->e[0] = 0;
-	v->e[1] = 0;
-	v->e[2] = 0;
+	v->e[0] += other->e[0];
+	v->e[1] += other->e[1];
+	v->e[2] += other->e[2];
 }
 
-void	v3d_init_with_values(t_v3d *v, double e0, double e1, double e2)
+void	v3d_multiply_in_place(t_v3d *v, double t)
 {
-	v->e[0] = e0;
-	v->e[1] = e1;
-	v->e[2] = e2;
+	v->e[0] *= t;
+	v->e[1] *= t;
+	v->e[2] *= t;
 }
 
-double	v3d_x(const t_v3d *v)
+void	v3d_divide_in_place(t_v3d *v, double t)
 {
-	return (v->e[0]);
-}
-
-double	v3d_y(const t_v3d *v)
-{
-	return (v->e[1]);
-}
-
-double	v3d_z(const t_v3d *v)
-{
-	return (v->e[2]);
+	v3d_multiply_in_place(v, 1.0 / t);
 }

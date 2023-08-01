@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   v3d.c                                              :+:      :+:    :+:   */
+/*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 12:50:56 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 11:16:42 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/08/01 10:58:53 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/08/01 12:00:16 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "v3d.h"
 
-void	v3d_init(t_v3d *v)
+double	v3d_get(const t_v3d *v, int i)
 {
-	v->e[0] = 0;
-	v->e[1] = 0;
-	v->e[2] = 0;
+	return (v->e[i]);
 }
 
-void	v3d_init_with_values(t_v3d *v, double e0, double e1, double e2)
+void	v3d_set(t_v3d *v, int i, double val)
 {
-	v->e[0] = e0;
-	v->e[1] = e1;
-	v->e[2] = e2;
+	v->e[i] = val;
 }
 
-double	v3d_x(const t_v3d *v)
+t_v3d	v3d_negate(const t_v3d *v)
 {
-	return (v->e[0]);
+	t_v3d	result;
+
+	result.e[0] = -v->e[0];
+	result.e[1] = -v->e[1];
+	result.e[2] = -v->e[2];
+	return (result);
 }
 
-double	v3d_y(const t_v3d *v)
+void	swap_double(double *a, double *b)
 {
-	return (v->e[1]);
-}
+	double	temp;
 
-double	v3d_z(const t_v3d *v)
-{
-	return (v->e[2]);
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
