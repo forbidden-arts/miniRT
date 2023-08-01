@@ -6,13 +6,15 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:28:34 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/01 12:53:00 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 14:58:39 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
 #include "v3d.h"
+
+#include <stdio.h>
 
 /*
 	BE AWARE: In the functions that check for data that has multiple parts
@@ -102,7 +104,7 @@ BOOL	brightness_ratio_checkset(char *str, double *target_data)
 
 	if (ft_isdouble_simple(str) == FALSE)
 		return (return_err("Not a valid double in brighteness data", NULL));
-	result = ft_atof_simple(str);
+	result = ft_atod(str);
 	if (result > 1.0 || result < 0)
 		return (return_err("Brightness value not in bounds [0.0,1.0]", NULL));
 	*target_data = result;
@@ -119,9 +121,10 @@ BOOL	dimension_checkset(char *str, double *target_data, BOOL diameter)
 
 	if (ft_isdouble_simple(str) == FALSE)
 		return (return_err("Not a valid double in dimension data", NULL));
-	result = ft_atof_simple(str);
+	result = ft_atod(str);
 	if (result <= 0)
 		return (return_err("Dimension value must be greater than 0", NULL));
+	printf("DIMENSION CHECKSET: str: %s, result: %f\n", str, result);
 	if (diameter == TRUE)
 		*target_data = result / 2;
 	else

@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:04:20 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/07/31 17:50:02 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 15:01:57 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	if (minirt_start(argc, argv, &data.scene) == FALSE)
 		exit_minirt(&data, 1);
 	printf("parsing successful, continuing program!\n");
+	// print_scene_data(&data.scene);
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH,
 			WINDOW_HEIGHT, "miniRT");

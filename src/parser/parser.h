@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:10:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 12:01:31 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/01 14:57:37 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ BOOL	dimension_checkset(char *str, double *target_data,
 
 // parser_double_utils.c
 BOOL	ft_isdouble_simple(const char *s);
-double	ft_atof_simple(const char *s);
 
 // parse_NAME.c
 BOOL	parse_ambient(char *line, t_scene *scene);
@@ -85,5 +84,7 @@ BOOL	find_non_shape_match(t_file_parser *p, t_scene *scene);
 char	*free_str_and_set_as_null(char *str);
 
 BOOL	minirt_start(int argc, char **argv, t_scene *scene);
+
+double	ft_atod(char *str);
 
 #endif

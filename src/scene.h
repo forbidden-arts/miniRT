@@ -17,9 +17,9 @@
 # include "ray.h"
 # include "v3d.h"
 
-# define SPHERE	0;
-# define CYLINDER 1;
-# define PLANE 2;
+# define SPHERE	0
+# define CYLINDER 1
+# define PLANE 2
 
 typedef struct s_object
 {
