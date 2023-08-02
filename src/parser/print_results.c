@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:09:04 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/01 13:58:42 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/02 11:40:22 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@ static void	print_lights(t_scene *scene)
 {
 	int	i;
 
-	printf("**PRINT LIGHT DATA**\n\n");
+	printf("\t**PRINT LIGHT DATA**\n\n");
 	printf("lights amount: %d\n\n", scene->n_lights);
 	i = -1;
 	while (++i < scene->n_lights)
 	{
-		printf("LIGHT[%d]:\tlocation: ", i);
+		printf("LIGHT[%d]: location: ", i);
 		print_v3d_data(&scene->lights[i].location);
+		printf("\tintensity: %f", scene->lights[i].intensity);
 		printf("\tcolor: ");
 		print_v3d_data(&scene->lights[i].color);
-		printf("\tintensity: %f\n", scene->lights[i].intensity);
+		printf("\n");
 	}
 	printf("\n");
-	printf("**END OF LIGHT DATA**\n\n");
 }
 
 static void	print_cameras(t_scene *scene)
 {
 	int	i;
 
-	printf("**PRINT CAMERA DATA**\n\n");
+	printf("\t**PRINT CAMERA DATA**\n\n");
 	printf("cameras amount: %d\n\n", scene->n_cameras);
 	i = -1;
 	while (++i < scene->n_cameras)
@@ -48,16 +48,15 @@ static void	print_cameras(t_scene *scene)
 		printf("\tFOV: %d\n", scene->cameras[i].field_of_view);
 	}
 	printf("\n");
-	printf("**END OF CAMERA DATA**\n\n");
 }
 
 static void	print_ambient(t_ambient *ambient)
 {
-	printf("**PRINT AMBIENT DATA**\n\n");
+	printf("\t**PRINT AMBIENT DATA**\n\n");
 	printf("intensity: %f\n", ambient->intensity);
 	printf("color: ");
 	print_v3d_data(&ambient->color);
-	printf("\n\n**END OF AMBIENT DATA**\n\n");
+	printf("\n\n");
 }
 
 void	print_scene_data(t_scene *scene)

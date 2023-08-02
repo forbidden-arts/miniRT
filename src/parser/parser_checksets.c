@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:28:34 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/01 14:58:39 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/02 11:31:34 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ BOOL	dimension_checkset(char *str, double *target_data, BOOL diameter)
 	result = ft_atod(str);
 	if (result <= 0)
 		return (return_err("Dimension value must be greater than 0", NULL));
-	printf("DIMENSION CHECKSET: str: %s, result: %f\n", str, result);
 	if (diameter == TRUE)
 		*target_data = result / 2;
 	else

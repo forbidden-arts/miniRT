@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:15:42 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/01 13:56:59 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/02 11:39:24 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	print_object_data(t_scene *scene)
 {
 	int	i;
 
-	printf("PRINT OBJECT DATA\n\n");
+	printf("\t**PRINT OBJECT DATA**\n\n");
 	printf("objects amount: %d\n\n", scene->n_objects);
 	i = -1;
 	while (++i < scene->n_objects)
@@ -74,5 +74,4 @@ void	print_object_data(t_scene *scene)
 		printf("\n");
 	}
 	printf("\n");
-	printf("END OF OBJECT DATA\n\n");
 }
