@@ -55,7 +55,10 @@ parser_utils3.c			\
 parser_checksets.c		\
 parser_double_utils.c	\
 buttons.c				\
-parse_atod.c
+parse_atod.c			\
+print_results.c			\
+print_results_utils1.c
+
 
 
 
