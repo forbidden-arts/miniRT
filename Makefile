@@ -40,6 +40,7 @@ vector_utils.c			\
 ray.c					\
 scene.c					\
 data.c					\
+camera.c				\
 parse_ambient.c			\
 parse_camera.c			\
 parse_light.c			\
@@ -57,7 +58,9 @@ parser_double_utils.c	\
 buttons.c				\
 parse_atod.c			\
 print_results.c			\
-print_results_utils1.c
+print_results_utils1.c	\
+mlx_colors.c			\
+render_image.c
 
 
 

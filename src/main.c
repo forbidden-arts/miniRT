@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:04:20 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/02 11:30:43 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/03 12:58:43 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 			&data.img.line_length, &data.img.endian);
 	mlx_hook(data.win_ptr, 17, 0, &press_close, &data);
 	mlx_key_hook(data.win_ptr, &get_key, &data);
+	render_image(&data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
