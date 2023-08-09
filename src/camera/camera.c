@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_colors.c                                       :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 13:11:08 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/03 11:17:50 by ssalmi           ###   ########.fr       */
+/*   Created: 2023/08/03 11:09:55 by ssalmi            #+#    #+#             */
+/*   Updated: 2023/08/03 11:30:22 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "scene.h"
 #include "data.h"
 
-u_int32_t	rgb_to_int(const t_color color)
-{
-	int	red;
-	int	green;
-	int	blue;
+#include <math.h>
 
-	red = (int)color.e[0];
-	green = (int)color.e[1];
-	blue = (int)color.e[2];
-	return (((red & 0xff) << 16) + ((green & 0xff) << 8) + (blue & 0xff));
-}
-
-void	recenter_for_mlx(t_v3d *location)
+void	init_camera(t_camera *camera)
 {
-	location->e[0] += floor((WINDOW_WIDTH - 1) / 2.0);
-	location->e[1] += floor((WINDOW_HEIGHT - 1) / 2.0);
+	recenter_for_mlx(&camera->location);
+	camera->right = v3d_cross(&camera->direction, &(t_v3d){0, 1, 0});
+	camera->up = v3d_cross(&camera->right, &camera->direction);
+	camera->right = v3d_unit_vector(&camera->right);
+	camera->up = v3d_unit_vector(&camera->up);
 }

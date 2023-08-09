@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_quad.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:53:58 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 11:54:48 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/03 12:50:18 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	equation has. The swap double func at the bottom was included because we
 	can only see the first time a ray intersects (may need to flip the
 	inequality) since we can't see the backside of objects. */
-BOOL	solve_quadratic(t_v3d params, double *t0, double *t1)
+BOOL	_solve_quadratic(t_v3d params, double *t0, double *t1)
 {
 	double	discriminant;
 

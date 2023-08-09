@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 13:49:00 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/03 11:38:08 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_camera
 	t_v3d	location;
 	t_v3d	direction;
 	int		field_of_view;
+	t_v3d	right;
+	t_v3d	up;
 }	t_camera;
 
 typedef struct s_light
@@ -66,6 +68,13 @@ typedef struct s_scene
 	int			n_cameras;
 	int			n_objects;
 }	t_scene;
+
+typedef struct s_v2d
+{
+	double	e[2];
+}	t_v2d;
+
+typedef t_v2d	t_xy;
 
 void	init_scene(t_scene *scene);
 void	free_scene(t_scene *scene);
