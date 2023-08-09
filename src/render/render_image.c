@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/03 13:05:54 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/09 14:28:50 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ BOOL	hit_sphere(t_object *sphere, t_ray *ray)
 	double	c;
 	double	d;
 
+	// printf("origin %f, %f, %f, point: %f, %f, %f\n", ray->origin.e[0], ray->origin.e[1], ray->origin.e[2], sphere->point.e[0], sphere->point.e[1], sphere->point.e[2]);
 	oc = v3d_subtract(&ray->origin, &sphere->point);
 	a = v3d_dot(&ray->direction, &ray->direction);
 	b = 2.0 * v3d_dot(&oc, &ray->direction);
@@ -83,11 +84,47 @@ void	get_ray_direction(t_camera *cam, t_xy *theta, t_v3d *direction)
 	*direction = v3d_unit_vector(direction);
 }
 
+double	degrees_to_radians(double value)
+{
+	return (value * M_PI / 180);
+}
+
+// /*	this is just for testing. render the image from */
+// void	render_image(t_data *data)
+// {
+// 	t_xy		pixel;
+// 	t_camera	cam;
+// 	t_ray		ray;
+
+
+// 	cam = data->scene.cameras[0];
+// 	init_camera(&cam);
+// 	pixel = (t_xy){0, 0};
+// 	while (pixel.e[1] < WINDOW_HEIGHT)
+// 	{
+// 		pixel.e[0] = 0;
+// 		while (pixel.e[0] < WINDOW_WIDTH)
+// 		{
+// 			if (hit_sphere(&data->scene.objects[0], &ray))
+// 			{
+// 				printf("hit! %f, %f\n", pixel.e[0], pixel.e[1]);
+// 				img_pix_put(&data->img, (int)pixel.e[0], (int)pixel.e[1], RED_COLOR);
+// 			}
+// 			pixel.e[0]++;
+// 		}
+// 		pixel.e[1]++;
+// 	}
+// 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
+// 	ft_printf("end of render_image\n");
+// }
+
+
 /*	this is just for testing. render the image from */
 void	render_image(t_data *data)
 {
 	t_xy		pixel;
 	t_xy		theta_xy;
+	// t_xy		fov_coeff;
 	t_camera	cam;
 	t_ray		ray;
 
@@ -95,18 +132,21 @@ void	render_image(t_data *data)
 	cam = data->scene.cameras[0];
 	init_camera(&cam);
 	pixel = (t_xy){0, 0};
-	while (pixel.e[1] < WINDOW_HEIGHT - 1)
+	while (pixel.e[1] < WINDOW_HEIGHT)
 	{
 		pixel.e[0] = 0;
-		while (pixel.e[0] < WINDOW_HEIGHT - 1)
+		while (pixel.e[0] < WINDOW_WIDTH)
 		{
-			theta_xy.e[0] = cam.field_of_view * cam.location.e[0];
-			theta_xy.e[1] = cam.field_of_view * cam.location.e[1];
+			theta_xy.e[0] = (2 * pixel.e[0]) / WINDOW_WIDTH - 1;
+			theta_xy.e[1] = 1 - (2 * pixel.e[1] / WINDOW_HEIGHT);
 			get_ray_direction(&cam, &theta_xy, &ray.direction);
 			ray.origin = cam.location;
-			printf("x: %f, y: %f\n", pixel.e[0], pixel.e[1]);
+			// printf("x: %f, y: %f\n", pixel.e[0], pixel.e[1]);
 			if (hit_sphere(&data->scene.objects[0], &ray))
+			{
+				// printf("hit! %f, %f\n", pixel.e[0], pixel.e[1]);
 				img_pix_put(&data->img, (int)pixel.e[0], (int)pixel.e[1], RED_COLOR);
+			}
 			pixel.e[0]++;
 		}
 		pixel.e[1]++;
