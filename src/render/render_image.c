@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/09 14:28:50 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/09 16:20:40 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	get_ray_direction(t_camera *cam, t_xy *theta, t_v3d *direction)
 {
 	direction->e[0] = cam->direction.e[0] + cam->right.e[0] * tan(theta->e[0])
 		+ cam->up.e[0] * tan(theta->e[1]);
-	direction->e[1] = cam->direction.e[1] + cam->right.e[0] * tan(theta->e[0])
+	direction->e[1] = cam->direction.e[1] + cam->right.e[1] * tan(theta->e[0])
 		+ cam->up.e[1] * tan(theta->e[1]);
-	direction->e[2] = cam->direction.e[2] + cam->right.e[0] * tan(theta->e[0])
+	direction->e[2] = cam->direction.e[2] + cam->right.e[2] * tan(theta->e[0])
 		+ cam->up.e[2] * tan(theta->e[1]);
 	*direction = v3d_unit_vector(direction);
 }
@@ -124,7 +124,6 @@ void	render_image(t_data *data)
 {
 	t_xy		pixel;
 	t_xy		theta_xy;
-	// t_xy		fov_coeff;
 	t_camera	cam;
 	t_ray		ray;
 
