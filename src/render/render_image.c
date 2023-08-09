@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/09 16:20:40 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/09 16:48:07 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,16 @@ BOOL	hit_sphere(t_object *sphere, t_ray *ray)
 
 void	get_ray_direction(t_camera *cam, t_xy *theta, t_v3d *direction)
 {
-	direction->e[0] = cam->direction.e[0] + cam->right.e[0] * tan(theta->e[0])
-		+ cam->up.e[0] * tan(theta->e[1]);
-	direction->e[1] = cam->direction.e[1] + cam->right.e[1] * tan(theta->e[0])
-		+ cam->up.e[1] * tan(theta->e[1]);
-	direction->e[2] = cam->direction.e[2] + cam->right.e[2] * tan(theta->e[0])
-		+ cam->up.e[2] * tan(theta->e[1]);
+	double	aspect_ratio;
+
+	aspect_ratio = (double)WINDOW_WIDTH / WINDOW_HEIGHT;
+
+	direction->e[0] = cam->direction.e[0] + cam->right.e[0]
+		* tan(theta->e[0]) * aspect_ratio + cam->up.e[0] * tan(theta->e[1]);
+	direction->e[1] = cam->direction.e[1] + cam->right.e[1]
+		* tan(theta->e[0]) * aspect_ratio + cam->up.e[1] * tan(theta->e[1]);
+	direction->e[2] = cam->direction.e[2] + cam->right.e[2]
+		* tan(theta->e[0]) * aspect_ratio + cam->up.e[2] * tan(theta->e[1]);
 	*direction = v3d_unit_vector(direction);
 }
 
