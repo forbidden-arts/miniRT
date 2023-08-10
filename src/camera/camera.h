@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:31:43 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 09:10:26 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 11:38:41 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include "scene.h"
 
 void	init_camera(t_camera *camera);
-t_ray	create_ray(const t_camera *cam, const t_v2d pixel);
+t_ray	create_ray(t_camera *cam, const t_v2d pixel);
 
 #endif

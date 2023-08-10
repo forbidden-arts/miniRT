@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 09:23:54 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 12:22:40 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 // rm later; used to get
 #include <stdio.h>
+#include "parser.h"
 // colors
 #define BLACK_COLOR	0x000000
 #define RED_COLOR	0xFF0000
@@ -44,20 +45,26 @@ BOOL	hit_sphere(t_object *sphere, t_ray *ray)
 	b = 2.0 * v3d_dot(&oc, &ray->direction);
 	c = v3d_dot(&oc, &oc) - sphere->radius * sphere->radius;
 	d = (b * b) - (4 * a * c);
+	// printf("a: %f b: %f c: %f\n", a, b, c);
 	return (d > 0);
 }
 
 static u_int32_t	check_pixel(t_data *data, t_v2d pixel)
 {
 	t_ray		ray;
-	// t_color	color;
 	u_int32_t	color;
+	t_camera	cam;
+	t_scene		*scene;
 
-	// color = (t_color){0, 0, 0};
+	cam = data->scene.cameras[0];
+	scene = &data->scene;
 	color = BLACK_COLOR;
-	ray = create_ray(&data->scene.cameras[0], pixel);
-	if (hit_sphere(&data->scene.objects[0], &ray))
+	ray = create_ray(&cam, pixel);
+	if (hit_sphere(&(scene->objects[0]), &ray))
+	{
+		printf("%d \n", color);
 		color = RED_COLOR;
+	}
 	return (color);
 }
 
@@ -70,6 +77,16 @@ void	render_image(t_data *data)
 	ft_printf("start of render_image\n");
 	cam = data->scene.cameras[0];
 	init_camera(&cam);
+	printf("Render Image...");
+	printf("\nCam-Loc\n");
+	print_v3d_data(&cam.location);
+	printf("\nCam-Dir\n");
+	print_v3d_data(&cam.direction);
+	printf("\nCam->Right\n");
+	print_v3d_data(&cam.right);
+	printf("\nCam->Up\n");
+	print_v3d_data(&cam.up);
+	printf("\nAspect: %f\n", cam.aspect);
 	pixel = (t_xy){0, 0};
 	while (pixel.e[1] < WINDOW_HEIGHT)
 	{
