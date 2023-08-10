@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/03 11:38:08 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/10 08:46:56 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "libft.h"
 # include "ray.h"
 # include "v3d.h"
+
+# define UPSILON 1e-5
 
 # define SPHERE	0
 # define CYLINDER 1
@@ -37,9 +39,10 @@ typedef struct s_camera
 {
 	t_v3d	location;
 	t_v3d	direction;
-	int		field_of_view;
 	t_v3d	right;
 	t_v3d	up;
+	double	field_of_view;
+	double	aspect;
 }	t_camera;
 
 typedef struct s_light

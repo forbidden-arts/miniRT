@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_results.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:09:04 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/02 11:40:22 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/10 09:22:31 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	print_cameras(t_scene *scene)
 		print_v3d_data(&scene->cameras[i].location);
 		printf("\tdirection: ");
 		print_v3d_data(&scene->cameras[i].direction);
-		printf("\tFOV: %d\n", scene->cameras[i].field_of_view);
+		printf("\tFOV: %f\n", scene->cameras[i].field_of_view);
 	}
 	printf("\n");
 }

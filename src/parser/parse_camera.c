@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:20:04 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/31 17:47:09 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/10 09:22:03 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "scene.h"
 
-static BOOL	camera_fov_checkset(char *str, int *target_data)
+static BOOL	camera_fov_checkset(char *str, double *target_data)
 {
 	int	result;
 
