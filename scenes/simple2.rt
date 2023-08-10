@@ -1,0 +1,7 @@
+// simple scene for minirt, for Sakke to follow RT in one weekend
+A	0.2											255,255,255
+C	0,0,20		0,0,-1		70
+L	0,5,1					0.7				255,255,255
+sp	0,0,1						2				255,0,0
+sp	-5,0,1						2				255,0,0
+sp	5,0,1						2				255,0,0

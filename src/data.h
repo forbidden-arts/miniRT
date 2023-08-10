@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 10:43:57 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 10:37:54 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 12:51:32 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 # include "scene.h"
 
 # ifndef WINDOW_WIDTH
-#  define WINDOW_WIDTH 500
+#  define WINDOW_WIDTH 1920
 # endif
 
 # ifndef WINDOW_HEIGHT
-#  define WINDOW_HEIGHT 500
+#  define WINDOW_HEIGHT 1080
 # endif
 
 typedef struct s_img

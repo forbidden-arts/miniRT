@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 12:22:40 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 12:50:20 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,11 @@ BOOL	hit_sphere(t_object *sphere, t_ray *ray)
 	double	c;
 	double	d;
 
-	// printf("origin %f, %f, %f, point: %f, %f, %f\n", ray->origin.e[0], ray->origin.e[1], ray->origin.e[2], sphere->point.e[0], sphere->point.e[1], sphere->point.e[2]);
 	oc = v3d_subtract(&ray->origin, &sphere->point);
 	a = v3d_dot(&ray->direction, &ray->direction);
 	b = 2.0 * v3d_dot(&oc, &ray->direction);
 	c = v3d_dot(&oc, &oc) - sphere->radius * sphere->radius;
 	d = (b * b) - (4 * a * c);
-	// printf("a: %f b: %f c: %f\n", a, b, c);
 	return (d > 0);
 }
 
@@ -60,9 +58,8 @@ static u_int32_t	check_pixel(t_data *data, t_v2d pixel)
 	scene = &data->scene;
 	color = BLACK_COLOR;
 	ray = create_ray(&cam, pixel);
-	if (hit_sphere(&(scene->objects[0]), &ray))
+	if (hit_sphere(&(scene->objects[0]), &ray) || hit_sphere(&(scene->objects[1]), &ray) || hit_sphere(&(scene->objects[2]), &ray))
 	{
-		printf("%d \n", color);
 		color = RED_COLOR;
 	}
 	return (color);
@@ -71,22 +68,12 @@ static u_int32_t	check_pixel(t_data *data, t_v2d pixel)
 void	render_image(t_data *data)
 {
 	t_xy		pixel;
-	t_camera	cam;
+	t_camera	*cam;
 	int			color;
 
 	ft_printf("start of render_image\n");
-	cam = data->scene.cameras[0];
-	init_camera(&cam);
-	printf("Render Image...");
-	printf("\nCam-Loc\n");
-	print_v3d_data(&cam.location);
-	printf("\nCam-Dir\n");
-	print_v3d_data(&cam.direction);
-	printf("\nCam->Right\n");
-	print_v3d_data(&cam.right);
-	printf("\nCam->Up\n");
-	print_v3d_data(&cam.up);
-	printf("\nAspect: %f\n", cam.aspect);
+	cam = &data->scene.cameras[0];
+	init_camera(cam);
 	pixel = (t_xy){0, 0};
 	while (pixel.e[1] < WINDOW_HEIGHT)
 	{
