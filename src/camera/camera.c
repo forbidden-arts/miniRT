@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:09:55 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 13:14:15 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 16:29:50 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ t_ray	create_ray(t_camera *cam, const t_v2d pixel)
 	t_ray	primary;
 
 	x_norm = (1.0 - (2.0 * (pixel.e[0] + 0.5) / WINDOW_WIDTH))
-		* (cam->aspect) * tan((double)cam->field_of_view * DEG2RAD);
+		* (cam->aspect) * tan((double)cam->field_of_view * DEG_TO_RAD);
 	y_norm = (1.0 - (2.0 * (pixel.e[1] + 0.5) / WINDOW_HEIGHT))
-		* tan((double)cam->field_of_view * DEG2RAD);
+		* tan((double)cam->field_of_view * DEG_TO_RAD);
 	fisheye[2] = sqrt(x_norm * x_norm + y_norm * y_norm) / 2;
 	fisheye[0] = fisheye[2] * cos(atan2(y_norm, x_norm));
 	fisheye[1] = fisheye[2] * sin(atan2(y_norm, x_norm));

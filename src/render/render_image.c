@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 14:28:50 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 17:07:42 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static uint32_t	check_pixel(t_data *data, t_v2d pixel)
 	color = (t_color){0, 0, 0}; // is this needed? if the color starts at zero, why "update" it?
 	ray = create_ray(&cam, pixel);
 	//TODO: update the color with the trace_ray func.
-	//TODO: deal with overflow? Not sure exactly what Dorian was talking about
+	color_overflow(&color);
 	return (color_to_int(color));
 }
 

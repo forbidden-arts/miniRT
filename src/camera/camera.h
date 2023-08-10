@@ -6,14 +6,14 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:31:43 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 11:38:41 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 16:29:50 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CAMERA_H
 # define CAMERA_H
 
-# define DEG2RAD 0.008726646259971647737
+# define DEG_TO_RAD 0.008726646259971647737
 
 # include "scene.h"
 

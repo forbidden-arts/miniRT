@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:26:31 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/10 14:06:09 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 17:07:17 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 
 t_color		int_to_color(uint32_t color);
 uint32_t	color_to_int(t_color color);
+void		color_overflow(t_color *color);
 
 #endif

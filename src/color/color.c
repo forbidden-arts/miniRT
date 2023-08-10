@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:28:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/10 14:06:09 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 17:05:57 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,21 @@ void	normalize_rgb(t_color *color)
 	color->e[0] /= 255.0;
 	color->e[1] /= 255.0;
 	color->e[2] /= 255.0;
+}
+
+void	color_overflow(t_color *color)
+{
+	double	over;
+
+	over = 0.0;
+	if (color->e[0] > 1)
+		over += color->e[0] - 1;
+	if (color->e[1] > 1.0)
+		over += color->e[1] - 1;
+	if (color->e[2] > 1)
+		over += color->e[2] - 1;
+	v3d_add_in_place(color, &(t_color){over, over, over});
+	color->e[0] = fmin(color->e[0], 1);
+	color->e[1] = fmin(color->e[1], 1);
+	color->e[2] = fmin(color->e[2], 1);
 }
