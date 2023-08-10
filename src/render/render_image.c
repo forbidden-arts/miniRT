@@ -6,21 +6,15 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 12:50:20 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 14:17:26 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
 #include "scene.h"
 #include "v3d.h"
+#include "color.h"
 #include "camera.h"
-
-// rm later; used to get
-#include <stdio.h>
-#include "parser.h"
-// colors
-#define BLACK_COLOR	0x000000
-#define RED_COLOR	0xFF0000
 
 static void	img_pix_put(t_img *img, t_v2d pixel, int color)
 {
@@ -31,38 +25,32 @@ static void	img_pix_put(t_img *img, t_v2d pixel, int color)
 	*(unsigned int *)dst = color;
 }
 
-BOOL	hit_sphere(t_object *sphere, t_ray *ray)
-{
-	t_v3d	oc;
-	double	a;
-	double	b;
-	double	c;
-	double	d;
-
-	oc = v3d_subtract(&ray->origin, &sphere->point);
-	a = v3d_dot(&ray->direction, &ray->direction);
-	b = 2.0 * v3d_dot(&oc, &ray->direction);
-	c = v3d_dot(&oc, &oc) - sphere->radius * sphere->radius;
-	d = (b * b) - (4 * a * c);
-	return (d > 0);
-}
-
-static u_int32_t	check_pixel(t_data *data, t_v2d pixel)
+static uint32_t	check_pixel(t_data *data, t_v2d pixel)
 {
 	t_ray		ray;
-	u_int32_t	color;
+	t_color		color;
 	t_camera	cam;
 	t_scene		*scene;
 
 	cam = data->scene.cameras[0];
 	scene = &data->scene;
-	color = BLACK_COLOR;
+	color = (t_color){0, 0, 0};
 	ray = create_ray(&cam, pixel);
-	if (hit_sphere(&(scene->objects[0]), &ray) || hit_sphere(&(scene->objects[1]), &ray) || hit_sphere(&(scene->objects[2]), &ray))
-	{
-		color = RED_COLOR;
-	}
-	return (color);
+	//TODO: update the color with the trace_ray func.
+	//TODO: deal with overflow? Not sure exactly what Dorian was talking about
+	return (color_to_int(color));
+}
+
+static t_color	trace_ray(t_ray *ray, t_scene *scene, uint32_t depth)
+{
+	/* TODO:
+	find closest;
+	get light color;
+	shade pixel;
+	check reflections;
+	reshade;
+	deal with overflow again?
+	*/
 }
 
 void	render_image(t_data *data)

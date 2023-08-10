@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:09:55 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 12:44:10 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 13:14:15 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	init_camera(t_camera *camera)
 {
-	camera->right = v3d_cross(&camera->direction, &(t_v3d){0.0, 1.0, UPSILON});
+	camera->right = v3d_cross(&camera->direction, &(t_v3d){0.0, 1.0, EPSILON});
 	camera->right = v3d_unit_vector(&camera->right);
 	camera->up = v3d_cross(&camera->right, &camera->direction);
 	camera->up = v3d_unit_vector(&camera->up);

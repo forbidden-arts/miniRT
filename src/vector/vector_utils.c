@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:58:53 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 12:00:16 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 13:24:43 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,4 @@ t_v3d	v3d_negate(const t_v3d *v)
 	result.e[1] = -v->e[1];
 	result.e[2] = -v->e[2];
 	return (result);
-}
-
-void	swap_double(double *a, double *b)
-{
-	double	temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
 }

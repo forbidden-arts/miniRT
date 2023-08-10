@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/10 11:54:42 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 13:14:15 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "ray.h"
 # include "v3d.h"
 
-# define UPSILON 1e-5
+# define EPSILON 1e-5
 
 # define SPHERE	0
 # define CYLINDER 1
