@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/11 16:21:07 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/14 10:57:57 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 #define RED_COLOR	0xFF0000
 #define BLUE_COLOR	0x0000FF
 #define GREEN_COLOR	0x00FF00
-
 
 static void	img_pix_put(t_img *img, t_v2d pixel, int color)
 {

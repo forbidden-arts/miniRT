@@ -59,7 +59,7 @@ buttons.c				\
 parse_atod.c			\
 print_results.c			\
 print_results_utils1.c	\
-mlx_colors.c			\
+color.c					\
 render_image.c			\
 get_ray_hit.c			\
 get_ray_hit_shapes.c	\
