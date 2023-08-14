@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/14 12:22:49 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/14 16:09:09 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SCENE_H
 
 # include "libft.h"
-# include "ray.h"
 # include "v3d.h"
 
 # define EPSILON 1e-5

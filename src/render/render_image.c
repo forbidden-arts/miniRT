@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/14 15:53:40 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/14 16:13:06 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ t_color	ray_trace(t_ray *ray, t_scene *scene, int depth)
 {
 	t_impact	impact;
 	t_color		color;
-	t_ray		reflected;
-	t_color		reflected_color;
+	// t_ray		reflected;
+	// t_color		reflected_color;
 	// somethign ffor lights
 
 	if (depth >= MAX_DEPTH)
@@ -88,7 +88,6 @@ static u_int32_t	check_pixel(t_data *data, t_v2d pixel)
 	t_color		color;
 	t_camera	cam;
 	t_scene		*scene;
-	t_impact	impact;
 
 	cam = data->scene.cameras[0];
 	scene = &data->scene;

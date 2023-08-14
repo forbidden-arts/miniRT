@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:58:53 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 12:00:16 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/10 17:19:05 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,9 @@ void	swap_double(double *a, double *b)
 	temp = *a;
 	*a = *b;
 	*b = temp;
+}
+
+void	v3d_copy_data(t_v3d *dst, const t_v3d *src)
+{
+	v3d_init_with_values(dst, src->e[0], src->e[1], src->e[2]);
 }

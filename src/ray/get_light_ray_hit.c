@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_light_ray_hit.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/14 15:26:45 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/14 16:21:48 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ BOOL	compare_normals(t_v3d *first, t_v3d *second)
 
 	Before calling this function you will have to initialize the light ray.
 	*/
-BOOL	get_light_ray_hit(t_scene *scene, t_impact *impact, t_ray *light_ray)
+BOOL	get_light_ray_hit(t_scene *scene, t_impact *impact,
+	t_ray *light_ray)
 {
 	BOOL		result;
 	t_impact	light_impact;
 
 	get_ray_hit(scene, &light_impact, light_ray);
-	result = compare_v3d(impact, &light_impact);
+	result = compare_v3d(&impact->point, &light_impact.point);
 	if (result == TRUE)
 		if (compare_normals(&scene->cameras[0].direction, &impact->normal)
 			!= compare_normals(&light_ray->direction, &impact->normal))

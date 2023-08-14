@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   shader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:12:26 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/14 15:52:22 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/14 16:24:13 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 #include "v3d.h"
-#include "render.h"
 #include "scene.h"
 #include "ray.h"
 
@@ -31,10 +30,10 @@ void	create_light_ray(
 
 	direction = v3d_subtract(&scene->lights[index].location, &impact->point);
 	normal = v3d_unit_vector(&direction);
-	ray_init_with_values(&ray, &scene->lights[index].location, &normal);
+	ray_init_with_values(ray, &scene->lights[index].location, &normal);
 }
 
-t_color	shade_hit(const t_scene *scene, const t_impact *impact)
+t_color	shade_hit(t_scene *scene, t_impact *impact)
 {
 	t_color	color[3];
 	size_t	index;
@@ -45,7 +44,7 @@ t_color	shade_hit(const t_scene *scene, const t_impact *impact)
 	color[AMB] = v3d_multiply_scalar(&scene->ambient.color,
 			scene->ambient.intensity);
 	color[AMB] = v3d_multiply(&impact->object->color, &color[AMB]);
-	while (index < scene->n_lights)
+	while (index < (size_t)scene->n_lights)
 	{
 		create_light_ray(scene, impact, index, &ray);
 		if (get_light_ray_hit(scene, impact, &ray))
