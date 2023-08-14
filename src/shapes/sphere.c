@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:56:47 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/10 13:20:38 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/14 07:23:22 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 #include "scene.h"
 #include "v3d.h"
 
-// t_v3d	get_sphere_normal(t_v3d point, t_object *sphere)
-// {
-// 	t_v3d	normal;
+double	get_sphere_dist(const t_ray *ray, t_object *object)
+{
+	t_v3d	camera_dist;
+	t_v3d	params;
+	t_v2d	result;
+	double	discriminant;
+	double	divisor;
 
-// 	normal = vector_sub(point, sphere->point);
-// 	return (normalize_vector(normal));
-// }
+	camera_dist = v3d_subtract(&ray->origin, &object->point);
+}
 
 BOOL	hit_sphere(t_object *sphere, t_ray *ray)
 {
