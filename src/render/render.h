@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:50:53 by ssalmi            #+#    #+#             */
 /*   Updated: 2023/08/14 14:29:51 by ssalmi           ###   ########.fr       */
@@ -17,12 +17,16 @@
 # include "scene.h"
 # include "v3d.h"
 
+# define MAX_DEPTH 1
+
+/* Point is where on an object the ray impacts in a 3D space.
+*  Normal the direction relative to the "center" of the object. */
 typedef struct s_impact
 {
 	int			object_type;
+	double		distance;
 	t_v3d		color;
 	t_object	*object;
-	double		distance;
 	t_v3d		point;
 	t_v3d		normal;
 }	t_impact;
