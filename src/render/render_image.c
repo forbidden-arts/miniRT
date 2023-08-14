@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/14 14:30:31 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/14 15:53:40 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ t_color	ray_trace(t_ray *ray, t_scene *scene, int depth)
 	if (!get_ray_hit(scene, &impact, ray))
 		return ((t_color){0, 0, 0});
 	//something for lights
-	color =
+	color = shade_hit(scene, &impact);
+	return (color);
 }
 
 static u_int32_t	check_pixel(t_data *data, t_v2d pixel)

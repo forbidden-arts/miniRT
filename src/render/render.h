@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:50:53 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/14 14:29:51 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/14 15:55:00 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "data.h"
 # include "scene.h"
 # include "v3d.h"
+# include "ray.h"
 
 # define MAX_DEPTH 1
 
@@ -35,19 +36,5 @@ void	render_image(t_data *data);
 
 void	copy_impact_data(t_impact *impact_src, t_impact *impact_dst);
 BOOL	get_ray_hit(t_scene *scene, t_impact *impact, t_ray *ray);
-
-BOOL	get_ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray);
-BOOL	get_ray_hit_plane(t_impact *impact, t_object *plane, t_ray *ray);
-BOOL	get_ray_hit_cylinder(t_impact *impact, t_object *cylinder,
-			t_ray *ray);
-
-BOOL	get_closest_t(double t0, double t1, double *closest_t);
-double	calculate_impact_distance(t_v3d *ray_origin, t_v3d *ray_impact_point);
-t_v3d	get_impact_point(t_v3d *ray_origin, t_v3d *ray_direction,
-			double t_parameter);
-t_v3d	calculate_impact_normal_sphere(t_object *sphere,
-			t_v3d *impact_point);
-
-BOOL	get_light_ray_hit(t_scene *scene, t_impact *impact, t_ray *light_ray);
 
 #endif
