@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:50:53 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/14 12:00:45 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/14 14:29:51 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_impact
 
 void	render_image(t_data *data);
 
+void	copy_impact_data(t_impact *impact_src, t_impact *impact_dst);
 BOOL	get_ray_hit(t_scene *scene, t_impact *impact, t_ray *ray);
 
 BOOL	get_ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray);
@@ -46,5 +47,7 @@ t_v3d	get_impact_point(t_v3d *ray_origin, t_v3d *ray_direction,
 			double t_parameter);
 t_v3d	calculate_impact_normal_sphere(t_object *sphere,
 			t_v3d *impact_point);
+
+BOOL	get_light_ray_hit(t_scene *scene, t_impact *impact, t_ray *light_ray);
 
 #endif
