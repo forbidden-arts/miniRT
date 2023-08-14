@@ -60,7 +60,10 @@ parse_atod.c			\
 print_results.c			\
 print_results_utils1.c	\
 mlx_colors.c			\
-render_image.c
+render_image.c			\
+get_ray_hit.c			\
+get_ray_hit_shapes.c	\
+get_ray_hit_utils1.c
 
 
 

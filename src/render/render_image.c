@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 12:50:20 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/11 16:21:07 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "scene.h"
 #include "v3d.h"
 #include "camera.h"
+#include "render.h"
 
 // rm later; used to get
 #include <stdio.h>
@@ -21,6 +22,9 @@
 // colors
 #define BLACK_COLOR	0x000000
 #define RED_COLOR	0xFF0000
+#define BLUE_COLOR	0x0000FF
+#define GREEN_COLOR	0x00FF00
+
 
 static void	img_pix_put(t_img *img, t_v2d pixel, int color)
 {
@@ -53,15 +57,25 @@ static u_int32_t	check_pixel(t_data *data, t_v2d pixel)
 	u_int32_t	color;
 	t_camera	cam;
 	t_scene		*scene;
+	t_impact	impact;
 
 	cam = data->scene.cameras[0];
 	scene = &data->scene;
 	color = BLACK_COLOR;
 	ray = create_ray(&cam, pixel);
-	if (hit_sphere(&(scene->objects[0]), &ray) || hit_sphere(&(scene->objects[1]), &ray) || hit_sphere(&(scene->objects[2]), &ray))
+	// get closest hit
+	impact.object = NULL;
+	if (get_ray_hit(scene, &impact, &ray))
 	{
-		color = RED_COLOR;
+		if (impact.object->color.e[0] == 255)
+			color = RED_COLOR;
+		else if (impact.object->color.e[1] == 255)
+			color = GREEN_COLOR;
+		else if (impact.object->color.e[2] == 255)
+			color = BLUE_COLOR;
 	}
+	else
+		color = BLACK_COLOR;
 	return (color);
 }
 
