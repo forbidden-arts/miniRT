@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/14 16:13:06 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/15 12:10:49 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ static u_int32_t	check_pixel(t_data *data, t_v2d pixel)
 	scene = &data->scene;
 	ray = create_ray(&cam, pixel);
 	color = ray_trace(&ray, scene, 0);
+	normalize_rgb(&color);
 	color_overflow(&color);
 	return (color_to_int(color));
 }
