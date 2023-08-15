@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:12:26 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/14 16:24:13 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/15 12:11:51 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_color	shade_hit(t_scene *scene, t_impact *impact)
 	index = 0;
 	ft_bzero(color, 3 * sizeof(t_v3d));
 	color[AMB] = v3d_multiply_scalar(&scene->ambient.color,
-			scene->ambient.intensity);
+			scene->ambient.intensity / 100.0);
 	color[AMB] = v3d_multiply(&impact->object->color, &color[AMB]);
 	while (index < (size_t)scene->n_lights)
 	{
