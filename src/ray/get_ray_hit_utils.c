@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_ray_hit_utils1.c                               :+:      :+:    :+:   */
+/*   ray_hit_utils1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -18,32 +18,15 @@
 	behind the ray, but if one of the solutions is positive
 	and the other is negative, we know that the ray's origin is inside whatever
 	shape we are currently checking and we use the positive one. */
-BOOL	get_closest_t(double t0, double t1, double *closest_t)
+BOOL	get_closest_t(double t0, double t1, t_impact *impact)
 {
-	if (t0 >= 0 && t1 < 0)
-		*closest_t = t0;
-	else if (t1 >= 0 && t0 < 0)
-		*closest_t = t1;
+	if (t0 < EPSILON && t1 < EPSILON)
+		return (FALSE);
+	if (t1 > EPSILON)
+		impact->time = t1;
 	else
-	{
-		if (t0 < t1)
-			*closest_t = t0;
-		else
-			*closest_t = t1;
-		if (*closest_t < 0)
-			return (FALSE);
-	}
+		impact->time = t0;
 	return (TRUE);
-}
-
-/*	This function calculates the impact distance from the ray's origin
-	to the ray impact point. */
-// double	get_impact_distance(t_v3d *ray_origin, t_v3d *ray_impact_point)
-// {
-// 	t_v3d	ray_origin_to_impact_vector;
-
-// 	ray_origin_to_impact_vector = v3d_subtract(ray_origin, ray_impact_point);
-// 	return (v3d_length(&ray_origin_to_impact_vector));
 }
 
 /*	This function calculates the impact point where the ray intersects with

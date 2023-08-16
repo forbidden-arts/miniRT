@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/16 13:19:59 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/16 15:35:11 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ t_color	ray_trace(t_ray *ray, t_scene *scene, int depth)
 
 	if (depth >= MAX_DEPTH)
 		return ((t_color){0, 0, 0});
-	if (!get_ray_hit(scene, &impact, ray))
+	if (!ray_hit(scene, &impact, ray))
 		return ((t_color){0, 0, 0});
-	//something for lights
+	//fill out the rest of the impact.
 	color = shade_hit(scene, &impact);
 	return (color);
 }

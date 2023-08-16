@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/16 14:12:27 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/16 15:26:54 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_impact
 {
 	int			object_type;
 	double		distance;
+	double		time;
 	t_color		color;
 	t_object	*object;
 	t_v3d		point;
@@ -47,15 +48,15 @@ t_point3	ray_at(const t_ray *ray, double t);
 // Funcs that are not called outside of the containing file?
 // void		copy_impact_data(t_impact *impact_src, t_impact *impact_dst);
 
-BOOL		get_ray_hit(t_scene *scene, t_impact *impact, t_ray *ray);
-BOOL		get_ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray);
-BOOL		get_ray_hit_plane(t_impact *impact, t_object *plane, t_ray *ray);
-BOOL		get_ray_hit_cylinder(
+BOOL		ray_hit(t_scene *scene, t_impact *impact, t_ray *ray);
+BOOL		ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray);
+BOOL		ray_hit_plane(t_impact *impact, t_object *plane, t_ray *ray);
+BOOL		ray_hit_cylinder(
 				t_impact *impact,
 				t_object *cylinder,
 				t_ray *ray);
 
-BOOL		get_closest_t(double t0, double t1, double *closest_t);
+BOOL		get_closest_t(double t0, double t1, t_impact *impact);
 double		get_impact_distance(
 				t_v3d *ray_origin,
 				t_v3d *ray_impact_point);

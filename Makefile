@@ -63,7 +63,7 @@ color.c					\
 render_image.c			\
 get_ray_hit.c			\
 get_ray_hit_shapes.c	\
-get_ray_hit_utils1.c	\
+get_ray_hit_utils.c		\
 get_light_ray_hit.c		\
 shader.c
 

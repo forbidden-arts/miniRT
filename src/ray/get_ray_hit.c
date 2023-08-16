@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_ray_hit.c                                      :+:      :+:    :+:   */
+/*   ray_hit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,17 +15,17 @@
 #include "v3d.h"
 #include "render.h"
 
-static BOOL	get_ray_hit_shapes(t_impact *temp, t_object *object, t_ray *ray)
+static BOOL	ray_hit_shapes(t_impact *temp, t_object *object, t_ray *ray)
 {
 	BOOL	result;
 
 	result = FALSE;
 	if (object->type == SPHERE)
-		result = get_ray_hit_sphere(temp, object, ray);
+		result = ray_hit_sphere(temp, object, ray);
 	else if (object->type == PLANE)
-		result = get_ray_hit_plane(temp, object, ray);
+		result = ray_hit_plane(temp, object, ray);
 	else if (object->type == CYLINDER)
-		result = get_ray_hit_cylinder(temp, object, ray);
+		result = ray_hit_cylinder(temp, object, ray);
 	return (result);
 }
 
@@ -45,7 +45,7 @@ static void	dup_impact(t_impact *src, t_impact *dst)
 
 	If the ray hits a shape, the closest ray hit will be stored into
 	the impact struct given as an argument and func will return TRUE.*/
-BOOL	get_ray_hit(t_scene *scene, t_impact *impact, t_ray *ray)
+BOOL	ray_hit(t_scene *scene, t_impact *impact, t_ray *ray)
 {
 	t_impact	temp_impact;
 	BOOL		ray_hit;
@@ -55,7 +55,7 @@ BOOL	get_ray_hit(t_scene *scene, t_impact *impact, t_ray *ray)
 	i = 0;
 	while (i < scene->n_objects)
 	{
-		if (get_ray_hit_shapes(&temp_impact, &scene->objects[i], ray))
+		if (ray_hit_shapes(&temp_impact, &scene->objects[i], ray))
 		{
 			if (!ray_hit || temp_impact.distance < impact->distance)
 				dup_impact(&temp_impact, impact);

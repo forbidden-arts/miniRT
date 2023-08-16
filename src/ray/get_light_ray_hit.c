@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/16 11:57:56 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/16 14:43:39 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ BOOL	get_light_ray_hit(t_scene *scene, t_impact *impact,
 	BOOL		result;
 	t_impact	light_impact;
 
-	result = get_ray_hit(scene, &light_impact, light_ray);
+	result = ray_hit(scene, &light_impact, light_ray);
 
 	printf("Orig impact loc ");
 	print_v3d_data(&impact->point);
