@@ -29,16 +29,6 @@ static BOOL	ray_hit_shapes(t_impact *temp, t_object *object, t_ray *ray)
 	return (result);
 }
 
-static void	dup_impact(t_impact *src, t_impact *dst)
-{
-	dst->object_type = src->object_type;
-	dst->object = src->object;
-	dst->distance = src->distance;
-	dst->point = src->point;
-	dst->normal = src->normal;
-	dst->to_source = src->to_source;
-}
-
 /*	This function is for finding out if the ray hits an object.
 
 	Will iterate through all shapes and check if a ray hits a shape (ie. object).
@@ -58,7 +48,10 @@ BOOL	ray_hit(t_scene *scene, t_impact *impact, t_ray *ray)
 		if (ray_hit_shapes(&temp_impact, &scene->objects[i], ray))
 		{
 			if (!ray_hit || temp_impact.distance < impact->distance)
-				dup_impact(&temp_impact, impact);
+			{
+				impact->distance = temp_impact.distance;
+				impact->index = i;
+			}
 			ray_hit = TRUE;
 		}
 		i++;

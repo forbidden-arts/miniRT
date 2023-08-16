@@ -27,8 +27,6 @@ BOOL	ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray)
 		return (FALSE);
 	if (!get_closest_t(t_params.e[0], t_params.e[1], impact))
 		return (FALSE);
-	impact->object = sphere;
-	impact->object_type = SPHERE;
 	return (TRUE);
 }
 

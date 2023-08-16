@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/16 15:26:54 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/16 17:24:58 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ typedef struct s_ray
 *  Normal the direction relative to the "center" of the object. */
 typedef struct s_impact
 {
-	int			object_type;
+	int			index;
 	double		distance;
 	double		time;
 	t_color		color;
-	t_object	*object;
+	// t_object	*object;
 	t_v3d		point;
 	t_v3d		normal;
 	t_v3d		to_source;
@@ -41,8 +41,8 @@ void		ray_init_with_values(
 				t_ray *ray,
 				const t_point3 *origin,
 				const t_v3d *direction);
-t_point3	ray_origin(const t_ray *ray);
-t_v3d		ray_direction(const t_ray *ray);
+// t_point3	ray_origin(const t_ray *ray);
+// t_v3d		ray_direction(const t_ray *ray);
 t_point3	ray_at(const t_ray *ray, double t);
 
 // Funcs that are not called outside of the containing file?
