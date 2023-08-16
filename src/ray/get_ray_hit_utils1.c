@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_ray_hit_utils1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 10:14:40 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/13 14:20:22 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/16 14:38:48 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+#include "ray.h"
 
 /*	This function gets the closest quadratic equation solution (t0 or t1).
 	If both values are negative we know that both intersection "points" are
@@ -37,12 +38,12 @@ BOOL	get_closest_t(double t0, double t1, double *closest_t)
 
 /*	This function calculates the impact distance from the ray's origin
 	to the ray impact point. */
-double	calculate_impact_distance(t_v3d *ray_origin, t_v3d *ray_impact_point)
-{
-	t_v3d	ray_origin_to_impact_vector;
+// double	get_impact_distance(t_v3d *ray_origin, t_v3d *ray_impact_point)
+// {
+// 	t_v3d	ray_origin_to_impact_vector;
 
-	ray_origin_to_impact_vector = v3d_subtract(ray_origin, ray_impact_point);
-	return (v3d_length(&ray_origin_to_impact_vector));
+// 	ray_origin_to_impact_vector = v3d_subtract(ray_origin, ray_impact_point);
+// 	return (v3d_length(&ray_origin_to_impact_vector));
 }
 
 /*	This function calculates the impact point where the ray intersects with
@@ -57,11 +58,11 @@ t_v3d	get_impact_point(t_v3d *ray_origin, t_v3d *ray_direction,
 }
 
 /*	This function is used to calculate the surface normal for a sphere. */
-t_v3d	calculate_impact_normal_sphere(t_object *sphere,
-	t_v3d *impact_point)
+t_v3d	get_impact_normal(t_object *object,	t_v3d *impact)
 {
-	t_v3d	surface_normal_diff;
+	t_v3d	normal;
 
-	surface_normal_diff = v3d_subtract(impact_point, &sphere->point);
-	return (v3d_divide_scalar(&surface_normal_diff, sphere->radius));
+	if (object->type == SPHERE)
+		normal = v3d_subtract(impact, &object->point);
+	return (v3d_unit_vector(&normal));
 }

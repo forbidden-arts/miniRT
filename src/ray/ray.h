@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/14 16:21:55 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/16 14:12:27 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ typedef struct s_impact
 {
 	int			object_type;
 	double		distance;
-	t_v3d		color;
+	t_color		color;
 	t_object	*object;
 	t_v3d		point;
 	t_v3d		normal;
+	t_v3d		to_source;
 }	t_impact;
 
 void		ray_init(t_ray *ray);
@@ -43,9 +44,10 @@ t_point3	ray_origin(const t_ray *ray);
 t_v3d		ray_direction(const t_ray *ray);
 t_point3	ray_at(const t_ray *ray, double t);
 
-void		copy_impact_data(t_impact *impact_src, t_impact *impact_dst);
-BOOL		get_ray_hit(t_scene *scene, t_impact *impact, t_ray *ray);
+// Funcs that are not called outside of the containing file?
+// void		copy_impact_data(t_impact *impact_src, t_impact *impact_dst);
 
+BOOL		get_ray_hit(t_scene *scene, t_impact *impact, t_ray *ray);
 BOOL		get_ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray);
 BOOL		get_ray_hit_plane(t_impact *impact, t_object *plane, t_ray *ray);
 BOOL		get_ray_hit_cylinder(
@@ -54,14 +56,14 @@ BOOL		get_ray_hit_cylinder(
 				t_ray *ray);
 
 BOOL		get_closest_t(double t0, double t1, double *closest_t);
-double		calculate_impact_distance(
+double		get_impact_distance(
 				t_v3d *ray_origin,
 				t_v3d *ray_impact_point);
-t_v3d		get_impact_point(t_v3d *ray_origin, t_v3d *ray_direction,
+t_v3d		get_impact_point(
+				t_v3d *ray_origin,
+				t_v3d *ray_direction,
 				double t_parameter);
-t_v3d		calculate_impact_normal_sphere(t_object *sphere,
-				t_v3d *impact_point);
-
+t_v3d		get_impact_normal(t_object *object,	t_v3d *impact);
 BOOL		get_light_ray_hit(
 				t_scene *scene,
 				t_impact *impact,

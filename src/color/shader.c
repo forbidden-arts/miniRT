@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:12:26 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/15 12:11:51 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/16 11:30:22 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 #define DIF 1
 #define RES 2
 
+#include <stdio.h>
+#include "parser.h"
+
 void	create_light_ray(
 	t_scene *scene,
 	t_impact *impact,
@@ -28,7 +31,7 @@ void	create_light_ray(
 	t_v3d	direction;
 	t_v3d	normal;
 
-	direction = v3d_subtract(&scene->lights[index].location, &impact->point);
+	direction = v3d_subtract(&impact->point, &scene->lights[index].location);
 	normal = v3d_unit_vector(&direction);
 	ray_init_with_values(ray, &scene->lights[index].location, &normal);
 }
@@ -47,8 +50,12 @@ t_color	shade_hit(t_scene *scene, t_impact *impact)
 	while (index < (size_t)scene->n_lights)
 	{
 		create_light_ray(scene, impact, index, &ray);
+		// printf("\nray origin:");
+		// print_v3d_data(&ray.origin);
+		// printf("\nray direction:");
+		// print_v3d_data(&ray.direction);
 		if (get_light_ray_hit(scene, impact, &ray))
-			color[DIF] = v3d_multiply(&impact->object->color,
+				color[DIF] = v3d_multiply(&impact->object->color,
 					&scene->lights[index].color);
 		color[RES] = v3d_add(&color[RES], &color[DIF]);
 		index++;

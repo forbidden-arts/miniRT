@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:41:19 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/14 10:57:48 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/16 13:11:48 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ uint32_t	color_to_int(t_color color)
 {
 	uint32_t	red;
 	uint32_t	green;
-	uint16_t	blue;
+	uint32_t	blue;
 
 	red = 255.0 * color.e[0];
 	green = 255.0 * color.e[1];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_ray_hit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:16:51 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/13 14:34:08 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/16 14:09:08 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,28 @@
 #include "v3d.h"
 #include "render.h"
 
-BOOL	get_ray_hit_shapes(t_impact *temp_impact, t_object *object, t_ray *ray)
+static BOOL	get_ray_hit_shapes(t_impact *temp, t_object *object, t_ray *ray)
 {
 	BOOL	result;
 
 	result = FALSE;
 	if (object->type == SPHERE)
-		result = get_ray_hit_sphere(temp_impact, object, ray);
+		result = get_ray_hit_sphere(temp, object, ray);
 	else if (object->type == PLANE)
-		result = get_ray_hit_plane(temp_impact, object, ray);
+		result = get_ray_hit_plane(temp, object, ray);
 	else if (object->type == CYLINDER)
-		result = get_ray_hit_cylinder(temp_impact, object, ray);
+		result = get_ray_hit_cylinder(temp, object, ray);
 	return (result);
 }
 
-void	copy_impact_data(t_impact *impact_src, t_impact *impact_dst)
+static void	dup_impact(t_impact *src, t_impact *dst)
 {
-	impact_dst->object_type = impact_src->object_type;
-	impact_dst->object = impact_src->object;
-	impact_dst->distance = impact_src->distance;
-	impact_dst->point = impact_src->point;
-	impact_dst->normal = impact_src->normal;
+	dst->object_type = src->object_type;
+	dst->object = src->object;
+	dst->distance = src->distance;
+	dst->point = src->point;
+	dst->normal = src->normal;
+	dst->to_source = src->to_source;
 }
 
 /*	This function is for finding out if the ray hits an object.
@@ -48,21 +49,16 @@ BOOL	get_ray_hit(t_scene *scene, t_impact *impact, t_ray *ray)
 {
 	t_impact	temp_impact;
 	BOOL		ray_hit;
-	int			i;
+	size_t		i;
 
 	ray_hit = FALSE;
 	i = 0;
 	while (i < scene->n_objects)
 	{
-		if (get_ray_hit_shapes(&temp_impact, &scene->objects[i], ray) == TRUE)
+		if (get_ray_hit_shapes(&temp_impact, &scene->objects[i], ray))
 		{
-			if (ray_hit == FALSE)
-				copy_impact_data(&temp_impact, impact);
-			else
-			{
-				if (temp_impact.distance < impact->distance)
-					copy_impact_data(&temp_impact, impact);
-			}
+			if (!ray_hit || temp_impact.distance < impact->distance)
+				dup_impact(&temp_impact, impact);
 			ray_hit = TRUE;
 		}
 		i++;

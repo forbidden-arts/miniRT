@@ -6,11 +6,12 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:53:58 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/14 10:55:31 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/16 14:31:00 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include "ray.h"
 #include "v3d.h"
 
 /* Okay, so here is the math required to sort out how many roots a quadratic
@@ -36,3 +37,4 @@ BOOL	solve_quadratic(t_v3d params, double *t0, double *t1)
 	}
 	return (TRUE);
 }
+double	can_hit()
