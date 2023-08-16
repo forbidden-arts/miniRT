@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:12:26 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/16 14:44:16 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/16 14:48:49 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 #include "v3d.h"
 #include "scene.h"
 #include "ray.h"
-
-// rm later
-#include <stdio.h>
-#include "parser.h"
 
 #define AMB 0
 #define DIF 1
