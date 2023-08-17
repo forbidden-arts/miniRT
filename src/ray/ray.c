@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:52:45 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/16 18:27:41 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/17 12:54:24 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,6 @@ void	ray_init_with_values(
 		v3d_y(direction),
 		v3d_z(direction));
 }
-
-// t_point3	ray_origin(const t_ray *ray)
-// {
-// 	return (ray->origin);
-// }
-
-// t_v3d	ray_direction(const t_ray *ray)
-// {
-// 	return (ray->direction);
-// }
 
 t_point3	ray_at(const t_ray *ray, double t)
 {

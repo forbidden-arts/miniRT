@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:12:26 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/16 11:30:22 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/17 12:50:54 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_color	shade_hit(t_scene *scene, t_impact *impact)
 	ft_bzero(color, 3 * sizeof(t_v3d));
 	color[AMB] = v3d_multiply_scalar(&scene->ambient.color,
 			scene->ambient.intensity / 100.0);
-	color[AMB] = v3d_multiply(&impact->object->color, &color[AMB]);
+	color[AMB] = v3d_multiply(&impact->color, &color[AMB]);
 	while (index < (size_t)scene->n_lights)
 	{
 		create_light_ray(scene, impact, index, &ray);
@@ -55,7 +55,7 @@ t_color	shade_hit(t_scene *scene, t_impact *impact)
 		// printf("\nray direction:");
 		// print_v3d_data(&ray.direction);
 		if (get_light_ray_hit(scene, impact, &ray))
-				color[DIF] = v3d_multiply(&impact->object->color,
+				color[DIF] = v3d_multiply(&impact->color,
 					&scene->lights[index].color);
 		color[RES] = v3d_add(&color[RES], &color[DIF]);
 		index++;

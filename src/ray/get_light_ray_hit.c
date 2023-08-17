@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/16 14:43:39 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/17 15:25:51 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,52 +15,62 @@
 #include "parser.h" //delete me
 #include <stdio.h> //delete me
 
-/*	This function is for checking if the point3 values are the same. Used
-	to check if the light ray hits the impact point unimpeded.*/
-BOOL	compare_v3d(t_v3d *first, t_v3d *second)
+static BOOL	color_light(
+	t_scene *scene,
+	t_impact *impact,
+	t_light *light,
+	int index)
 {
-	t_v3d	result;
+	t_color	color;
 
-	result = v3d_subtract(first, second);
-	if (&result == &(t_v3d){0, 0, 0})
-		return (TRUE);
-	return (FALSE);
+	color = (t_color){0, 0, 0};
+	//TODO: calculate the color of the light ray and update t_light
 }
 
-BOOL	compare_normals(t_v3d *first, t_v3d *second)
+static BOOL	check_closest(
+	t_scene *scene,
+	t_impact *impact,
+	t_ray temp,
+	int index)
 {
-	// printf("normal dot: %f\n", v3d_dot(first, second));
-	if (v3d_dot(first, second) > 0.0)
-		return (TRUE);
-	return (FALSE);
-}
-
-/*	This function is for finding out if the light ray will hit the impact point
-	unimpeded.
-
-	Before calling this function you will have to initialize the light ray.
-	*/
-BOOL	get_light_ray_hit(t_scene *scene, t_impact *impact,
-	t_ray *light_ray)
-{
+	double		light_dist;
+	t_v3d		temp_dist;
+	t_impact	temp_impact;
 	BOOL		result;
-	t_impact	light_impact;
+	int			i;
 
-	result = ray_hit(scene, &light_impact, light_ray);
-
-	printf("Orig impact loc ");
-	print_v3d_data(&impact->point);
-	printf("\tLight impact loc ");
-	print_v3d_data(&light_impact.point);
-	printf("\t dot: %f\n", v3d_dot(&impact->normal, &light_impact.point));
-
-	// result = compare_v3d(&impact->point, &light_impact.point);
-	// if (result)
-// {
-// 	printf("Light hit\n");
-// 		if (compare_normals(&scene->cameras[0].direction, &impact->normal)
-// 			!= compare_normals(&light_ray->direction, &impact->normal))
-// 			return (FALSE);}
-	// printf("Comparison TRUE\n");
+	i = 0;
+	result = FALSE;
+	temp_dist = (v3d_subtract(&scene->lights[index].location, &impact->point));
+	light_dist = v3d_get_magnitude(temp_dist);
+	temp.direction = v3d_unit_vector(&temp_dist);
+	while (index < scene->n_objects)
+	{
+		if (ray_hit_shapes(&temp_impact, &scene->objects[index], &temp))
+		{
+			result = TRUE;
+			if (temp_impact.distance < light_dist)
+				return (FALSE);
+		}
+	}
 	return (result);
+}
+
+t_light	check_light(t_scene *scene, t_impact *impact)
+{
+	t_ray	temp;
+	t_light	light;
+	int		index;
+
+	index = 0;
+	ft_bzero(&light, sizeof(t_light));
+	temp.origin = impact->point;
+	light.color = (t_color){0, 0, 0};
+	while (index < scene->n_lights)
+	{
+		if (check_closest(scene, impact, temp, index))
+			color_light(scene, impact, &light, index);
+		index++;
+	}
+	return (light);
 }

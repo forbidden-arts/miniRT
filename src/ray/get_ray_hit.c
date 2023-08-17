@@ -15,7 +15,7 @@
 #include "v3d.h"
 #include "render.h"
 
-static BOOL	ray_hit_shapes(t_impact *temp, t_object *object, t_ray *ray)
+BOOL	ray_hit_shapes(t_impact *temp, t_object *object, t_ray *ray)
 {
 	BOOL	result;
 
@@ -39,22 +39,22 @@ BOOL	ray_hit(t_scene *scene, t_impact *impact, t_ray *ray)
 {
 	t_impact	temp_impact;
 	BOOL		ray_hit;
-	size_t		i;
+	int			index;
 
 	ray_hit = FALSE;
-	i = 0;
-	while (i < scene->n_objects)
+	index = 0;
+	while (index < scene->n_objects)
 	{
-		if (ray_hit_shapes(&temp_impact, &scene->objects[i], ray))
+		if (ray_hit_shapes(&temp_impact, &scene->objects[index], ray))
 		{
 			if (!ray_hit || temp_impact.distance < impact->distance)
 			{
 				impact->distance = temp_impact.distance;
-				impact->index = i;
+				impact->index = index;
 			}
 			ray_hit = TRUE;
 		}
-		i++;
+		index++;
 	}
 	return (ray_hit);
 }

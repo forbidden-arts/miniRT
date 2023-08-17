@@ -45,7 +45,7 @@ parser_double_utils.c	\
 plane.c					\
 cylinder.c				\
 sphere.c				\
-shapes_utils.C			\
+shapes_utils.c			\
 v3d.c					\
 vector_arithmetic.c		\
 vector_in_place.c		\
@@ -61,7 +61,7 @@ parse_atod.c			\
 print_results.c			\
 print_results_utils1.c	\
 color.c					\
-render_image.c			\
+render.c				\
 get_ray_hit.c			\
 get_ray_hit_shapes.c	\
 get_ray_hit_utils.c		\

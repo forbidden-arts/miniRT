@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/16 15:35:11 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/17 13:17:15 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "v3d.h"
 #include "camera.h"
 #include "color.h"
+#include "ray.h"
 #include "render.h"
 
 // rm later; used to get
@@ -35,14 +36,15 @@ t_color	ray_trace(t_ray *ray, t_scene *scene, int depth)
 {
 	t_impact	impact;
 	t_color		color;
-	t_ray		reflected;
-	t_color		reflected_color;
+	t_light		temp_light;
+	// t_ray		reflected;
+	// t_color		reflected_color;
 
 	if (depth >= MAX_DEPTH)
 		return ((t_color){0, 0, 0});
 	if (!ray_hit(scene, &impact, ray))
 		return ((t_color){0, 0, 0});
-	//fill out the rest of the impact.
+	populate_impact(scene, ray, &impact);
 	color = shade_hit(scene, &impact);
 	return (color);
 }
