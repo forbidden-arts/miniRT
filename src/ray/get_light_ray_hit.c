@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/17 15:25:51 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/18 12:26:14 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 #include "parser.h" //delete me
 #include <stdio.h> //delete me
 
-static BOOL	color_light(
+static void	color_light(
 	t_scene *scene,
-	t_impact *impact,
 	t_light *light,
 	int index)
 {
+	t_light	temp;
 	t_color	color;
 
-	color = (t_color){0, 0, 0};
-	//TODO: calculate the color of the light ray and update t_light
+	temp = scene->lights[index];
+	color = v3d_multiply_scalar(&temp.color, temp.intensity);
+	printf("\nColor light adj: ");
+	print_v3d_data(&color);
+	light->color = v3d_add(&light->color, &color);
 }
 
 static BOOL	check_closest(
@@ -44,7 +47,12 @@ static BOOL	check_closest(
 	temp_dist = (v3d_subtract(&scene->lights[index].location, &impact->point));
 	light_dist = v3d_get_magnitude(temp_dist);
 	temp.direction = v3d_unit_vector(&temp_dist);
-	while (index < scene->n_objects)
+	printf("\nTemp origin: ");
+	print_v3d_data(&temp.origin);
+	printf("\nTemp direction: ");
+	print_v3d_data(&temp.direction);
+	// printf("\nTemp dist: %f Light dist: %f", temp_impact.distance, light_dist);
+	while (i < scene->n_objects)
 	{
 		if (ray_hit_shapes(&temp_impact, &scene->objects[index], &temp))
 		{
@@ -52,6 +60,7 @@ static BOOL	check_closest(
 			if (temp_impact.distance < light_dist)
 				return (FALSE);
 		}
+		i++;
 	}
 	return (result);
 }
@@ -69,7 +78,10 @@ t_light	check_light(t_scene *scene, t_impact *impact)
 	while (index < scene->n_lights)
 	{
 		if (check_closest(scene, impact, temp, index))
-			color_light(scene, impact, &light, index);
+		{
+			printf("\nLight hit object!\n");
+			color_light(scene, &light, index);
+		}
 		index++;
 	}
 	return (light);

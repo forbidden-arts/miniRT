@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:38:22 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/14 16:23:40 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/18 11:38:51 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void		normalize_rgb(t_color *color);
 void		color_overflow(t_color *color);
 
 // Calculating colors
-t_color		shade_hit(t_scene *scene, t_impact *impact);
+t_color		shade_hit(
+				t_scene *scene,
+				t_impact *impact,
+				t_light *light);
 
 #endif

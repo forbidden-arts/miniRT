@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/17 13:17:15 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/18 11:54:58 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_color	ray_trace(t_ray *ray, t_scene *scene, int depth)
 {
 	t_impact	impact;
 	t_color		color;
-	t_light		temp_light;
+	t_light		light;
 	// t_ray		reflected;
 	// t_color		reflected_color;
 
@@ -45,7 +45,8 @@ t_color	ray_trace(t_ray *ray, t_scene *scene, int depth)
 	if (!ray_hit(scene, &impact, ray))
 		return ((t_color){0, 0, 0});
 	populate_impact(scene, ray, &impact);
-	color = shade_hit(scene, &impact);
+	light = check_light(scene, &impact);
+	color = shade_hit(scene, &impact, &light);
 	return (color);
 }
 
@@ -60,7 +61,6 @@ static u_int32_t	check_pixel(t_data *data, t_v2d pixel)
 	scene = &data->scene;
 	ray = create_ray(&cam, pixel);
 	color = ray_trace(&ray, scene, 0);
-	normalize_rgb(&color);
 	color_overflow(&color);
 	return (color_to_int(color));
 }
