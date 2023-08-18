@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:12:26 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/17 12:50:54 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/18 09:59:40 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,22 @@
 #include "parser.h"
 
 void	create_light_ray(
-	t_scene *scene,
-	t_impact *impact,
-	size_t index,
-	t_ray *ray)
+			t_scene *scene,
+			t_impact *impact,
+			size_t index,
+			t_ray *ray)
 {
 	t_v3d	direction;
 	t_v3d	normal;
 
 	direction = v3d_subtract(&impact->point, &scene->lights[index].location);
 	normal = v3d_unit_vector(&direction);
-	ray_init_with_values(ray, &scene->lights[index].location, &normal);
+	ray_init_with_values(ray, &impact->point, &normal);
 }
 
-t_color	shade_hit(t_scene *scene, t_impact *impact)
+t_color	shade_hit(
+		t_scene *scene,
+		t_impact *impact)
 {
 	t_color	color[3];
 	size_t	index;
@@ -55,13 +57,15 @@ t_color	shade_hit(t_scene *scene, t_impact *impact)
 		// printf("\nray direction:");
 		// print_v3d_data(&ray.direction);
 		if (get_light_ray_hit(scene, impact, &ray))
-				color[DIF] = v3d_multiply(&impact->color,
+		{
+			color[DIF] = v3d_multiply(&impact->color,
 					&scene->lights[index].color);
+			color[DIF] = v3d_multiply_scalar(&color[DIF],
+					(double)scene->lights[index].intensity);
+		}
 		color[RES] = v3d_add(&color[RES], &color[DIF]);
 		index++;
 	}
-	color[RES] = v3d_multiply_scalar(&color[RES],
-			(double)scene->lights[index].intensity / 100);
 	color[RES] = v3d_add(&color[AMB], &color[RES]);
 	return (color[RES]);
 }

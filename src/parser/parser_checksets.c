@@ -6,13 +6,14 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:28:34 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/02 11:31:34 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/18 10:00:16 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
 #include "v3d.h"
+#include "color.h"
 
 #include <stdio.h>
 
@@ -45,6 +46,7 @@ BOOL	color_checkset(char *str, t_v3d *target_data)
 	if (!color_part_checkset(split_array[2], &target_data->e[2]))
 		return (free_str_array_and_return_false(split_array));
 	free_str_array_and_return_false(split_array);
+	normalize_rgb(target_data);
 	return (TRUE);
 }
 
@@ -107,6 +109,7 @@ BOOL	brightness_ratio_checkset(char *str, double *target_data)
 	result = ft_atod(str);
 	if (result > 1.0 || result < 0)
 		return (return_err("Brightness value not in bounds [0.0,1.0]", NULL));
+	result /= 100;
 	*target_data = result;
 	return (TRUE);
 }
