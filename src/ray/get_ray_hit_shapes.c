@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_ray_hit_shapes.c                               :+:      :+:    :+:   */
+/*   ray_hit_shapes.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:49:57 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/13 14:34:40 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/16 14:25:25 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "v3d.h"
 #include "render.h"
 
-BOOL	get_ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray)
+#include <stdio.h> //DELETE ME
+#include "parser.h" //DELETE ME
+
+BOOL	ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray)
 {
 	t_v3d	quadratic_params;
 	t_v3d	oc;
 	t_v2d	t_params;
-	double	closest_t;
 
 	oc = v3d_subtract(&ray->origin, &sphere->point);
 	quadratic_params.e[0] = v3d_dot(&ray->direction, &ray->direction);
@@ -25,25 +28,34 @@ BOOL	get_ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray)
 	quadratic_params.e[2] = v3d_dot(&oc, &oc) - sphere->radius * sphere->radius;
 	if (!solve_quadratic(quadratic_params, &t_params.e[0], &t_params.e[1]))
 		return (FALSE);
-	if (get_closest_t(t_params.e[0], t_params.e[1], &closest_t) == FALSE)
+	if (!get_closest_t(t_params.e[0], t_params.e[1], impact))
 		return (FALSE);
-	impact->object = sphere;
-	impact->object_type = SPHERE;
-	impact->point = get_impact_point(&ray->origin, &ray->direction, closest_t);
-	impact->distance = calculate_impact_distance(&ray->origin, &impact->point);
-	impact->normal = calculate_impact_normal_sphere(sphere, &impact->point);
+	printf("\nImpact distance: %f\n", impact->distance);
+	printf("Ray origin:\n");
+	print_v3d_data(&ray->origin);
+	printf("\nRay direction:\n");
+	print_v3d_data(&ray->direction);
 	return (TRUE);
 }
 
-BOOL	get_ray_hit_plane(t_impact *impact, t_object *plane, t_ray *ray)
+BOOL	ray_hit_plane(t_impact *impact, t_object *plane, t_ray *ray)
 {
-	(void)impact;
-	(void)plane;
-	(void)ray;
-	return (FALSE);
+	double	dot_result;
+	t_v3d	oc;
+	double	t;
+
+	dot_result = v3d_dot(&ray->direction, &plane->axis);
+	if (fabs(dot_result) < EPSILON)
+		return (FALSE);
+	oc = v3d_subtract(&ray->origin, &plane->point);
+	t = v3d_dot(&oc, &plane->axis) / dot_result;
+	if (t < EPSILON)
+		return (FALSE);
+	impact->time = t;
+	return (TRUE);
 }
 
-BOOL	get_ray_hit_cylinder(t_impact *impact, t_object *cylinder,
+BOOL	ray_hit_cylinder(t_impact *impact, t_object *cylinder,
 			t_ray *ray)
 {
 	(void)impact;

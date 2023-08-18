@@ -3,24 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:58:53 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/10 17:19:05 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/17 13:43:53 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "v3d.h"
 
-double	v3d_get(const t_v3d *v, int i)
-{
-	return (v->e[i]);
-}
-
-void	v3d_set(t_v3d *v, int i, double val)
-{
-	v->e[i] = val;
-}
 
 t_v3d	v3d_negate(const t_v3d *v)
 {
@@ -32,16 +23,39 @@ t_v3d	v3d_negate(const t_v3d *v)
 	return (result);
 }
 
-void	swap_double(double *a, double *b)
+double	v3d_get_dist(const t_v3d *origin, const t_v3d *dest)
 {
-	double	temp;
+	t_v3d	temp;
 
-	temp = *a;
-	*a = *b;
-	*b = temp;
+	temp = v3d_subtract(origin, dest);
+	return (v3d_length(&temp));
 }
 
-void	v3d_copy_data(t_v3d *dst, const t_v3d *src)
+double	v3d_get_magnitude(const t_v3d vec)
 {
-	v3d_init_with_values(dst, src->e[0], src->e[1], src->e[2]);
+	return (sqrt(v3d_dot(&vec, &vec)));
 }
+
+// double	v3d_get(const t_v3d *v, int i)
+// {
+// 	return (v->e[i]);
+// }
+
+// void	v3d_set(t_v3d *v, int i, double val)
+// {
+// 	v->e[i] = val;
+// }
+
+// void	swap_double(double *a, double *b)
+// {
+// 	double	temp;
+
+// 	temp = *a;
+// 	*a = *b;
+// 	*b = temp;
+// }
+
+// void	v3d_copy_data(t_v3d *dst, const t_v3d *src)
+// {
+// 	v3d_init_with_values(dst, src->e[0], src->e[1], src->e[2]);
+// }

@@ -28,19 +28,6 @@ CYAN = \033[0;96m
 # Sources
 SRCS = \
 main.c					\
-plane.c					\
-cylinder.c				\
-sphere.c				\
-v3d.c					\
-vector_arithmetic.c		\
-vector_in_place.c		\
-vector_math.c			\
-vector_quad.c			\
-vector_utils.c			\
-ray.c					\
-scene.c					\
-data.c					\
-camera.c				\
 parse_ambient.c			\
 parse_camera.c			\
 parse_light.c			\
@@ -55,15 +42,29 @@ parser_utils2.c			\
 parser_utils3.c			\
 parser_checksets.c		\
 parser_double_utils.c	\
+plane.c					\
+cylinder.c				\
+sphere.c				\
+shapes_utils.c			\
+v3d.c					\
+vector_arithmetic.c		\
+vector_in_place.c		\
+vector_math.c			\
+vector_quad.c			\
+vector_utils.c			\
+ray.c					\
+scene.c					\
+data.c					\
+camera.c				\
 buttons.c				\
 parse_atod.c			\
 print_results.c			\
 print_results_utils1.c	\
 color.c					\
-render_image.c			\
+render.c				\
 get_ray_hit.c			\
 get_ray_hit_shapes.c	\
-get_ray_hit_utils1.c	\
+get_ray_hit_utils.c		\
 get_light_ray_hit.c		\
 shader.c
 
