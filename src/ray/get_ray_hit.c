@@ -47,9 +47,9 @@ BOOL	ray_hit(t_scene *scene, t_impact *impact, t_ray *ray)
 	{
 		if (ray_hit_shapes(&temp_impact, &scene->objects[index], ray))
 		{
-			if (!ray_hit || temp_impact.distance < impact->distance)
+			if (!ray_hit || temp_impact.time < impact->time)
 			{
-				impact->distance = temp_impact.distance;
+				impact->time = temp_impact.time;
 				impact->index = index;
 			}
 			ray_hit = TRUE;
