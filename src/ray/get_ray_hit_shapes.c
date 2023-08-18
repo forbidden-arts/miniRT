@@ -40,10 +40,19 @@ BOOL	ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray)
 
 BOOL	ray_hit_plane(t_impact *impact, t_object *plane, t_ray *ray)
 {
-	(void)impact;
-	(void)plane;
-	(void)ray;
-	return (FALSE);
+	double	dot_result;
+	t_v3d	oc;
+	double	t;
+
+	dot_result = v3d_dot(&ray->direction, &plane->axis);
+	if (fabs(dot_result) < EPSILON)
+		return (FALSE);
+	oc = v3d_subtract(&ray->origin, &plane->point);
+	t = v3d_dot(&oc, &plane->axis) / dot_result;
+	if (t < EPSILON)
+		return (FALSE);
+	impact->time = t;
+	return (TRUE);
 }
 
 BOOL	ray_hit_cylinder(t_impact *impact, t_object *cylinder,
