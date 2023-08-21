@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/21 12:46:16 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/21 13:59:35 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ static void	color_light(
 
 	temp = scene->lights[index];
 	color = v3d_multiply_scalar(&temp.color, temp.intensity);
-	printf("\nColor light adj: ");
-	print_v3d_data(&color);
 	light->color = v3d_add(&light->color, &color);
+	light->intensity += temp.intensity / scene->n_lights;
 }
 
 static BOOL	check_closest(
