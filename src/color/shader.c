@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:12:26 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/21 12:42:17 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/21 14:00:00 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,8 @@ t_color	shade_hit(
 	ft_bzero(color, 3 * sizeof(t_v3d));
 	color[AMB] = v3d_multiply_scalar(&scene->ambient.color,
 			scene->ambient.intensity);
-	// printf("\nAmbient intensity: %f", scene->ambient.intensity);
-	// printf("\nAmbient color: ");
-	// print_v3d_data(&color[AMB]);
-	// printf("\nLight(s) intensity: %f", light->intensity);
-	// printf("\nLight(s) color: ");
-	// print_v3d_data(&light->color);
 	color[AMB] = v3d_multiply(&impact->color, &color[AMB]);
-	// printf("\nAmbient after impact: ");
-	// print_v3d_data(&color[AMB]);
-	color[DIF] = v3d_multiply(&impact->color, &light->color);
-	// printf("\nDiffuse color: ");
-	// print_v3d_data(&color[DIF]);
+	color[DIF] = v3d_multiply_scalar(&light->color, light->intensity);
 	color[RES] = v3d_add(&color[AMB], &color[DIF]);
-	// printf("\nResult: ");
-	// print_v3d_data(&color[RES]);
 	return (color[RES]);
 }
