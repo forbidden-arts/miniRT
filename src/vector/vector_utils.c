@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:58:53 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/17 13:43:53 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/21 11:52:58 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ double	v3d_get_dist(const t_v3d *origin, const t_v3d *dest)
 
 	temp = v3d_subtract(origin, dest);
 	return (v3d_length(&temp));
-}
-
-double	v3d_get_magnitude(const t_v3d vec)
-{
-	return (sqrt(v3d_dot(&vec, &vec)));
 }
 
 // double	v3d_get(const t_v3d *v, int i)

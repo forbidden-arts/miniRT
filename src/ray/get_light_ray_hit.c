@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/18 12:26:14 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/21 12:46:16 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	color_light(
 static BOOL	check_closest(
 	t_scene *scene,
 	t_impact *impact,
-	t_ray temp,
+	t_ray *shadow,
 	int index)
 {
 	double		light_dist;
@@ -44,20 +44,16 @@ static BOOL	check_closest(
 
 	i = 0;
 	result = FALSE;
-	temp_dist = (v3d_subtract(&scene->lights[index].location, &impact->point));
-	light_dist = v3d_get_magnitude(temp_dist);
-	temp.direction = v3d_unit_vector(&temp_dist);
-	printf("\nTemp origin: ");
-	print_v3d_data(&temp.origin);
-	printf("\nTemp direction: ");
-	print_v3d_data(&temp.direction);
-	// printf("\nTemp dist: %f Light dist: %f", temp_impact.distance, light_dist);
+	temp_dist = (v3d_subtract(&impact->point, &scene->lights[index].location));
+	light_dist = v3d_get_dist(&impact->point, &scene->lights[index].location);
+	shadow->origin = scene->lights[index].location;
+	shadow->direction = v3d_unit_vector(&temp_dist);
 	while (i < scene->n_objects)
 	{
-		if (ray_hit_shapes(&temp_impact, &scene->objects[index], &temp))
+		if (ray_hit_shapes(&temp_impact, &scene->objects[i], shadow))
 		{
 			result = TRUE;
-			if (temp_impact.distance < light_dist)
+			if (temp_impact.time < light_dist)
 				return (FALSE);
 		}
 		i++;
@@ -67,19 +63,17 @@ static BOOL	check_closest(
 
 t_light	check_light(t_scene *scene, t_impact *impact)
 {
-	t_ray	temp;
+	t_ray	shadow;
 	t_light	light;
 	int		index;
 
 	index = 0;
 	ft_bzero(&light, sizeof(t_light));
-	temp.origin = impact->point;
 	light.color = (t_color){0, 0, 0};
 	while (index < scene->n_lights)
 	{
-		if (check_closest(scene, impact, temp, index))
+		if (check_closest(scene, impact, &shadow, index))
 		{
-			printf("\nLight hit object!\n");
 			color_light(scene, &light, index);
 		}
 		index++;
