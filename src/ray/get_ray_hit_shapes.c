@@ -30,11 +30,6 @@ BOOL	ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray)
 		return (FALSE);
 	if (!get_closest_t(t_params.e[0], t_params.e[1], impact))
 		return (FALSE);
-	printf("\nImpact distance: %f\n", impact->distance);
-	printf("Ray origin:\n");
-	print_v3d_data(&ray->origin);
-	printf("\nRay direction:\n");
-	print_v3d_data(&ray->direction);
 	return (TRUE);
 }
 

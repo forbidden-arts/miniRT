@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:22:03 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/17 13:53:40 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/21 11:53:05 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,5 @@ t_v3d	v3d_multiply_scalar(const t_v3d *v, double t);
 t_v3d	v3d_divide_scalar(const t_v3d *v, double t);
 
 BOOL	solve_quadratic(t_v3d params, double *t0, double *t1);
-
-double	v3d_get_magnitude(const t_v3d vec);
 
 #endif
