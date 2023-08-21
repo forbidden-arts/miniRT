@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/21 13:59:35 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/21 14:33:05 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static BOOL	check_closest(
 		if (ray_hit_shapes(&temp_impact, &scene->objects[i], shadow))
 		{
 			result = TRUE;
-			if (temp_impact.time < light_dist)
+			if (fabs(temp_impact.time - light_dist) > EPSILON)
 				return (FALSE);
 		}
 		i++;
