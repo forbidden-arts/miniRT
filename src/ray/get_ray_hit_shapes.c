@@ -16,7 +16,9 @@
 #include <stdio.h> //DELETE ME
 #include "parser.h" //DELETE ME
 
-BOOL	ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray)
+BOOL	ray_hit_sphere(t_impact *impact,
+						t_object *sphere,
+						t_ray *ray)
 {
 	t_v3d	quadratic_params;
 	t_v3d	oc;
@@ -38,7 +40,9 @@ BOOL	ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray)
 	return (TRUE);
 }
 
-BOOL	ray_hit_plane(t_impact *impact, t_object *plane, t_ray *ray)
+BOOL	ray_hit_plane(t_impact *impact,
+						t_object *plane,
+						t_ray *ray)
 {
 	double	dot_result;
 	t_v3d	oc;
@@ -55,11 +59,51 @@ BOOL	ray_hit_plane(t_impact *impact, t_object *plane, t_ray *ray)
 	return (TRUE);
 }
 
-BOOL	ray_hit_cylinder(t_impact *impact, t_object *cylinder,
-			t_ray *ray)
+static BOOL	get_cylinder_quadratic(t_object *cylinder,
+									t_ray *ray,
+									double *t0,
+									double *t1)
 {
-	(void)impact;
-	(void)cylinder;
-	(void)ray;
-	return (FALSE);
+	t_v3d	v3d_first;
+	t_v3d	v3d_second;
+	t_v3d	v3d_temp;
+	t_v3d	quadratic_params;
+
+	v3d_first = v3d_multiply_scalar(&cylinder->axis,
+			v3d_dot(&ray->direction, &cylinder->axis));
+	v3d_first = v3d_subtract(&ray->direction, &v3d_first);
+	v3d_temp = v3d_subtract(&ray->origin, &cylinder->point);
+	v3d_second = v3d_multiply_scalar(&cylinder->axis,
+			v3d_dot(&v3d_temp, &cylinder->axis));
+	v3d_temp = v3d_subtract(&ray->origin, &cylinder->point);
+	v3d_second = v3d_subtract(&v3d_temp, &v3d_second);
+	quadratic_params.e[0] = v3d_dot(&v3d_first, &v3d_first);
+	quadratic_params.e[1] = 2.0 * v3d_dot(&v3d_first, &v3d_second);
+	quadratic_params.e[2] = v3d_dot(&v3d_second, &v3d_second)
+		- cylinder->radius * cylinder->radius;
+	if (!solve_quadratic(quadratic_params, t0, t1))
+		return (FALSE);
+	return (TRUE);
+}
+
+BOOL	ray_hit_cylinder(t_impact *impact,
+						t_object *cylinder,
+						t_ray *ray)
+{
+	t_v2d	t_params;
+	t_v3d	temp1;
+	t_v3d	temp2;
+	double	dist;
+
+	if (!get_cylinder_quadratic(cylinder, ray, &t_params.e[0], &t_params.e[1]))
+		return (FALSE);
+	if (!get_closest_t(t_params.e[0], t_params.e[1], impact))
+		return (FALSE);
+	temp1 = v3d_multiply_scalar(&ray->direction, impact->time);
+	temp2 = v3d_subtract(&cylinder->point, &ray->origin);
+	temp1 = v3d_subtract(&temp1, &temp2);
+	dist = v3d_dot(&cylinder->axis, &temp1);
+	if (!(dist >= -cylinder->height / 2 && dist <= cylinder->height / 2))
+		return (FALSE);
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:52:45 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/18 13:45:40 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/21 12:34:52 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,5 @@ void	populate_impact(t_scene *scene, const t_ray *ray, t_impact *impact)
 	v3d_unit_vector(&impact->to_source);
 	impact->color = scene->objects[impact->index].color;
 	impact->normal = get_object_normal(
-			&scene->objects[impact->index], impact->point);
+			&scene->objects[impact->index], &impact->point);
 }
