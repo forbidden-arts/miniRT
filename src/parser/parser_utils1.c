@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:44:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 14:38:49 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:49:01 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 	Leave the string as NULL otherwise (this part is for saving
 	precious space in the functions this function is used in)
 	*/
-BOOL	return_err(char *error_msg, char *optional_str_to_free)
+BOOL	return_err(
+	char *error_msg,
+	char *optional_str_to_free)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(error_msg, 2);
@@ -29,7 +31,8 @@ BOOL	return_err(char *error_msg, char *optional_str_to_free)
 
 /*	This function is used to free the given string and return NULL
 	Used or saving precious space in the functions this is called in. */
-BOOL	free_str_and_return_false(char *str)
+BOOL	free_str_and_return_false(
+	char *str)
 {
 	if (str)
 		free(str);
@@ -65,7 +68,9 @@ BOOL	ft_isinteger(char *s)
 /*	This function checks (and sets) a part of color data during parsing.
 	
 	If an error is encountered prints error and returns FALSE.*/
-BOOL	color_part_checkset(char *str, double *target_data)
+BOOL	color_part_checkset(
+	char *str, double
+	*target_data)
 {
 	int	result;
 
@@ -83,7 +88,10 @@ BOOL	color_part_checkset(char *str, double *target_data)
 	
 	Use with coordinates, colors etc to check that there are the
 	correct amount of commas. */
-BOOL	check_char_amount_in_str(char *str, char c, int correct_amount)
+BOOL	check_char_amount_in_str(
+	char *str,
+	char c,
+	int correct_amount)
 {
 	int	i;
 	int	char_count;

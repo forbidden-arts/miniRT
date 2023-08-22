@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:12:26 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/22 13:26:49 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 14:35:52 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 #define RES 2
 
 void	create_light_ray(
-			t_scene *scene,
-			t_impact *impact,
-			size_t index,
-			t_ray *ray)
+	t_scene *scene,
+	t_impact *impact,
+	size_t index,
+	t_ray *ray)
 {
 	t_v3d	direction;
 	t_v3d	normal;
@@ -35,7 +35,9 @@ void	create_light_ray(
 
 // ADD ME LATER
 // color[DIF] = v3d_multiply_scalar(&light->color, light->intensity);
-t_color	shade_hit(t_scene *scene, t_impact *impact)
+t_color	shade_hit(
+	t_scene *scene,
+	t_impact *impact)
 {
 	t_color	color[3];
 

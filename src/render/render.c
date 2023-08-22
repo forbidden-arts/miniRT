@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 13:27:59 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 14:55:11 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@
 #include "parser.h"
 // colors
 
-static void	img_pix_put(t_img *img, t_v2d pixel, int color)
+static void	img_pix_put(
+	t_img *img,
+	t_v2d pixel,
+	int color)
 {
 	char	*dst;
 
@@ -34,7 +37,10 @@ static void	img_pix_put(t_img *img, t_v2d pixel, int color)
 
 	// t_ray		reflected;
 	// t_color		reflected_color;
-t_color	ray_trace(t_ray *ray, t_scene *scene, int depth)
+t_color	ray_trace(
+	t_ray *ray,
+	t_scene *scene,
+	int depth)
 {
 	t_impact	impact;
 	t_color		color;
@@ -49,7 +55,9 @@ t_color	ray_trace(t_ray *ray, t_scene *scene, int depth)
 	return (color);
 }
 
-static u_int32_t	check_pixel(t_data *data, t_v2d pixel)
+static u_int32_t	check_pixel(
+	t_data *data,
+	t_v2d pixel)
 {
 	t_ray		ray;
 	t_color		color;
@@ -64,7 +72,8 @@ static u_int32_t	check_pixel(t_data *data, t_v2d pixel)
 	return (color_to_int(color));
 }
 
-void	render_image(t_data *data)
+void	render_image(
+	t_data *data)
 {
 	t_xy		pixel;
 	t_camera	*cam;

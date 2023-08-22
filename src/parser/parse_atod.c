@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 14:37:01 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 16:30:34 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:36:22 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 // rm later
 #include <stdio.h>
 
-static size_t	ft_atod_get_digits(int fraction)
+static size_t	ft_atod_get_digits(
+	int fraction)
 {
 	size_t	digit_amount;
 
@@ -31,7 +32,8 @@ static size_t	ft_atod_get_digits(int fraction)
 	return (digit_amount);
 }
 
-double	ft_atod(char *str)
+double	ft_atod(
+	char *str)
 {
 	double	before;
 	double	after;

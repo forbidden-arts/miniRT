@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:17:45 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 10:16:36 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:39:25 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 #include "scene.h"
 #include "v3d.h"
 
-static BOOL	parse_plane_check_parts1(char **token, t_object *plane, int *i)
+static BOOL	parse_plane_check_parts1(
+	char **token,
+	t_object *plane,
+	int *i)
 {
 	while (*token && *i <= 2)
 	{
@@ -39,7 +42,10 @@ static BOOL	parse_plane_check_parts1(char **token, t_object *plane, int *i)
 	return (TRUE);
 }
 
-static BOOL	parse_plane_check_parts2(char **token, t_object *plane, int *i)
+static BOOL	parse_plane_check_parts2(
+	char **token,
+	t_object *plane,
+	int *i)
 {
 	while (*token)
 	{
@@ -54,7 +60,10 @@ static BOOL	parse_plane_check_parts2(char **token, t_object *plane, int *i)
 	return (TRUE);
 }
 
-BOOL	parse_plane(char *line, t_scene *scene, int index)
+BOOL	parse_plane(
+	char *line,
+	t_scene *scene,
+	int index)
 {
 	t_object	*plane;
 	int			i;

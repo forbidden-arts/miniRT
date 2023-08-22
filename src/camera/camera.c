@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:09:55 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/14 12:23:23 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 14:34:46 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include "v3d.h"
 #include "camera.h"
 
-void	init_camera(t_camera *camera)
+void	init_camera(
+	t_camera *camera)
 {
 	camera->right = v3d_cross(&camera->direction, &(t_v3d){0.0, 1.0, EPSILON});
 	camera->right = v3d_unit_vector(&camera->right);
@@ -25,7 +26,9 @@ void	init_camera(t_camera *camera)
 	camera->aspect = (double)WINDOW_WIDTH / (double)WINDOW_HEIGHT;
 }
 
-t_ray	create_ray(t_camera *cam, const t_v2d pixel)
+t_ray	create_ray(
+	t_camera *cam,
+	const t_v2d pixel)
 {
 	double	x_norm;
 	double	y_norm;

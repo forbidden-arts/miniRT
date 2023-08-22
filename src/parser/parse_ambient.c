@@ -6,14 +6,17 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:41:02 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/31 17:45:11 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:36:15 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "scene.h"
 
-static BOOL	parse_ambient_check_parts(char **token, t_ambient *ambient, int *i)
+static BOOL	parse_ambient_check_parts(
+	char **token,
+	t_ambient *ambient,
+	int *i)
 {
 	while (*token)
 	{
@@ -38,7 +41,9 @@ static BOOL	parse_ambient_check_parts(char **token, t_ambient *ambient, int *i)
 	return (TRUE);
 }
 
-BOOL	parse_ambient(char *line, t_scene *scene)
+BOOL	parse_ambient(
+	char *line,
+	t_scene *scene)
 {
 	t_ambient	*ambient;
 	int			i;

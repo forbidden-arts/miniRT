@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 13:32:49 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/01 12:02:02 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:37:44 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #include "parser.h"
 #include "scene.h"
 
-int	get_fd(char *argv)
+int	get_fd(
+	char *argv)
 {
 	int		fd;
 
@@ -27,7 +28,8 @@ int	get_fd(char *argv)
 	return (fd);
 }
 
-BOOL	check_extension(char *argv)
+BOOL	check_extension(
+	char *argv)
 {
 	int	len;
 
@@ -45,7 +47,9 @@ BOOL	check_extension(char *argv)
 
 /*	This function handles the initiation of the file_parser-struct
 	and also open the file for get_next_line. */
-BOOL	init_file_parser_struct(t_file_parser *file_parser, char *argv)
+BOOL	init_file_parser_struct(
+	t_file_parser *file_parser,
+	char *argv)
 {
 	file_parser->ambient_light_found = FALSE;
 	file_parser->index_camera = 0;
@@ -58,7 +62,9 @@ BOOL	init_file_parser_struct(t_file_parser *file_parser, char *argv)
 	return (TRUE);
 }
 
-BOOL	find_shape_match(t_file_parser *p, t_scene *scene)
+BOOL	find_shape_match(
+	t_file_parser *p,
+	t_scene *scene)
 {
 	if (!ft_strncmp(p->line, SPHERE_ID, 2))
 	{
@@ -79,7 +85,9 @@ BOOL	find_shape_match(t_file_parser *p, t_scene *scene)
 	return (FALSE);
 }
 
-BOOL	find_non_shape_match(t_file_parser *p, t_scene *scene)
+BOOL	find_non_shape_match(
+	t_file_parser *p,
+	t_scene *scene)
 {
 	if (!ft_strncmp(p->line, CAMERA_ID, 1))
 	{

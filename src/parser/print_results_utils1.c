@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:15:42 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/02 11:39:24 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:50:32 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 #include "v3d.h"
 #include <stdio.h>
 
-void	print_v3d_data(t_v3d *v3d)
+void	print_v3d_data(
+	t_v3d *v3d)
 {
 	printf("e[0]: %f, e[1]: %f, e[2]: %f ", v3d->e[0], v3d->e[1], v3d->e[2]);
 }
 
-static void	print_sphere_data(t_object *object)
+static void	print_sphere_data(
+	t_object *object)
 {
 	printf("\t\ttype: SPHERE\n");
 	printf("\t\tpoint: ");
@@ -30,7 +32,8 @@ static void	print_sphere_data(t_object *object)
 	printf("\n");
 }
 
-static void	print_plane_data(t_object *object)
+static void	print_plane_data(
+	t_object *object)
 {
 	printf("\t\ttype: PLANE\n");
 	printf("\t\tpoint: ");
@@ -42,7 +45,8 @@ static void	print_plane_data(t_object *object)
 	printf("\n");
 }
 
-static void	print_cylinder_data(t_object *object)
+static void	print_cylinder_data(
+	t_object *object)
 {
 	printf("\t\ttype: CYLINDER\n");
 	printf("\t\tpoint: ");
@@ -55,7 +59,8 @@ static void	print_cylinder_data(t_object *object)
 	printf("\n");
 }
 
-void	print_object_data(t_scene *scene)
+void	print_object_data(
+	t_scene *scene)
 {
 	int	i;
 

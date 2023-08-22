@@ -18,9 +18,9 @@
 #include "parser.h" //DELETE ME
 
 BOOL	ray_hit_sphere(
-					t_impact *impact,
-					t_object *sphere,
-					t_ray *ray)
+	t_impact *impact,
+	t_object *sphere,
+	t_ray *ray)
 {
 	t_v3d	quadratic_params;
 	t_v3d	oc;
@@ -38,9 +38,9 @@ BOOL	ray_hit_sphere(
 }
 
 BOOL	ray_hit_plane(
-					t_impact *impact,
-					t_object *plane,
-					t_ray *ray)
+	t_impact *impact,
+	t_object *plane,
+	t_ray *ray)
 {
 	double	denom;
 	t_v3d	oc;
@@ -58,9 +58,9 @@ BOOL	ray_hit_plane(
 }
 
 BOOL	ray_hit_cap(
-				double *impact_time,
-				t_object *cap,
-				t_ray *ray)
+	double *impact_time,
+	t_object *cap,
+	t_ray *ray)
 {
 	t_impact	impact;
 	t_v3d		impact_point;
@@ -75,9 +75,9 @@ BOOL	ray_hit_cap(
 }
 
 BOOL	ray_hit_cylinder(
-						t_impact *impact,
-						t_object *cylinder,
-						t_ray *ray)
+	t_impact *impact,
+	t_object *cylinder,
+	t_ray *ray)
 {
 	BOOL	body_hit;
 	BOOL	cap_hit;

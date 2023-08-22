@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   vector_arithmetic.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:05:00 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 14:15:06 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 14:59:43 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "v3d.h"
 
-t_v3d	v3d_add(const t_v3d *u, const t_v3d *v)
+t_v3d	v3d_add(
+	const t_v3d *u,
+	const t_v3d *v)
 {
 	t_v3d	result;
 
@@ -22,7 +24,9 @@ t_v3d	v3d_add(const t_v3d *u, const t_v3d *v)
 	return (result);
 }
 
-t_v3d	v3d_subtract(const t_v3d *u, const t_v3d *v)
+t_v3d	v3d_subtract(
+	const t_v3d *u,
+	const t_v3d *v)
 {
 	t_v3d	result;
 
@@ -32,7 +36,9 @@ t_v3d	v3d_subtract(const t_v3d *u, const t_v3d *v)
 	return (result);
 }
 
-t_v3d	v3d_multiply(const t_v3d *u, const t_v3d *v)
+t_v3d	v3d_multiply(
+	const t_v3d *u,
+	const t_v3d *v)
 {
 	t_v3d	result;
 
@@ -42,7 +48,9 @@ t_v3d	v3d_multiply(const t_v3d *u, const t_v3d *v)
 	return (result);
 }
 
-t_v3d	v3d_multiply_scalar(const t_v3d *v, double t)
+t_v3d	v3d_multiply_scalar(
+	const t_v3d *v,
+	double t)
 {
 	t_v3d	result;
 
@@ -52,7 +60,9 @@ t_v3d	v3d_multiply_scalar(const t_v3d *v, double t)
 	return (result);
 }
 
-t_v3d	v3d_divide_scalar(const t_v3d *v, double t)
+t_v3d	v3d_divide_scalar(
+	const t_v3d *v,
+	double t)
 {
 	return (v3d_multiply_scalar(v, 1.0 / t));
 }

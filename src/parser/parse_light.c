@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:35:24 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/01 10:30:56 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 14:38:58 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 #include "scene.h"
 #include "v3d.h"
 
-static BOOL	parse_light_check_parts1(char **token, t_light *light, int *i)
+static BOOL	parse_light_check_parts1(
+	char **token,
+	t_light *light,
+	int *i)
 {
 	while (*token && *i <= 2)
 	{
@@ -39,7 +42,10 @@ static BOOL	parse_light_check_parts1(char **token, t_light *light, int *i)
 	return (TRUE);
 }
 
-static BOOL	parse_light_check_parts2(char **token, t_light *light, int *i)
+static BOOL	parse_light_check_parts2(
+	char **token,
+	t_light *light,
+	int *i)
 {
 	while (*token)
 	{
@@ -54,7 +60,10 @@ static BOOL	parse_light_check_parts2(char **token, t_light *light, int *i)
 	return (TRUE);
 }
 
-BOOL	parse_light(char *line, t_scene *scene, int index)
+BOOL	parse_light(
+	char *line,
+	t_scene *scene,
+	int index)
 {
 	t_light		*light;
 	int			i;

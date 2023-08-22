@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:03:47 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/31 17:45:34 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:37:18 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 #include "scene.h"
 #include "v3d.h"
 
-static BOOL	parse_cylinder_check_parts1(char **token, t_object *cylinder,
+static BOOL	parse_cylinder_check_parts1(
+	char **token,
+	t_object *cylinder,
 	int *i)
 {
 	while (*token && *i <= 2)
@@ -40,7 +42,9 @@ static BOOL	parse_cylinder_check_parts1(char **token, t_object *cylinder,
 	return (TRUE);
 }
 
-static BOOL	parse_cylinder_check_parts2(char **token, t_object *cylinder,
+static BOOL	parse_cylinder_check_parts2(
+	char **token,
+	t_object *cylinder,
 	int *i)
 {
 	while (*token)
@@ -66,7 +70,10 @@ static BOOL	parse_cylinder_check_parts2(char **token, t_object *cylinder,
 	return (TRUE);
 }
 
-BOOL	parse_cylinder(char *line, t_scene *scene, int index)
+BOOL	parse_cylinder(
+	char *line,
+	t_scene *scene,
+	int index)
 {
 	t_object	*cylinder;
 	int			i;

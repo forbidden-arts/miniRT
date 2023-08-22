@@ -22,7 +22,10 @@
 	behind the ray, but if one of the solutions is positive
 	and the other is negative, we know that the ray's origin is inside whatever
 	shape we are currently checking and we use the positive one. */
-BOOL	get_closest_t(double t0, double t1, double *impact_time)
+BOOL	get_closest_t(
+	double t0,
+	double t1,
+	double *impact_time)
 {
 	if (t0 < EPSILON && t1 < EPSILON)
 		return (FALSE);
@@ -33,10 +36,11 @@ BOOL	get_closest_t(double t0, double t1, double *impact_time)
 	return (TRUE);
 }
 
-BOOL	get_cylinder_quadratic(t_object *cylinder,
-									t_ray *ray,
-									double *t0,
-									double *t1)
+BOOL	get_cylinder_quadratic(
+	t_object *cylinder,
+	t_ray *ray,
+	double *t0,
+	double *t1)
 {
 	t_v3d	v3d_first;
 	t_v3d	v3d_second;
@@ -62,9 +66,9 @@ BOOL	get_cylinder_quadratic(t_object *cylinder,
 
 // check that impact time is correct!
 BOOL	ray_hit_cylinder_main_body(
-						t_object *cylinder,
-						t_ray *ray,
-						double *impact_time)
+	t_object *cylinder,
+	t_ray *ray,
+	double *impact_time)
 {
 	t_v2d	t_params;
 	t_v3d	temp1;
@@ -85,9 +89,9 @@ BOOL	ray_hit_cylinder_main_body(
 }
 
 BOOL	ray_hit_cylinder_caps(
-						t_object *cylinder,
-						t_ray *ray,
-						double *cap_time)
+	t_object *cylinder,
+	t_ray *ray,
+	double *cap_time)
 {
 	t_object	cap;
 	double		top_time;

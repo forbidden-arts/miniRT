@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:20:04 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 11:54:53 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 14:36:57 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "scene.h"
 
-static BOOL	camera_fov_checkset(char *str, double *target_data)
+static BOOL	camera_fov_checkset(
+	char *str,
+	double *target_data)
 {
 	int	result;
 
@@ -26,7 +28,10 @@ static BOOL	camera_fov_checkset(char *str, double *target_data)
 	return (TRUE);
 }
 
-static BOOL	parse_camera_check_parts1(char **token, t_camera *camera, int *i)
+static BOOL	parse_camera_check_parts1(
+	char **token,
+	t_camera *camera,
+	int *i)
 {
 	while (*token && *i <= 2)
 	{
@@ -51,7 +56,10 @@ static BOOL	parse_camera_check_parts1(char **token, t_camera *camera, int *i)
 	return (TRUE);
 }
 
-static BOOL	parse_camera_check_parts2(char **token, t_camera *camera, int *i)
+static BOOL	parse_camera_check_parts2(
+	char **token,
+	t_camera *camera,
+	int *i)
 {
 	while (*token)
 	{
@@ -66,7 +74,10 @@ static BOOL	parse_camera_check_parts2(char **token, t_camera *camera, int *i)
 	return (TRUE);
 }
 
-BOOL	parse_camera(char *line, t_scene *scene, int index)
+BOOL	parse_camera(
+	char *line,
+	t_scene *scene,
+	int index)
 {
 	t_camera	*camera;
 	int			i;
