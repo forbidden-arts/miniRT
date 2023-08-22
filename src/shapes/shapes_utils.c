@@ -6,16 +6,17 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/21 17:22:41 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:56:22 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 #include "shapes.h"
 
-BOOL	is_impact_on_cylinder_cap(t_object *cylinder,
-								t_v3d *impact,
-								BOOL *top_cap)
+BOOL	is_impact_on_cylinder_cap(
+	t_object *cylinder,
+	t_v3d *impact,
+	BOOL *top_cap)
 {
 	t_v3d	cap_center;
 	double	distance_to_cap_center;
@@ -41,8 +42,9 @@ BOOL	is_impact_on_cylinder_cap(t_object *cylinder,
 	return (FALSE);
 }
 
-t_v3d	get_cylinder_normal(t_object *cylinder,
-						t_v3d *impact)
+t_v3d	get_cylinder_normal(
+	t_object *cylinder,
+	t_v3d *impact)
 {
 	t_v3d	temp;
 	double	distance_along_axis;
@@ -63,7 +65,9 @@ t_v3d	get_cylinder_normal(t_object *cylinder,
 	return (v3d_subtract(impact, &temp));
 }
 
-t_v3d	get_object_normal(t_object *object, t_v3d *impact)
+t_v3d	get_object_normal(
+	t_object *object,
+	t_v3d *impact)
 {
 	t_v3d	normal;
 

@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:08:23 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/01 11:50:37 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:38:32 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 #include "scene.h"
 #include "parser.h"
 
-static BOOL	count_scene(int fd, t_scene *scene)
+static BOOL	count_scene(
+	int fd,
+	t_scene *scene)
 {
 	char	*line;
 	char	*token;
@@ -48,7 +50,8 @@ static BOOL	count_scene(int fd, t_scene *scene)
 	or shape element in the file.
 	
 	ASK DAN: should we give an error if there are no lights in file?*/
-static BOOL	allocate_array_scene(t_scene *scene)
+static BOOL	allocate_array_scene(
+	t_scene *scene)
 {
 	if (scene->n_cameras == 0)
 		return (return_err("No camera elem(s) given in file", NULL));
@@ -65,7 +68,8 @@ static BOOL	allocate_array_scene(t_scene *scene)
 /*	This function is used at the end of parsing. If this function is called,
 	it means that there haven't been any errors during the parsing of the
 	file's lines.	*/
-static BOOL	parsing_end_check(t_file_parser *parser)
+static BOOL	parsing_end_check(
+	t_file_parser *parser)
 {
 	if (parser->ambient_light_found == FALSE)
 		return (return_err("No ambient light elem given in file", NULL));
@@ -83,7 +87,9 @@ static BOOL	parsing_end_check(t_file_parser *parser)
 				// ft_putendl_fd(line, 2);
 				// free some shit and quit.
 			// }
-BOOL	populate_array_scene(t_scene *scene, char *argv)
+BOOL	populate_array_scene(
+	t_scene *scene,
+	char *argv)
 {
 	t_file_parser	parser;
 	BOOL			found_match;
@@ -114,7 +120,10 @@ BOOL	populate_array_scene(t_scene *scene, char *argv)
 /*	This function handles the start of the program and parsing of the file.
 	It will return TRUE if everything is correct.
 	If it returns FALSE, free everything allocated and exit program. */
-BOOL	minirt_start(int argc, char **argv, t_scene *scene)
+BOOL	minirt_start(
+	int argc,
+	char **argv,
+	t_scene *scene)
 {
 	int	fd;
 

@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:50:53 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/14 16:08:10 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:55:22 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # define MAX_DEPTH 1
 
-void	render_image(t_data *data);
+void	render_image(
+			t_data *data);
 
 #endif

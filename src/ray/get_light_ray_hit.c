@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:05:12 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:29:55 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ static void	check_closest(
 	}
 }
 
-void	check_light(t_scene *scene, t_impact *impact)
+void	check_light(
+	t_scene *scene,
+	t_impact *impact)
 {
 	t_ray	shadow;
 	int		index;

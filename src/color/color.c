@@ -6,13 +6,14 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:41:19 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/18 09:41:39 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:35:16 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 
-uint32_t	color_to_int(t_color color)
+uint32_t	color_to_int(
+	t_color color)
 {
 	uint32_t	red;
 	uint32_t	green;
@@ -24,7 +25,8 @@ uint32_t	color_to_int(t_color color)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-t_color	int_to_color(uint32_t color)
+t_color	int_to_color(
+	uint32_t color)
 {
 	t_color	result;
 
@@ -34,14 +36,16 @@ t_color	int_to_color(uint32_t color)
 	return (result);
 }
 
-void	normalize_rgb(t_color *color)
+void	normalize_rgb(
+	t_color *color)
 {
 	color->e[0] /= 255.0;
 	color->e[1] /= 255.0;
 	color->e[2] /= 255.0;
 }
 
-void	color_overflow(t_color *color)
+void	color_overflow(
+	t_color *color)
 {
 	double	over;
 

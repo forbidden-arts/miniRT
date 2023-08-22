@@ -6,13 +6,14 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 16:04:35 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/01 15:00:11 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:40:48 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static BOOL	parse_fraction_isdouble(const char **s)
+static BOOL	parse_fraction_isdouble(
+	const char **s)
 {
 	BOOL	has_fraction;
 	int		c;
@@ -31,7 +32,8 @@ static BOOL	parse_fraction_isdouble(const char **s)
 
 /*	this is a function that checks if the given string is a double.
 	It doesn't recognize exponents. Also doesn't skip whitespaces. */
-BOOL	ft_isdouble_simple(const char *s)
+BOOL	ft_isdouble_simple(
+	const char *s)
 {
 	int	c;
 

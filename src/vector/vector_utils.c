@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:58:53 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/22 13:28:27 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 15:00:37 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "v3d.h"
 
-t_v3d	v3d_negate(const t_v3d *v)
+t_v3d	v3d_negate(
+	const t_v3d *v)
 {
 	t_v3d	result;
 
@@ -22,7 +23,9 @@ t_v3d	v3d_negate(const t_v3d *v)
 	return (result);
 }
 
-double	v3d_get_dist(const t_v3d *origin, const t_v3d *dest)
+double	v3d_get_dist(
+	const t_v3d *origin,
+	const t_v3d *dest)
 {
 	t_v3d	temp;
 

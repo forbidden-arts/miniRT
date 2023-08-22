@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/17 12:59:45 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 15:03:14 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ typedef struct s_v2d
 
 typedef t_v2d	t_xy;
 
-void	init_scene(t_scene *scene);
-void	free_scene(t_scene *scene);
+void	init_scene(
+			t_scene *scene);
+void	free_scene(
+			t_scene *scene);
 
 #endif

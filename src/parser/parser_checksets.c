@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_checksets.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:28:34 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/21 12:39:00 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 14:40:30 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@
 */
 
 /*	This function checks and sets the given objects color data.	*/
-BOOL	color_checkset(char *str, t_v3d *target_data)
+BOOL	color_checkset(
+	char *str,
+	t_v3d *target_data)
 {
 	char	**split_array;
 
@@ -51,7 +53,9 @@ BOOL	color_checkset(char *str, t_v3d *target_data)
 }
 
 /*	This function checks and sets the object's coordinate data.	*/
-BOOL	coordinate_checkset(char *str, t_v3d *target_data)
+BOOL	coordinate_checkset(
+	char *str,
+	t_v3d *target_data)
 {
 	char	**split_array;
 
@@ -76,7 +80,9 @@ BOOL	coordinate_checkset(char *str, t_v3d *target_data)
 
 /*	this function checks and sets the axis (3D normalized vector)
 	for an object.	*/
-BOOL	axis_checkset(char *str, t_v3d *target_data)
+BOOL	axis_checkset(
+	char *str,
+	t_v3d *target_data)
 {
 	char	**split_array;
 
@@ -100,7 +106,9 @@ BOOL	axis_checkset(char *str, t_v3d *target_data)
 }
 
 /*	This function checks the data that represents brightness. */
-BOOL	brightness_ratio_checkset(char *str, double *target_data)
+BOOL	brightness_ratio_checkset(
+	char *str,
+	double *target_data)
 {
 	double	result;
 
@@ -117,7 +125,10 @@ BOOL	brightness_ratio_checkset(char *str, double *target_data)
 	for an object.
 
 	If diameter BOOL is TRUE, then we divide the resulting double by two.	*/
-BOOL	dimension_checkset(char *str, double *target_data, BOOL diameter)
+BOOL	dimension_checkset(
+	char *str,
+	double *target_data,
+	BOOL diameter)
 {
 	double	result;
 

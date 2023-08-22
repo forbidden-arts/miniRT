@@ -6,14 +6,15 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:52:45 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/21 12:34:52 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:30:45 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shapes.h"
 #include "ray.h"
 
-void	ray_init(t_ray *ray)
+void	ray_init(
+	t_ray *ray)
 {
 	v3d_init(&(ray->origin));
 	v3d_init(&(ray->direction));
@@ -36,7 +37,9 @@ void	ray_init_with_values(
 		v3d_z(direction));
 }
 
-t_point3	ray_at(const t_ray *ray, double t)
+t_point3	ray_at(
+	const t_ray *ray,
+	double t)
 {
 	t_v3d	scaled_dir;
 
@@ -44,7 +47,10 @@ t_point3	ray_at(const t_ray *ray, double t)
 	return (v3d_add(&(ray->origin), &scaled_dir));
 }
 
-void	populate_impact(t_scene *scene, const t_ray *ray, t_impact *impact)
+void	populate_impact(
+	t_scene *scene,
+	const t_ray *ray,
+	t_impact *impact)
 {
 	t_v3d	temp;
 

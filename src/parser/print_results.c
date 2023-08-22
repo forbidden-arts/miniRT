@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   print_results.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:09:04 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/10 11:55:11 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 14:50:46 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "stdio.h"
 
-static void	print_lights(t_scene *scene)
+static void	print_lights(
+	t_scene *scene)
 {
 	int	i;
 
@@ -32,7 +33,8 @@ static void	print_lights(t_scene *scene)
 	printf("\n");
 }
 
-static void	print_cameras(t_scene *scene)
+static void	print_cameras(
+	t_scene *scene)
 {
 	int	i;
 
@@ -50,7 +52,8 @@ static void	print_cameras(t_scene *scene)
 	printf("\n");
 }
 
-static void	print_ambient(t_ambient *ambient)
+static void	print_ambient(
+	t_ambient *ambient)
 {
 	printf("\t**PRINT AMBIENT DATA**\n\n");
 	printf("intensity: %f\n", ambient->intensity);
@@ -59,7 +62,8 @@ static void	print_ambient(t_ambient *ambient)
 	printf("\n\n");
 }
 
-void	print_scene_data(t_scene *scene)
+void	print_scene_data(
+	t_scene *scene)
 {
 	printf("**PRINT SCENE DATA**\n\n");
 	print_ambient(&scene->ambient);
