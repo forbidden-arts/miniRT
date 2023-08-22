@@ -6,12 +6,11 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:58:53 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/21 11:52:58 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 13:28:27 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "v3d.h"
-
 
 t_v3d	v3d_negate(const t_v3d *v)
 {

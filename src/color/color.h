@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:38:22 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/18 11:38:51 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 13:22:41 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void		color_overflow(t_color *color);
 // Calculating colors
 t_color		shade_hit(
 				t_scene *scene,
-				t_impact *impact,
-				t_light *light);
+				t_impact *impact);
 
 #endif

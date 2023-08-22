@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/18 11:54:58 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 13:27:59 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,20 @@ static void	img_pix_put(t_img *img, t_v2d pixel, int color)
 	*(unsigned int *)dst = color;
 }
 
+	// t_ray		reflected;
+	// t_color		reflected_color;
 t_color	ray_trace(t_ray *ray, t_scene *scene, int depth)
 {
 	t_impact	impact;
 	t_color		color;
-	t_light		light;
-	// t_ray		reflected;
-	// t_color		reflected_color;
 
 	if (depth >= MAX_DEPTH)
 		return ((t_color){0, 0, 0});
 	if (!ray_hit(scene, &impact, ray))
 		return ((t_color){0, 0, 0});
 	populate_impact(scene, ray, &impact);
-	light = check_light(scene, &impact);
-	color = shade_hit(scene, &impact, &light);
+	check_light(scene, &impact);
+	color = shade_hit(scene, &impact);
 	return (color);
 }
 

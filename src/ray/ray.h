@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/21 11:28:01 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/22 13:27:47 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_impact
 	double		distance;
 	double		time;
 	t_color		color;
-	// t_object	*object;
 	t_v3d		point;
 	t_v3d		normal;
 	t_v3d		to_source;
@@ -71,6 +70,6 @@ t_v3d		get_impact_normal(t_object *object,	t_v3d *impact);
 // 				t_impact *impact,
 // 				t_ray *light_ray);
 void		populate_impact(t_scene *scene, const t_ray *ray, t_impact *impact);
-t_light		check_light(t_scene *scene, t_impact *impact);
+void		check_light(t_scene *scene, t_impact *impact);
 
 #endif
