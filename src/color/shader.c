@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:12:26 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/18 11:55:39 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/21 12:42:17 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ t_color	shade_hit(
 
 	ft_bzero(color, 3 * sizeof(t_v3d));
 	color[AMB] = v3d_multiply_scalar(&scene->ambient.color,
-			scene->ambient.intensity * 100);
-	// printf("\nAmbient intensity: %f", scene->ambient.intensity);	
+			scene->ambient.intensity);
+	// printf("\nAmbient intensity: %f", scene->ambient.intensity);
 	// printf("\nAmbient color: ");
 	// print_v3d_data(&color[AMB]);
 	// printf("\nLight(s) intensity: %f", light->intensity);

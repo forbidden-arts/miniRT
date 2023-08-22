@@ -6,26 +6,61 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/21 12:31:04 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/21 17:22:41 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 #include "shapes.h"
 
-static t_v3d	get_cylinder_normal(t_object *cylinder, t_v3d *impact)
+BOOL	is_impact_on_cylinder_cap(t_object *cylinder,
+								t_v3d *impact,
+								BOOL *top_cap)
 {
-	t_v3d	center_to_impact;
-	t_v3d	projected_axis_point;
-	t_v3d	projected_point;
-	double	distance_along_axis;
+	t_v3d	cap_center;
+	double	distance_to_cap_center;
 
-	center_to_impact = v3d_subtract(impact, &cylinder->point);
-	distance_along_axis = v3d_dot(&center_to_impact, &cylinder->axis);
-	projected_axis_point = v3d_multiply_scalar(&cylinder->axis,
+	if (is_point_closer_to_top_cap(cylinder, impact, &cap_center))
+	{
+		*top_cap = TRUE;
+		distance_to_cap_center = v3d_get_dist(impact, &cap_center);
+		if (distance_to_cap_center <= cylinder->radius
+			&& impact->e[2] >= cylinder->point.e[2]
+			&& impact->e[2] <= cylinder->point.e[2] + cylinder->height * 0.5)
+			return (TRUE);
+	}
+	else
+	{
+		*top_cap = FALSE;
+		distance_to_cap_center = v3d_get_dist(impact, &cap_center);
+		if (distance_to_cap_center <= cylinder->radius
+			&& impact->e[2] >= cylinder->point.e[2]
+			&& impact->e[2] <= cylinder->point.e[2] + cylinder->height * -0.5)
+			return (TRUE);
+	}
+	return (FALSE);
+}
+
+t_v3d	get_cylinder_normal(t_object *cylinder,
+						t_v3d *impact)
+{
+	t_v3d	temp;
+	double	distance_along_axis;
+	BOOL	top_cap;
+
+	if (is_impact_on_cylinder_cap(cylinder, impact, &top_cap))
+	{
+		if (top_cap)
+			return (cylinder->axis);
+		else
+			return (v3d_multiply_scalar(&cylinder->axis, -1));
+	}
+	temp = v3d_subtract(impact, &cylinder->point);
+	distance_along_axis = v3d_dot(&temp, &cylinder->axis);
+	temp = v3d_multiply_scalar(&cylinder->axis,
 			distance_along_axis);
-	projected_point = v3d_add(&cylinder->point, &projected_axis_point);
-	return (v3d_subtract(impact, &projected_point));
+	temp = v3d_add(&cylinder->point, &temp);
+	return (v3d_subtract(impact, &temp));
 }
 
 t_v3d	get_object_normal(t_object *object, t_v3d *impact)

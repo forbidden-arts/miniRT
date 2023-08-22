@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_checksets.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:28:34 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/18 10:00:16 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/21 12:39:00 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ BOOL	brightness_ratio_checkset(char *str, double *target_data)
 	result = ft_atod(str);
 	if (result > 1.0 || result < 0)
 		return (return_err("Brightness value not in bounds [0.0,1.0]", NULL));
-	result /= 100;
 	*target_data = result;
 	return (TRUE);
 }

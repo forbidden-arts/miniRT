@@ -12,13 +12,15 @@
 
 #include "v3d.h"
 #include "render.h"
+#include "shapes.h"
 
 #include <stdio.h> //DELETE ME
 #include "parser.h" //DELETE ME
 
-BOOL	ray_hit_sphere(t_impact *impact,
-						t_object *sphere,
-						t_ray *ray)
+BOOL	ray_hit_sphere(
+					t_impact *impact,
+					t_object *sphere,
+					t_ray *ray)
 {
 	t_v3d	quadratic_params;
 	t_v3d	oc;
@@ -30,80 +32,72 @@ BOOL	ray_hit_sphere(t_impact *impact,
 	quadratic_params.e[2] = v3d_dot(&oc, &oc) - sphere->radius * sphere->radius;
 	if (!solve_quadratic(quadratic_params, &t_params.e[0], &t_params.e[1]))
 		return (FALSE);
-	if (!get_closest_t(t_params.e[0], t_params.e[1], impact))
+	if (!get_closest_t(t_params.e[0], t_params.e[1], &impact->time))
 		return (FALSE);
-	printf("\nImpact distance: %f\n", impact->distance);
-	printf("Ray origin:\n");
-	print_v3d_data(&ray->origin);
-	printf("\nRay direction:\n");
-	print_v3d_data(&ray->direction);
 	return (TRUE);
 }
 
-BOOL	ray_hit_plane(t_impact *impact,
-						t_object *plane,
-						t_ray *ray)
+BOOL	ray_hit_plane(
+					t_impact *impact,
+					t_object *plane,
+					t_ray *ray)
 {
-	double	dot_result;
+	double	denom;
 	t_v3d	oc;
 	double	t;
 
-	dot_result = v3d_dot(&ray->direction, &plane->axis);
-	if (fabs(dot_result) < EPSILON)
+	denom = v3d_dot(&plane->axis, &ray->direction);
+	if (fabs(denom) < EPSILON)
 		return (FALSE);
-	oc = v3d_subtract(&ray->origin, &plane->point);
-	t = v3d_dot(&oc, &plane->axis) / dot_result;
+	oc = v3d_subtract(&plane->point, &ray->origin);
+	t = v3d_dot(&oc, &plane->axis) / denom;
 	if (t < EPSILON)
 		return (FALSE);
 	impact->time = t;
 	return (TRUE);
 }
 
-static BOOL	get_cylinder_quadratic(t_object *cylinder,
-									t_ray *ray,
-									double *t0,
-									double *t1)
+BOOL	ray_hit_cap(
+				double *impact_time,
+				t_object *cap,
+				t_ray *ray)
 {
-	t_v3d	v3d_first;
-	t_v3d	v3d_second;
-	t_v3d	v3d_temp;
-	t_v3d	quadratic_params;
+	t_impact	impact;
+	t_v3d		impact_point;
 
-	v3d_first = v3d_multiply_scalar(&cylinder->axis,
-			v3d_dot(&ray->direction, &cylinder->axis));
-	v3d_first = v3d_subtract(&ray->direction, &v3d_first);
-	v3d_temp = v3d_subtract(&ray->origin, &cylinder->point);
-	v3d_second = v3d_multiply_scalar(&cylinder->axis,
-			v3d_dot(&v3d_temp, &cylinder->axis));
-	v3d_temp = v3d_subtract(&ray->origin, &cylinder->point);
-	v3d_second = v3d_subtract(&v3d_temp, &v3d_second);
-	quadratic_params.e[0] = v3d_dot(&v3d_first, &v3d_first);
-	quadratic_params.e[1] = 2.0 * v3d_dot(&v3d_first, &v3d_second);
-	quadratic_params.e[2] = v3d_dot(&v3d_second, &v3d_second)
-		- cylinder->radius * cylinder->radius;
-	if (!solve_quadratic(quadratic_params, t0, t1))
+	if (!ray_hit_plane(&impact, cap, ray))
 		return (FALSE);
+	impact_point = ray_at(ray, impact.time);
+	if (v3d_get_dist(&impact_point, &cap->point) > cap->radius)
+		return (FALSE);
+	*impact_time = impact.time;
 	return (TRUE);
 }
 
-BOOL	ray_hit_cylinder(t_impact *impact,
+BOOL	ray_hit_cylinder(
+						t_impact *impact,
 						t_object *cylinder,
 						t_ray *ray)
 {
-	t_v2d	t_params;
-	t_v3d	temp1;
-	t_v3d	temp2;
-	double	dist;
+	BOOL	body_hit;
+	BOOL	cap_hit;
+	double	body_time;
+	double	cap_time;
 
-	if (!get_cylinder_quadratic(cylinder, ray, &t_params.e[0], &t_params.e[1]))
+	body_hit = ray_hit_cylinder_main_body(cylinder, ray, &body_time);
+	cap_hit = ray_hit_cylinder_caps(cylinder, ray, &cap_time);
+	if (!body_hit && !cap_hit)
 		return (FALSE);
-	if (!get_closest_t(t_params.e[0], t_params.e[1], impact))
-		return (FALSE);
-	temp1 = v3d_multiply_scalar(&ray->direction, impact->time);
-	temp2 = v3d_subtract(&cylinder->point, &ray->origin);
-	temp1 = v3d_subtract(&temp1, &temp2);
-	dist = v3d_dot(&cylinder->axis, &temp1);
-	if (!(dist >= -cylinder->height / 2 && dist <= cylinder->height / 2))
-		return (FALSE);
+	if (body_hit && cap_hit)
+	{
+		if (body_time < cap_time)
+			impact->time = body_time;
+		else
+			impact->time = cap_time;
+	}
+	else if (body_hit)
+		impact->time = body_time;
+	else if (cap_hit)
+		impact->time = cap_time;
 	return (TRUE);
 }

@@ -1,0 +1,42 @@
+start of render_image
+end of render_image
+parsing successful, continuing program!
+**PRINT SCENE DATA**
+
+	**PRINT AMBIENT DATA**
+
+intensity: 0.200000
+color: e[0]: 1.000000, e[1]: 1.000000, e[2]: 1.000000 
+
+	**PRINT CAMERA DATA**
+
+cameras amount: 1
+
+CAM[0]:	location: e[0]: 0.000000, e[1]: 0.000000, e[2]: 20.000000 	direction: e[0]: 0.000000, e[1]: 0.000000, e[2]: -1.000000 	FOV: 70.000000
+
+	**PRINT LIGHT DATA**
+
+lights amount: 1
+
+LIGHT[0]: location: e[0]: 0.000000, e[1]: 5.000000, e[2]: 5.000000 	intensity: 0.500000	color: e[0]: 1.000000, e[1]: 1.000000, e[2]: 1.000000 
+
+	**PRINT OBJECT DATA**
+
+objects amount: 2
+
+	OBJECT[0]:
+		type: SPHERE
+		point: e[0]: 0.000000, e[1]: 0.000000, e[2]: 1.000000 
+		radius: 1.000000
+		color: e[0]: 1.000000, e[1]: 0.000000, e[2]: 0.000000 
+
+	OBJECT[1]:
+		type: PLANE
+		point: e[0]: 0.000000, e[1]: 0.000000, e[2]: 1.000000 
+		axis: e[0]: 1.000000, e[1]: 1.000000, e[2]: 1.000000 
+		color: e[0]: 0.000000, e[1]: 0.000000, e[2]: 1.000000 
+
+
+**END OF SCENE DATA**
+
+Closing program!
