@@ -6,12 +6,11 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 13:37:04 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 14:05:12 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
-#include "ray.h"
 
 #include "parser.h" //delete me
 #include <stdio.h> //delete me
