@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 14:17:45 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/07/31 17:46:08 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 10:16:36 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static BOOL	parse_plane_check_parts1(char **token, t_object *plane, int *i)
 		}
 		else if (*i == 2)
 		{
-			if (!axis_checkset(*token, &plane->point))
+			if (!axis_checkset(*token, &plane->axis))
 				return (FALSE);
 		}
 		*token = ft_strtok(NULL, " \t\n");

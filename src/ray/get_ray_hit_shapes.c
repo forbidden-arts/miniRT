@@ -12,11 +12,15 @@
 
 #include "v3d.h"
 #include "render.h"
+#include "shapes.h"
 
 #include <stdio.h> //DELETE ME
 #include "parser.h" //DELETE ME
 
-BOOL	ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray)
+BOOL	ray_hit_sphere(
+					t_impact *impact,
+					t_object *sphere,
+					t_ray *ray)
 {
 	t_v3d	quadratic_params;
 	t_v3d	oc;
@@ -28,33 +32,72 @@ BOOL	ray_hit_sphere(t_impact *impact, t_object *sphere, t_ray *ray)
 	quadratic_params.e[2] = v3d_dot(&oc, &oc) - sphere->radius * sphere->radius;
 	if (!solve_quadratic(quadratic_params, &t_params.e[0], &t_params.e[1]))
 		return (FALSE);
-	if (!get_closest_t(t_params.e[0], t_params.e[1], impact))
+	if (!get_closest_t(t_params.e[0], t_params.e[1], &impact->time))
 		return (FALSE);
 	return (TRUE);
 }
 
-BOOL	ray_hit_plane(t_impact *impact, t_object *plane, t_ray *ray)
+BOOL	ray_hit_plane(
+					t_impact *impact,
+					t_object *plane,
+					t_ray *ray)
 {
-	double	dot_result;
+	double	denom;
 	t_v3d	oc;
 	double	t;
 
-	dot_result = v3d_dot(&ray->direction, &plane->axis);
-	if (fabs(dot_result) < EPSILON)
+	denom = v3d_dot(&plane->axis, &ray->direction);
+	if (fabs(denom) < EPSILON)
 		return (FALSE);
-	oc = v3d_subtract(&ray->origin, &plane->point);
-	t = v3d_dot(&oc, &plane->axis) / dot_result;
+	oc = v3d_subtract(&plane->point, &ray->origin);
+	t = v3d_dot(&oc, &plane->axis) / denom;
 	if (t < EPSILON)
 		return (FALSE);
 	impact->time = t;
 	return (TRUE);
 }
 
-BOOL	ray_hit_cylinder(t_impact *impact, t_object *cylinder,
-			t_ray *ray)
+BOOL	ray_hit_cap(
+				double *impact_time,
+				t_object *cap,
+				t_ray *ray)
 {
-	(void)impact;
-	(void)cylinder;
-	(void)ray;
-	return (FALSE);
+	t_impact	impact;
+	t_v3d		impact_point;
+
+	if (!ray_hit_plane(&impact, cap, ray))
+		return (FALSE);
+	impact_point = ray_at(ray, impact.time);
+	if (v3d_get_dist(&impact_point, &cap->point) > cap->radius)
+		return (FALSE);
+	*impact_time = impact.time;
+	return (TRUE);
+}
+
+BOOL	ray_hit_cylinder(
+						t_impact *impact,
+						t_object *cylinder,
+						t_ray *ray)
+{
+	BOOL	body_hit;
+	BOOL	cap_hit;
+	double	body_time;
+	double	cap_time;
+
+	body_hit = ray_hit_cylinder_main_body(cylinder, ray, &body_time);
+	cap_hit = ray_hit_cylinder_caps(cylinder, ray, &cap_time);
+	if (!body_hit && !cap_hit)
+		return (FALSE);
+	if (body_hit && cap_hit)
+	{
+		if (body_time < cap_time)
+			impact->time = body_time;
+		else
+			impact->time = cap_time;
+	}
+	else if (body_hit)
+		impact->time = body_time;
+	else if (cap_hit)
+		impact->time = cap_time;
+	return (TRUE);
 }
