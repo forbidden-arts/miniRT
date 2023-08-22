@@ -6,18 +6,19 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 10:10:25 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 13:37:04 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+#include "ray.h"
 
 #include "parser.h" //delete me
 #include <stdio.h> //delete me
 
 static void	color_light(
 	t_scene *scene,
-	t_light *light,
+	t_impact *impact,
 	int index)
 {
 	t_light	temp;
@@ -25,12 +26,10 @@ static void	color_light(
 
 	temp = scene->lights[index];
 	color = v3d_multiply_scalar(&temp.color, temp.intensity);
-	// printf("\nColor light adj: ");
-	// print_v3d_data(&color);
-	light->color = v3d_add(&light->color, &color);
+	impact->color = v3d_add(&impact->color, &color);
 }
 
-static BOOL	check_closest(
+static void	check_closest(
 	t_scene *scene,
 	t_impact *impact,
 	t_ray *shadow,
@@ -52,31 +51,22 @@ static BOOL	check_closest(
 	{
 		if (ray_hit_shapes(&temp_impact, &scene->objects[i], shadow))
 		{
-			result = TRUE;
-			if (temp_impact.time < light_dist)
-				return (FALSE);
+			if (fabs(temp_impact.time - light_dist) < EPSILON)
+				color_light(scene, impact, index);
 		}
 		i++;
 	}
-	return (result);
 }
 
-t_light	check_light(t_scene *scene, t_impact *impact)
+void	check_light(t_scene *scene, t_impact *impact)
 {
 	t_ray	shadow;
-	t_light	light;
 	int		index;
 
 	index = 0;
-	ft_bzero(&light, sizeof(t_light));
-	light.color = (t_color){0, 0, 0};
 	while (index < scene->n_lights)
 	{
-		if (check_closest(scene, impact, &shadow, index))
-		{
-			color_light(scene, &light, index);
-		}
+		check_closest(scene, impact, &shadow, index);
 		index++;
 	}
-	return (light);
 }

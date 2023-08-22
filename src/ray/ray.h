@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/21 16:09:46 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/22 13:40:29 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_impact
 	double		distance;
 	double		time;
 	t_color		color;
-	// t_object	*object;
 	t_v3d		point;
 	t_v3d		normal;
 	t_v3d		to_source;
@@ -95,26 +94,17 @@ t_v3d		get_impact_normal(
 // 				t_scene *scene,
 // 				t_impact *impact,
 // 				t_ray *light_ray);
-BOOL		get_cylinder_quadratic(
-				t_object *cylinder,
-				t_ray *ray,
-				double *t0,
-				double *t1);
-BOOL		ray_hit_cylinder_main_body(
-				t_object *cylinder,
-				t_ray *ray,
-				double *impact_time);
-BOOL		ray_hit_cylinder_caps(
-				t_object *cylinder,
-				t_ray *ray,
-				double *cap_time);
+void		populate_impact(t_scene *scene, const t_ray *ray, t_impact *impact);
+void		check_light(t_scene *scene, t_impact *impact);
 
-void		populate_impact(
-				t_scene *scene,
-				const t_ray *ray,
-				t_impact *impact);
-t_light		check_light(
-				t_scene *scene,
-				t_impact *impact);
+BOOL		ray_hit_cylinder_main_body(
+						t_object *cylinder,
+						t_ray *ray,
+						double *impact_time);
+BOOL		ray_hit_cylinder_caps(
+						t_object *cylinder,
+						t_ray *ray,
+						double *cap_time);
+
 
 #endif
