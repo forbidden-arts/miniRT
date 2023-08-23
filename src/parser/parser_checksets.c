@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:28:34 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:40:30 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/23 12:20:15 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ BOOL	axis_checkset(
 	if (!axis_part_checkset(split_array[2], &target_data->e[2]))
 		return (free_str_array_and_return_false(split_array));
 	free_str_array_and_return_false(split_array);
+	*target_data = v3d_unit_vector(target_data);
 	return (TRUE);
 }
 
