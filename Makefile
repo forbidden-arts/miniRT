@@ -33,6 +33,7 @@ parse_camera.c			\
 parse_light.c			\
 parse_sphere.c			\
 parse_cylinder.c		\
+parse_cone.c			\
 parse_plane.c			\
 parse_file.c			\
 parse_file_utils1.c		\
@@ -60,6 +61,7 @@ buttons.c				\
 parse_atod.c			\
 print_results.c			\
 print_results_utils1.c	\
+print_results_utils2.c	\
 color.c					\
 render.c				\
 get_ray_hit.c			\

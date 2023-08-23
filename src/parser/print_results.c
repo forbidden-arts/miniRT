@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:09:04 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:50:46 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/23 13:30:31 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@ static void	print_lights(
 {
 	int	i;
 
-	printf("\t**PRINT LIGHT DATA**\n\n");
-	printf("lights amount: %d\n\n", scene->n_lights);
+	printf("\t\t**PRINT LIGHT DATA**\n\n");
+	printf("\tlights amount: %d\n\n", scene->n_lights);
 	i = -1;
 	while (++i < scene->n_lights)
 	{
-		printf("LIGHT[%d]: location: ", i);
+		printf("\tLIGHT[%d]:\n", i);
+		printf("\t\tlocation: ");
 		print_v3d_data(&scene->lights[i].location);
-		printf("\tintensity: %f", scene->lights[i].intensity);
-		printf("\tcolor: ");
+		printf("\n\t\tintensity: %f", scene->lights[i].intensity);
+		printf("\n\t\tcolor: ");
 		print_v3d_data(&scene->lights[i].color);
-		printf("\n");
+		printf("\n\n");
 	}
 	printf("\n");
 }
@@ -38,16 +39,17 @@ static void	print_cameras(
 {
 	int	i;
 
-	printf("\t**PRINT CAMERA DATA**\n\n");
-	printf("cameras amount: %d\n\n", scene->n_cameras);
+	printf("\t\t**PRINT CAMERA DATA**\n\n");
+	printf("\tcameras amount: %d\n\n", scene->n_cameras);
 	i = -1;
 	while (++i < scene->n_cameras)
 	{
-		printf("CAM[%d]:\tlocation: ", i);
+		printf("\tCAM[%d]:\n", i);
+		printf("\t\tlocation: ");
 		print_v3d_data(&scene->cameras[i].location);
-		printf("\tdirection: ");
+		printf("\n\t\tdirection: ");
 		print_v3d_data(&scene->cameras[i].direction);
-		printf("\tFOV: %f\n", scene->cameras[i].field_of_view);
+		printf("\n\t\tFOV: %f\n\n", scene->cameras[i].field_of_view);
 	}
 	printf("\n");
 }
@@ -55,9 +57,9 @@ static void	print_cameras(
 static void	print_ambient(
 	t_ambient *ambient)
 {
-	printf("\t**PRINT AMBIENT DATA**\n\n");
-	printf("intensity: %f\n", ambient->intensity);
-	printf("color: ");
+	printf("\t\t**PRINT AMBIENT DATA**\n\n");
+	printf("\tintensity: %f\n", ambient->intensity);
+	printf("\tcolor: ");
 	print_v3d_data(&ambient->color);
 	printf("\n\n");
 }
@@ -65,10 +67,10 @@ static void	print_ambient(
 void	print_scene_data(
 	t_scene *scene)
 {
-	printf("**PRINT SCENE DATA**\n\n");
+	printf("\n\t*****************PRINT SCENE DATA*****************\n\n");
 	print_ambient(&scene->ambient);
 	print_cameras(scene);
 	print_lights(scene);
 	print_object_data(scene);
-	printf("**END OF SCENE DATA**\n\n");
+	printf("\t*****************END OF SCENE DATA*****************\n\n");
 }

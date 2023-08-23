@@ -83,8 +83,8 @@ BOOL	ray_hit_cylinder_main_body(
 	temp2 = v3d_subtract(&cylinder->point, &ray->origin);
 	temp1 = v3d_subtract(&temp1, &temp2);
 	dist = v3d_dot(&cylinder->axis, &temp1);
-	// if (!(dist >= -cylinder->height / 2 && dist <= cylinder->height / 2))
-	// 	return (FALSE);
+	if (!(dist >= -cylinder->height / 2 && dist <= cylinder->height / 2))
+		return (FALSE);
 	return (TRUE);
 }
 
