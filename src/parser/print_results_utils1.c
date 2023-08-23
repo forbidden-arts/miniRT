@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:15:42 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:50:32 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/23 12:44:55 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	print_object_data(
 			print_cylinder_data(&scene->objects[i]);
 		else if (scene->objects[i].type == PLANE)
 			print_plane_data(&scene->objects[i]);
+		else if (scene->objects[i].type == CONE)
+			print_cone_data(&scene->objects[i]);
 		printf("\n");
 	}
 	printf("\n");

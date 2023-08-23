@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:09:04 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:50:46 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/23 12:52:50 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ static void	print_lights(
 	i = -1;
 	while (++i < scene->n_lights)
 	{
-		printf("LIGHT[%d]: location: ", i);
+		printf("\tLIGHT[%d]\n", i);
+		printf("\t\tlocation: ");
 		print_v3d_data(&scene->lights[i].location);
-		printf("\tintensity: %f", scene->lights[i].intensity);
-		printf("\tcolor: ");
+		printf("\n\t\tintensity: %f", scene->lights[i].intensity);
+		printf("\n\t\tcolor: ");
 		print_v3d_data(&scene->lights[i].color);
-		printf("\n");
+		printf("\n\n");
 	}
 	printf("\n");
 }
@@ -43,11 +44,12 @@ static void	print_cameras(
 	i = -1;
 	while (++i < scene->n_cameras)
 	{
-		printf("CAM[%d]:\tlocation: ", i);
+		printf("\tCAM[%d]:\n", i);
+		printf("\t\tlocation: ");
 		print_v3d_data(&scene->cameras[i].location);
-		printf("\tdirection: ");
+		printf("\n\t\tdirection: ");
 		print_v3d_data(&scene->cameras[i].direction);
-		printf("\tFOV: %f\n", scene->cameras[i].field_of_view);
+		printf("\n\t\tFOV: %f\n\n", scene->cameras[i].field_of_view);
 	}
 	printf("\n");
 }
@@ -56,8 +58,8 @@ static void	print_ambient(
 	t_ambient *ambient)
 {
 	printf("\t**PRINT AMBIENT DATA**\n\n");
-	printf("intensity: %f\n", ambient->intensity);
-	printf("color: ");
+	printf("\tintensity: %f\n", ambient->intensity);
+	printf("\tcolor: ");
 	print_v3d_data(&ambient->color);
 	printf("\n\n");
 }
