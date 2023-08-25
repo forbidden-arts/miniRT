@@ -29,6 +29,8 @@ BOOL	ray_hit_shapes(
 		result = ray_hit_plane(temp, object, ray);
 	else if (object->type == CYLINDER)
 		result = ray_hit_cylinder(temp, object, ray);
+	else if (object->type == CONE)
+		result = ray_hit_cone(temp, object, ray);
 	return (result);
 }
 

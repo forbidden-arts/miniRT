@@ -101,3 +101,31 @@ BOOL	ray_hit_cylinder(
 		impact->time = cap_time;
 	return (TRUE);
 }
+
+BOOL	ray_hit_cone(
+	t_impact *impact,
+	t_object *cone,
+	t_ray *ray)
+{
+	BOOL	body_hit;
+	BOOL	cap_hit;
+	double	body_time;
+	double	cap_time;
+
+	body_hit = ray_hit_cone_main_body(cone, ray, &body_time);
+	cap_hit = ray_hit_cone_cap(cone, ray, &cap_time);
+	if (!body_hit && !cap_hit)
+		return (FALSE);
+	if (body_hit && cap_hit)
+	{
+		if (body_time < cap_time)
+			impact->time = body_time;
+		else
+			impact->time = cap_time;
+	}
+	else if (body_hit)
+		impact->time = body_time;
+	else if (cap_hit)
+		impact->time = cap_time;
+	return (TRUE);
+}

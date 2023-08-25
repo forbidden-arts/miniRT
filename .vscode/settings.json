@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"v3d.h": "c",
+		"ray.h": "c"
+	}
+}

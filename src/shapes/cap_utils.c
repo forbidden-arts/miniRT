@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 14:21:41 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:55:53 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/25 10:46:29 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,10 @@ void	set_cap_values(
 	t_object *cap,
 	BOOL is_bottom)
 {
-	t_v3d	displacement;
-
 	if (!is_bottom)
 		cap->point = get_top_cap(object);
 	else
 		cap->point = get_bottom_cap(object);
-	cap->point = v3d_add(&object->point, &displacement);
 	cap->radius = object->radius;
 	cap->axis = object->axis;
 }

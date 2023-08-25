@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/22 14:34:27 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/23 16:44:57 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ BOOL		ray_hit_cylinder(
 				t_impact *impact,
 				t_object *cylinder,
 				t_ray *ray);
+BOOL		ray_hit_cone(
+				t_impact *impact,
+				t_object *cone,
+				t_ray *ray);
 
 BOOL		get_closest_t(
 				double t0,
@@ -111,5 +115,14 @@ BOOL		ray_hit_cylinder_caps(
 				t_ray *ray,
 				double *cap_time);
 
+
+BOOL		ray_hit_cone_main_body(
+				t_object *cone,
+				t_ray *ray,
+				double *impact_time);
+BOOL		ray_hit_cone_cap(
+				t_object *cone,
+				t_ray *ray,
+				double *cap_time);
 
 #endif
