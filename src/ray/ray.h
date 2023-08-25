@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/25 11:30:04 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/25 13:00:23 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void		populate_impact(
 				t_scene *scene,
 				const t_ray *ray,
 				t_impact *impact);
-void		check_light(
+t_light		check_light(
 				t_scene *scene,
 				t_impact *impact);
 

@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/25 11:31:47 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/25 13:25:06 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_color	ray_trace(
 	int depth)
 {
 	t_impact	impact;
+	t_light		light;
 	t_color		color;
 
 	if (depth >= MAX_DEPTH)
@@ -47,8 +48,8 @@ t_color	ray_trace(
 	if (!ray_hit(scene, &impact, ray))
 		return ((t_color){0, 0, 0});
 	populate_impact(scene, ray, &impact);
-	check_light(scene, &impact);
-	color = shade_hit(scene, &impact);
+	light = check_light(scene, &impact);
+	color = shade_hit(scene, &impact, &light);
 	return (color);
 }
 
