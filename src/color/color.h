@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:38:22 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/22 14:35:35 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/25 14:14:20 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void		color_overflow(
 // Calculating colors
 t_color		shade_hit(
 				t_scene *scene,
-				t_impact *impact);
+				t_impact *impact,
+				t_light *light);
 
 #endif

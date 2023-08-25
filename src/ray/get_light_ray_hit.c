@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/25 13:44:20 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/25 14:37:08 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	color_light(
 	t_color	color;
 
 	light->intensity += fmax(v3d_dot(&impact->normal, &shadow->direction) \
-		* original->intensity, 0);
+		* original->intensity * -1, 0);
 	color = v3d_multiply_scalar(&original->color, light->intensity);
 	v3d_add_in_place(&light->color, &color);
 }
@@ -42,14 +42,12 @@ t_light	check_light(
 	while (index < scene->n_lights)
 	{
 		shadow.origin = scene->lights[index].location;
-		temp = v3d_subtract(&shadow.origin, &temp_impact.point);
+		temp = v3d_subtract(&impact->point, &shadow.origin);
 		shadow.direction = v3d_unit_vector(&temp);
-		if (ray_hit(scene, &temp_impact, &shadow))
-		{
-			temp_impact.normal = get_object_normal(\
-				&scene->objects[impact->index], &temp_impact.point);
-			color_light(&scene->lights[index], &temp_impact, &light, &shadow);
-		}
+		if (ray_hit(scene, &temp_impact, &shadow) \
+			&& fabs(v3d_get_dist(&shadow.origin, &impact->point) \
+			- temp_impact.time) <= EPSILON)
+			color_light(&scene->lights[index], impact, &light, &shadow);
 		index++;
 	}
 	return (light);
