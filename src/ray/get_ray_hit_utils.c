@@ -14,9 +14,6 @@
 #include "ray.h"
 #include "shapes.h"
 
-// rm later
-#include <stdio.h>
-
 /*	This function gets the closest quadratic equation solution (t0 or t1).
 	If both values are negative we know that both intersection "points" are
 	behind the ray, but if one of the solutions is positive

@@ -6,14 +6,11 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/25 11:24:23 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/25 11:30:23 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
-
-#include "parser.h" //delete me
-#include <stdio.h> //delete me
 
 static void	color_light(
 	t_scene *scene,
