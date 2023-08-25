@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   get_light_ray_hit.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:29:55 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/25 11:30:23 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-#include "parser.h" //delete me
-#include <stdio.h> //delete me
-
 static void	color_light(
 	t_scene *scene,
 	t_impact *impact,
+	t_ray *shadow,
 	int index)
 {
 	t_light	temp;
 	t_color	color;
 
 	temp = scene->lights[index];
+	temp.intensity = fmax(v3d_dot(&impact->normal, &shadow->direction) * -1, 0);
+	temp.color = v3d_multiply(&temp.color, &impact->color);
 	color = v3d_multiply_scalar(&temp.color, temp.intensity);
 	impact->color = v3d_add(&impact->color, &color);
 }
@@ -51,7 +51,7 @@ static void	check_closest(
 		if (ray_hit_shapes(&temp_impact, &scene->objects[i], shadow))
 		{
 			if (fabs(temp_impact.time - light_dist) < EPSILON)
-				color_light(scene, impact, index);
+				color_light(scene, impact, shadow, index);
 		}
 		i++;
 	}

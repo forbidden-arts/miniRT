@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:56:22 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/25 10:34:31 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ t_v3d	get_object_normal(
 		normal = v3d_subtract(impact, &object->point);
 	if (object->type == CYLINDER)
 		normal = get_cylinder_normal(object, impact);
-	v3d_unit_vector(&normal);
+	normal = v3d_unit_vector(&normal);
 	return (normal);
 }

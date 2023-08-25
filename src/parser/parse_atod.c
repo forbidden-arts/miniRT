@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_atod.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 14:37:01 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/22 14:36:22 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/25 11:30:56 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "libft.h"
-
-// rm later
-#include <stdio.h>
 
 static size_t	ft_atod_get_digits(
 	int fraction)
