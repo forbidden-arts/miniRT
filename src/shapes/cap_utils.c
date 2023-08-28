@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 14:21:41 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/28 12:52:24 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/28 13:11:37 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ BOOL	is_point_closer_to_top_cap(
 	top_cap_center = get_shape_top(object);
 	bottom_cap_center = get_shape_bottom(object);
 	if (v3d_get_dist(point, &top_cap_center)
-		> v3d_get_dist(point, &bottom_cap_center))
+		< v3d_get_dist(point, &bottom_cap_center))
 	{
 		*cap_center = top_cap_center;
 		return (TRUE);

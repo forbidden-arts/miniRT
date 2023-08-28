@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:12:26 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/22 14:35:52 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/25 13:33:07 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,17 @@ void	create_light_ray(
 	ray_init_with_values(ray, &impact->point, &normal);
 }
 
-// ADD ME LATER
-// color[DIF] = v3d_multiply_scalar(&light->color, light->intensity);
 t_color	shade_hit(
 	t_scene *scene,
-	t_impact *impact)
+	t_impact *impact,
+	t_light *light)
 {
 	t_color	color[3];
 
-	ft_bzero(color, 3 * sizeof(t_v3d));
 	color[AMB] = v3d_multiply_scalar(&scene->ambient.color,
 			scene->ambient.intensity);
 	color[AMB] = v3d_multiply(&impact->color, &color[AMB]);
+	color[DIF] = v3d_multiply(&impact->color, &light->color);
 	color[RES] = v3d_add(&color[AMB], &color[DIF]);
 	return (color[RES]);
 }

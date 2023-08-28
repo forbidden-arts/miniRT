@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/23 16:44:57 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/28 13:06:00 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,9 @@ void		ray_init_with_values(
 				t_ray *ray,
 				const t_point3 *origin,
 				const t_v3d *direction);
-// t_point3	ray_origin(const t_ray *ray);
-// t_v3d		ray_direction(const t_ray *ray);
 t_point3	ray_at(
 				const t_ray *ray,
 				double t);
-
-// Funcs that are not called outside of the containing file?
-// void		copy_impact_data(t_impact *impact_src, t_impact *impact_dst);
 
 BOOL		ray_hit(
 				t_scene *scene,
@@ -94,15 +89,11 @@ t_v3d		get_impact_point(
 t_v3d		get_impact_normal(
 				t_object *object,
 				t_v3d *impact);
-// BOOL		get_light_ray_hit(
-// 				t_scene *scene,
-// 				t_impact *impact,
-// 				t_ray *light_ray);
 void		populate_impact(
 				t_scene *scene,
 				const t_ray *ray,
 				t_impact *impact);
-void		check_light(
+t_light		check_light(
 				t_scene *scene,
 				t_impact *impact);
 

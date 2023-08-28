@@ -14,9 +14,6 @@
 #include "render.h"
 #include "shapes.h"
 
-#include <stdio.h> //DELETE ME
-#include "parser.h" //DELETE ME
-
 BOOL	ray_hit_sphere(
 	t_impact *impact,
 	t_object *sphere,
