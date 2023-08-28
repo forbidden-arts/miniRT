@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/25 13:00:23 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/28 10:51:44 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ void		ray_init_with_values(
 t_point3	ray_at(
 				const t_ray *ray,
 				double t);
+void		populate_impact(
+				t_scene *scene,
+				const t_ray *ray,
+				t_impact *impact);
 
 BOOL		ray_hit(
 				t_scene *scene,
@@ -75,23 +79,13 @@ BOOL		get_closest_t(
 				double t0,
 				double t1,
 				double *impact_time);
-double		get_impact_distance(
-				t_v3d *ray_origin,
-				t_v3d *ray_impact_point);
-t_v3d		get_impact_point(
-				t_v3d *ray_origin,
-				t_v3d *ray_direction,
-				double t_parameter);
-t_v3d		get_impact_normal(
-				t_object *object,
-				t_v3d *impact);
-void		populate_impact(
-				t_scene *scene,
-				const t_ray *ray,
-				t_impact *impact);
+
 t_light		check_light(
 				t_scene *scene,
 				t_impact *impact);
+t_ray		reflect_ray(
+				const t_ray *original,
+				const t_impact *impact);
 
 BOOL		ray_hit_cylinder_main_body(
 				t_object *cylinder,

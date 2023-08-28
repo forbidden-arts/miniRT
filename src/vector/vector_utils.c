@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 10:58:53 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/22 15:00:37 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:04:31 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,3 @@ double	v3d_get_dist(
 	temp = v3d_subtract(origin, dest);
 	return (v3d_length(&temp));
 }
-
-// double	v3d_get(const t_v3d *v, int i)
-// {
-// 	return (v->e[i]);
-// }
-
-// void	v3d_set(t_v3d *v, int i, double val)
-// {
-// 	v->e[i] = val;
-// }
-
-// void	swap_double(double *a, double *b)
-// {
-// 	double	temp;
-
-// 	temp = *a;
-// 	*a = *b;
-// 	*b = temp;
-// }
-
-// void	v3d_copy_data(t_v3d *dst, const t_v3d *src)
-// {
-// 	v3d_init_with_values(dst, src->e[0], src->e[1], src->e[2]);
-// }
