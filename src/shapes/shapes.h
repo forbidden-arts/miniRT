@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 17:25:21 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/22 14:56:28 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:52:25 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ BOOL	get_cylinder_quadratic(
 			double *t0,
 			double *t1);
 
-t_v3d	get_top_cap(
+t_v3d	get_shape_top(
 			t_object *object);
-t_v3d	get_bottom_cap(
+t_v3d	get_shape_bottom(
 			t_object *object);
 void	set_cap_values(
 			t_object *object,

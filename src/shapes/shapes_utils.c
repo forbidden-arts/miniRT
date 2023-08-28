@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:56:22 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/28 13:03:41 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,39 @@ t_v3d	get_cylinder_normal(
 	return (v3d_subtract(impact, &temp));
 }
 
+BOOL	is_impact_on_cone_cap(
+	t_object *cone,
+	t_v3d *impact)
+{
+	t_v3d	cap_center;
+	double	distance_to_cap_center;
+
+	cap_center = get_shape_bottom(cone);
+	distance_to_cap_center = v3d_get_dist(impact, &cap_center);
+	if (distance_to_cap_center <= cone->radius
+		&& impact->e[2] >= cone->point.e[2]
+		&& impact->e[2] <= cone->point.e[2] + cone->height * -0.5)
+		return (TRUE);
+	return (FALSE);
+}
+
+t_v3d	get_cone_normal(
+	t_object *cone,
+	t_v3d *impact)
+{
+	t_v3d	temp1;
+	t_v3d	temp2;
+	double	distance_along_axis;
+
+	if (is_impact_on_cone_cap(cone, impact))
+		return (v3d_multiply_scalar(&cone->axis, -1));
+	temp1 = get_shape_bottom(cone);
+	temp1 = v3d_subtract(impact, &temp1);
+	distance_along_axis = v3d_dot(&temp1, &cone->axis);
+	temp2 = v3d_multiply_scalar(&cone->axis, distance_along_axis);
+	return (v3d_subtract(&temp1, &temp2));
+}
+
 t_v3d	get_object_normal(
 	t_object *object,
 	t_v3d *impact)
@@ -75,6 +108,10 @@ t_v3d	get_object_normal(
 		normal = v3d_subtract(impact, &object->point);
 	if (object->type == CYLINDER)
 		normal = get_cylinder_normal(object, impact);
+	if (object->type == PLANE)
+		normal = object->axis;
+	if (object->type == CONE)
+		normal = get_cone_normal(object, impact);
 	v3d_unit_vector(&normal);
 	return (normal);
 }
