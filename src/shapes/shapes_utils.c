@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/25 10:34:31 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/28 11:44:54 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_v3d	get_object_normal(
 	t_v3d	normal;
 
 	if (object->type == SPHERE)
-		normal = v3d_subtract(impact, &object->point);
+		normal = v3d_subtract(&object->point, impact);
 	if (object->type == CYLINDER)
 		normal = get_cylinder_normal(object, impact);
 	normal = v3d_unit_vector(&normal);

@@ -6,12 +6,21 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/25 14:37:08 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/28 12:26:40 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "shapes.h"
+
+static void	specular(
+	t_scene	*scene,
+	t_impact *impact,
+	t_light *light,
+	t_ray *shadow)
+{
+
+}
 
 static void	color_light(
 	t_light *original,
@@ -22,7 +31,7 @@ static void	color_light(
 	t_color	color;
 
 	light->intensity += fmax(v3d_dot(&impact->normal, &shadow->direction) \
-		* original->intensity * -1, 0);
+		* original->intensity, 0);
 	color = v3d_multiply_scalar(&original->color, light->intensity);
 	v3d_add_in_place(&light->color, &color);
 }
