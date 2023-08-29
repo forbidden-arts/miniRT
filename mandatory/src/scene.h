@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:02:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/23 12:39:25 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/29 10:41:15 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define SPHERE		0
 # define CYLINDER 	1
 # define PLANE 		2
-# define CONE		3
 
 typedef struct s_object
 {

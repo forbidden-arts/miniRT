@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/28 12:11:08 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/29 11:21:53 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 #include "ray.h"
 #include "render.h"
 
-#include "parser.h"	//DELETE ME
-#include <stdio.h>	//DELETE ME
-// colors
+#include <stdio.h>
 
 static void	img_pix_put(
 	t_img *img,

@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:28:34 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/25 14:43:56 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/29 11:17:46 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 #include "v3d.h"
 #include "color.h"
 
-#include <stdio.h>
-
-/*
-	BE AWARE: In the functions that check for data that has multiple parts
-	like color or coordinates (0,0,0), the string will be split with ft_split.
-
-	It is vital that you always free that str-array when exiting the function
-	because otherwise it will cause a leak!
-*/
-
-/*	This function checks and sets the given objects color data.	*/
 BOOL	color_checkset(
 	char *str,
 	t_v3d *target_data)
@@ -52,7 +41,6 @@ BOOL	color_checkset(
 	return (TRUE);
 }
 
-/*	This function checks and sets the object's coordinate data.	*/
 BOOL	coordinate_checkset(
 	char *str,
 	t_v3d *target_data)
@@ -79,8 +67,6 @@ BOOL	coordinate_checkset(
 	return (TRUE);
 }
 
-/*	this function checks and sets the axis (3D normalized vector)
-	for an object.	*/
 BOOL	axis_checkset(
 	char *str,
 	t_v3d *target_data)
@@ -108,7 +94,6 @@ BOOL	axis_checkset(
 	return (TRUE);
 }
 
-/*	This function checks the data that represents brightness. */
 BOOL	brightness_ratio_checkset(
 	char *str,
 	double *target_data)
@@ -124,10 +109,6 @@ BOOL	brightness_ratio_checkset(
 	return (TRUE);
 }
 
-/*	This function checks and sets a certain dimension, like height or radius,
-	for an object.
-
-	If diameter BOOL is TRUE, then we divide the resulting double by two.	*/
 BOOL	dimension_checkset(
 	char *str,
 	double *target_data,

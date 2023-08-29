@@ -32,12 +32,6 @@ BOOL	ray_hit_shapes(
 	return (result);
 }
 
-/*	This function is for finding out if the ray hits an object.
-
-	Will iterate through all shapes and check if a ray hits a shape (ie. object).
-
-	If the ray hits a shape, the closest ray hit will be stored into
-	the impact struct given as an argument and func will return TRUE.*/
 BOOL	ray_hit(
 	t_scene *scene,
 	t_impact *impact,

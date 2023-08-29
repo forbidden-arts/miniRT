@@ -3,34 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_light_ray_hit.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/28 14:27:27 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/29 10:25:20 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "shapes.h"
-
-static void	specular(
-	t_scene	*scene,
-	t_impact *impact,
-	t_light *light,
-	t_ray *shadow)
-{
-	t_v3d	half;
-	t_v3d	temp;
-	double	angle;
-	double	specular;
-
-	half = v3d_add(&scene->cameras->direction, &shadow->direction);
-	half = v3d_unit_vector(&half);
-	angle = fmax(v3d_dot(&impact->normal, &half), 0);
-	specular = pow(angle, 60);
-	temp = v3d_multiply_scalar(&light->color, specular * 1.5);
-	light->color = v3d_add(&light->color, &temp);
-}
 
 static void	color_light(
 	t_light *original,
@@ -68,7 +49,6 @@ t_light	check_light(
 			- temp_impact.time) <= EPSILON)
 		{
 			color_light(&scene->lights[index], impact, &light, &shadow);
-			specular(scene, impact, &light, &shadow);
 		}
 		index++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:55:26 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 15:01:28 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/29 11:23:29 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "data.h"
 #include "v3d.h"
 
-/*	Free everything malloced for scene	*/
 void	free_scene(
 	t_scene *scene)
 {
@@ -27,7 +26,6 @@ void	free_scene(
 		free(scene->cameras);
 }
 
-/*	Function to initiate scene variables to NULL	*/
 void	init_scene(
 	t_scene *scene)
 {

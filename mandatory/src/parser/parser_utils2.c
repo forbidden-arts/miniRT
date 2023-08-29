@@ -6,16 +6,13 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:59:25 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:49:28 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/29 11:18:56 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
 
-/*	This function checks (and sets) a part of coordinate data during parsing.
-	
-	If an error is encountered prints error and returns FALSE.*/
 BOOL	coordinate_part_checkset(
 	char *str,
 	double *target_data)
@@ -26,9 +23,6 @@ BOOL	coordinate_part_checkset(
 	return (TRUE);
 }
 
-/*	This function checks (and sets) a part of axis data during parsing.
-	
-	If an error is encountered prints error and returns FALSE.*/
 BOOL	axis_part_checkset(
 	char *str,
 	double *target_data)
@@ -44,7 +38,6 @@ BOOL	axis_part_checkset(
 	return (TRUE);
 }
 
-/*	Check that the identifier is in the correct format	*/
 BOOL	check_identifier(
 	char *str,
 	char *id)
@@ -59,7 +52,6 @@ BOOL	check_identifier(
 	return (TRUE);
 }
 
-// print the line where the error was encountered
 void	print_error_line(
 	char *line)
 {

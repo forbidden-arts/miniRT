@@ -6,14 +6,13 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:09:43 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 15:00:55 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/29 11:23:07 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
 #include "scene.h"
 
-/*	Free everything to do with mlx	*/
 static void	free_mlx_data(
 	t_data *data)
 {
@@ -27,7 +26,6 @@ static void	free_mlx_data(
 		free(data->img.addr);
 }
 
-/*	Free everything malloced for program	*/
 void	free_data(
 	t_data *data)
 {
@@ -35,7 +33,6 @@ void	free_data(
 	free_mlx_data(data);
 }
 
-/*	Function to initiate all mlx data to NULL	*/
 static void	init_mlx_data(
 	t_data *data)
 {
@@ -45,8 +42,6 @@ static void	init_mlx_data(
 	data->img.addr = NULL;
 }
 
-/*	Function to initiate all data variables to NULL	
-	Call in the beginning of program	*/
 void	init_data(
 	t_data *data)
 {
@@ -54,8 +49,6 @@ void	init_data(
 	init_mlx_data(data);
 }
 
-/*	This function frees everything allocated for data and exits with
-	the given exit code.*/
 void	exit_minirt(
 	t_data *data,
 	int exit_code)

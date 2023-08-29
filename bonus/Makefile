@@ -2,9 +2,9 @@ NAME = miniRT
 
 SRC_DIR = $(sort $(dir $(wildcard src/*/))) src/
 OBJ_DIR = obj/
-INC_DIR = include/ libft/include/
+INC_DIR = ../include/ ../libft/include/
 TARGET_DIR = ./
-LIB_DIR = libft/ MinilibX/
+LIB_DIR = ../libft/ ../MinilibX/
 LDIR = $(LIB_DIR:%=-L%)
 
 CC = cc
@@ -90,17 +90,17 @@ $(NAME):	$(OBJS) | $(TARGET_DIR) libft
 			@echo "$(B_MAGENTA)\n...$(NAME) compiled successfully...\n$(C_RESET)"
 
 libft:
-			@make -C MinilibX
-			@make -C libft
+			@make -C ../MinilibX
+			@make -C ../libft
 
 clean:
-			@make clean -C MinilibX
+			@make clean -C ../MinilibX
 			rm -rf $(OBJ_DIR)
 
 fclean: clean
 			rm -rf $(NAME)
-			@make fclean -C MinilibX
-			make fclean -C libft
+			@make fclean -C ../MinilibX
+			@make fclean -C ../libft
 
 # Debug
 debug:
