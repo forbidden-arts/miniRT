@@ -13,6 +13,8 @@
 #include "data.h"
 #include "scene.h"
 
+#include <stdio.h>
+
 static void	free_mlx_data(
 	t_data *data)
 {
@@ -53,6 +55,7 @@ void	exit_minirt(
 	t_data *data,
 	int exit_code)
 {
+	printf("\nClosing program\n");
 	free_data(data);
 	exit(exit_code);
 }

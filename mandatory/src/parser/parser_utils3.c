@@ -28,10 +28,14 @@ int	count_strings_in_array(
 BOOL	check_if_empty_line(
 	char *str)
 {
-	char	*token;
+	int	i;
 
-	token = ft_strtok(str, " \t\n");
-	if (token)
-		return (FALSE);
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_strchr(" \t\n", str[i]))
+			return (FALSE);
+		i++;
+	}
 	return (TRUE);
 }

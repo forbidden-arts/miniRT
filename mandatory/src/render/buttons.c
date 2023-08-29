@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 10:51:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:54:32 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/29 13:00:11 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,9 @@ int	get_key(
 	return (0);
 }
 
-static void	end_program(void)
-{
-	exit (0);
-}
-
 int	press_close(
 	t_data *data)
 {
-	(void)data;
-	printf("Closing program!\n");
-	end_program();
+	exit_minirt(data, 0);
 	return (0);
 }
