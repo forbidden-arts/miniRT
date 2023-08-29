@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   v3d.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:22:03 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/22 14:59:03 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/28 10:40:40 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,11 @@ double	v3d_y(
 double	v3d_z(
 			const t_v3d *v);
 
-// double	v3d_get(const t_v3d *v, int i);
-// void	v3d_set(t_v3d *v, int i, double val);
-// void	swap_double(double *a, double *b);
-
 t_v3d	v3d_negate(
 			const t_v3d *v);
+t_v3d	v3d_reflect(
+			const t_v3d *original,
+			const t_v3d *normal);
 double	v3d_get_dist(
 			const t_v3d *origin,
 			const t_v3d *dest);

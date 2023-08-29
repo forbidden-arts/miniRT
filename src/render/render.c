@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/25 13:25:06 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/28 12:11:08 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include "ray.h"
 #include "render.h"
 
+#include "parser.h"	//DELETE ME
+#include <stdio.h>	//DELETE ME
 // colors
 
 static void	img_pix_put(
@@ -32,8 +34,6 @@ static void	img_pix_put(
 	*(unsigned int *)dst = color;
 }
 
-	// t_ray		reflected;
-	// t_color		reflected_color;
 t_color	ray_trace(
 	t_ray *ray,
 	t_scene *scene,
@@ -50,6 +50,7 @@ t_color	ray_trace(
 	populate_impact(scene, ray, &impact);
 	light = check_light(scene, &impact);
 	color = shade_hit(scene, &impact, &light);
+	color_overflow(&color);
 	return (color);
 }
 
