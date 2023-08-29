@@ -68,6 +68,8 @@ get_ray_hit.c			\
 get_ray_hit_shapes.c	\
 get_ray_hit_utils.c		\
 get_light_ray_hit.c		\
+get_ray_hit_co_utils.c	\
+get_ray_hit_cy_utils.c	\
 shader.c				\
 cap_utils.c
 

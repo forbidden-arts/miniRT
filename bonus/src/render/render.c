@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 13:23:50 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/28 12:11:08 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/29 10:39:03 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 #include "color.h"
 #include "ray.h"
 #include "render.h"
-
-#include "parser.h"	//DELETE ME
-#include <stdio.h>	//DELETE ME
-// colors
 
 static void	img_pix_put(
 	t_img *img,

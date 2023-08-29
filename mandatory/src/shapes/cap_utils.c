@@ -6,13 +6,13 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 14:21:41 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:55:53 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/28 13:11:37 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 
-t_v3d	get_top_cap(
+t_v3d	get_shape_top(
 	t_object *object)
 {
 	t_v3d	displacement;
@@ -21,7 +21,7 @@ t_v3d	get_top_cap(
 	return (v3d_add(&object->point, &displacement));
 }
 
-t_v3d	get_bottom_cap(
+t_v3d	get_shape_bottom(
 	t_object *object)
 {
 	t_v3d	displacement;
@@ -35,13 +35,10 @@ void	set_cap_values(
 	t_object *cap,
 	BOOL is_bottom)
 {
-	t_v3d	displacement;
-
 	if (!is_bottom)
-		cap->point = get_top_cap(object);
+		cap->point = get_shape_top(object);
 	else
-		cap->point = get_bottom_cap(object);
-	cap->point = v3d_add(&object->point, &displacement);
+		cap->point = get_shape_bottom(object);
 	cap->radius = object->radius;
 	cap->axis = object->axis;
 }
@@ -54,10 +51,10 @@ BOOL	is_point_closer_to_top_cap(
 	t_v3d	top_cap_center;
 	t_v3d	bottom_cap_center;
 
-	top_cap_center = get_top_cap(object);
-	bottom_cap_center = get_bottom_cap(object);
+	top_cap_center = get_shape_top(object);
+	bottom_cap_center = get_shape_bottom(object);
 	if (v3d_get_dist(point, &top_cap_center)
-		> v3d_get_dist(point, &bottom_cap_center))
+		< v3d_get_dist(point, &bottom_cap_center))
 	{
 		*cap_center = top_cap_center;
 		return (TRUE);
