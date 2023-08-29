@@ -6,12 +6,14 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:09:43 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 15:00:55 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/29 13:02:50 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.h"
 #include "scene.h"
+
+#include <stdio.h>
 
 /*	Free everything to do with mlx	*/
 static void	free_mlx_data(
@@ -60,6 +62,7 @@ void	exit_minirt(
 	t_data *data,
 	int exit_code)
 {
+	printf("\nClosing program\n");
 	free_data(data);
 	exit(exit_code);
 }
