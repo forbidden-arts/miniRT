@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:00:53 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/23 16:51:51 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/29 13:29:33 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ BOOL	get_cylinder_quadratic(
 	return (solve_quadratic(quadratic_params, t0, t1));
 }
 
-// check that impact time is correct!
 BOOL	ray_hit_cylinder_main_body(
 	t_object *cylinder,
 	t_ray *ray,

@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:10:14 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/23 12:51:23 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/29 13:46:17 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # define SPHERE_ID			"sp"
 # define CYLINDER_ID		"cy"
 # define PLANE_ID			"pl"
-# define CONE_ID			"co"
 
 typedef struct s_file_parser
 {
@@ -120,10 +119,6 @@ BOOL	parse_plane(
 			char *line,
 			t_scene *scene,
 			int index);
-BOOL	parse_cone(
-			char *line,
-			t_scene *scene,
-			int index);
 
 // parse_file_utils1.c
 int		get_fd(
@@ -159,8 +154,5 @@ void	print_v3d_data(
 			t_v3d *v3d);
 void	print_object_data(
 			t_scene *scene);
-
-void	print_cone_data(
-			t_object *object);
 
 #endif
