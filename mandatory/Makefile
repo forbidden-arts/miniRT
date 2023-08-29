@@ -33,7 +33,6 @@ parse_camera.c			\
 parse_light.c			\
 parse_sphere.c			\
 parse_cylinder.c		\
-parse_cone.c			\
 parse_plane.c			\
 parse_file.c			\
 parse_file_utils1.c		\
@@ -43,9 +42,6 @@ parser_utils2.c			\
 parser_utils3.c			\
 parser_checksets.c		\
 parser_double_utils.c	\
-plane.c					\
-cylinder.c				\
-sphere.c				\
 shapes_utils.c			\
 v3d.c					\
 vector_arithmetic.c		\
@@ -61,14 +57,12 @@ buttons.c				\
 parse_atod.c			\
 print_results.c			\
 print_results_utils1.c	\
-print_results_utils2.c	\
 color.c					\
 render.c				\
 get_ray_hit.c			\
 get_ray_hit_shapes.c	\
 get_ray_hit_utils.c		\
 get_light_ray_hit.c		\
-get_ray_hit_co_utils.c	\
 get_ray_hit_cy_utils.c	\
 shader.c				\
 cap_utils.c

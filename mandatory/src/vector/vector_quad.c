@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 11:53:58 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/22 15:00:29 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/29 13:31:46 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 #include "ray.h"
 #include "v3d.h"
 
-/* Okay, so here is the math required to sort out how many roots a quadratic
-	equation has. The swap double func at the bottom was included because we
-	can only see the first time a ray intersects (may need to flip the
-	inequality) since we can't see the backside of objects. */
 BOOL	solve_quadratic(
 	t_v3d params,
 	double *t0,

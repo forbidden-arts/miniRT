@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:35:44 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/22 14:49:36 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/29 13:27:20 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	count_strings_in_array(
 	return (i);
 }
 
-/*	this function checks if the string is empty (only whitespace).
-	(Used in find_non_shape_match) */
 BOOL	check_if_empty_line(
 	char *str)
 {

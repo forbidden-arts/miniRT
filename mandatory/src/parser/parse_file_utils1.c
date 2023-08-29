@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 13:32:49 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/23 12:55:37 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/29 13:23:43 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,6 @@ BOOL	find_shape_match(
 	else if (!ft_strncmp(p->line, CYLINDER_ID, 2))
 	{
 		p->result = parse_cylinder(ft_strdup(p->line), scene,
-				p->index_sphape++);
-		return (TRUE);
-	}
-	else if (!ft_strncmp(p->line, CONE_ID, 2))
-	{
-		p->result = parse_cone(ft_strdup(p->line), scene,
 				p->index_sphape++);
 		return (TRUE);
 	}
