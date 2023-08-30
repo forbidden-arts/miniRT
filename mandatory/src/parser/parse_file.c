@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 14:08:23 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/29 13:43:13 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/30 12:40:01 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ BOOL	minirt_start(
 	int	fd;
 
 	if (argc != 2)
-		return (FALSE);
+		return (return_err("program requires one argument (valid rt-file)",
+				NULL));
 	if (check_extension(argv[1]) == FALSE)
 		return (FALSE);
 	fd = get_fd(argv[1]);
