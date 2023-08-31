@@ -42,7 +42,7 @@ parser_utils2.c			\
 parser_utils3.c			\
 parser_checksets.c		\
 parser_double_utils.c	\
-shapes_utils.c			\
+get_normals.c			\
 v3d.c					\
 vector_arithmetic.c		\
 vector_in_place.c		\

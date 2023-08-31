@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/28 14:02:51 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/31 11:02:21 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ BOOL		ray_hit_cylinder_caps(
 				t_ray *ray,
 				double *cap_time);
 
-
 BOOL		ray_hit_cone_main_body(
 				t_object *cone,
 				t_ray *ray,
@@ -109,5 +108,28 @@ BOOL		ray_hit_cone_cap(
 				t_object *cone,
 				t_ray *ray,
 				double *cap_time);
+
+t_v3d		get_object_normal(
+				t_object *object,
+				t_v3d *impact);
+
+BOOL		get_cylinder_quadratic(
+				t_object *cylinder,
+				t_ray *ray,
+				double *t0,
+				double *t1);
+
+t_v3d		get_shape_top(
+				t_object *object);
+t_v3d		get_shape_bottom(
+				t_object *object);
+void		set_cap_values(
+				t_object *object,
+				t_object *cap,
+				BOOL is_bottom);
+BOOL		is_point_closer_to_top_cap(
+				t_object *object,
+				t_v3d *point,
+				t_v3d *cap_center);
 
 #endif

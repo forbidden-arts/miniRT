@@ -6,11 +6,10 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:52:45 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/31 11:28:06 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/31 11:34:57 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shapes.h"
 #include "ray.h"
 
 void	ray_init(

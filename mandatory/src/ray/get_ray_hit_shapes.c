@@ -12,7 +12,6 @@
 
 #include "v3d.h"
 #include "render.h"
-#include "shapes.h"
 
 BOOL	ray_hit_sphere(
 	t_impact *impact,

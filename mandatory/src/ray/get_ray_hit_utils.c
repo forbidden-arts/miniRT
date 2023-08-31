@@ -12,7 +12,6 @@
 
 #include "render.h"
 #include "ray.h"
-#include "shapes.h"
 
 BOOL	get_closest_t(
 	double t0,

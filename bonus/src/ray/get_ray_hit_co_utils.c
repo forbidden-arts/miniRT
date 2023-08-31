@@ -6,13 +6,12 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:05:26 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/28 12:51:53 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/31 11:08:21 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "ray.h"
-#include "shapes.h"
 #include "camera.h"
 
 /*
