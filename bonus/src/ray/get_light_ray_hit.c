@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   get_light_ray_hit.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/31 11:08:40 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/31 14:38:06 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+
+static void	translate_normal(
+	t_scene *scene,
+	t_ray *shadow,
+	t_impact *impact)
+{
+	if ((v3d_dot(&scene->cameras[0].direction, &impact->normal) < 0 && v3d_dot(&shadow->direction, &impact->normal) > 0) || (v3d_dot(&scene->cameras[0].direction, &impact->normal) > 0 && v3d_dot(&shadow->direction, &impact->normal) < 0))
+	{
+		impact->normal = v3d_multiply_scalar(&impact->normal, -1);
+	}
+}
 
 static void	specular(
 	t_scene	*scene,
@@ -66,6 +77,7 @@ t_light	check_light(
 			&& fabs(v3d_get_dist(&shadow.origin, &impact->point) \
 			- temp_impact.time) <= EPSILON)
 		{
+			translate_normal(scene, &shadow, impact);
 			color_light(&scene->lights[index], impact, &light, &shadow);
 			specular(scene, impact, &light, &shadow);
 		}
