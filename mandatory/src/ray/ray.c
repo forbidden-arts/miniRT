@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:52:45 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/31 11:04:05 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/31 11:34:57 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,7 @@ void	populate_impact(
 	impact->color = scene->objects[impact->index].color;
 	impact->normal = get_object_normal(
 			&scene->objects[impact->index], &impact->point);
+	if (v3d_dot(&impact->normal, &scene->cameras[0].direction) < 0 \
+		&& scene->objects->type == PLANE)
+		impact->normal = v3d_multiply_scalar(&impact->normal, -1);
 }
