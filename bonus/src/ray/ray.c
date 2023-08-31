@@ -6,11 +6,10 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:52:45 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/29 10:00:37 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/31 11:08:07 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shapes.h"
 #include "ray.h"
 
 void	ray_init(

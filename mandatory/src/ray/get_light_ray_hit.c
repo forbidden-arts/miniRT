@@ -6,12 +6,11 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 10:48:28 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/29 13:28:02 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/31 11:04:42 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
-#include "shapes.h"
 
 static void	color_light(
 	t_light *original,

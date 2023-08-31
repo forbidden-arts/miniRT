@@ -6,13 +6,12 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:00:53 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/29 13:29:33 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/31 11:04:54 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "ray.h"
-#include "shapes.h"
 
 BOOL	get_cylinder_quadratic(
 	t_object *cylinder,

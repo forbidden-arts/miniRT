@@ -1,20 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shapes_utils.c                                     :+:      :+:    :+:   */
+/*   get_normals.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/31 08:42:13 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/31 11:03:02 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "ray.h"
-#include "shapes.h"
-
-#include <stdio.h>
 
 BOOL	is_impact_on_cylinder_cap(
 	t_object *cylinder,

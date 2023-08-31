@@ -12,7 +12,6 @@
 
 #include "render.h"
 #include "ray.h"
-#include "shapes.h"
 
 /*	This function gets the closest quadratic equation solution (t0 or t1).
 	If both values are negative we know that both intersection "points" are
