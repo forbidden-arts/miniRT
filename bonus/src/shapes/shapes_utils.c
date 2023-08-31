@@ -6,12 +6,15 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/29 11:46:32 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/08/31 08:42:13 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "ray.h"
 #include "shapes.h"
+
+#include <stdio.h>
 
 BOOL	is_impact_on_cylinder_cap(
 	t_object *cylinder,
@@ -58,15 +61,15 @@ BOOL	is_impact_on_cone_cap(
 	t_v3d *impact)
 {
 	t_v3d	cap_center;
-	double	distance_to_cap_center;
+	t_v3d	temp;
+	double	distance_impact;
 
 	cap_center = get_shape_bottom(cone);
-	distance_to_cap_center = v3d_get_dist(impact, &cap_center);
-	if (distance_to_cap_center <= cone->radius
-	// and the normal is axis?
-		&& v3d_get_dist(&cone->point, impact)
-		>= distance_to_cap_center)
-		return (TRUE);
+	temp = v3d_subtract(impact, &cap_center);
+	distance_impact = v3d_dot(&temp, &cone->axis);
+	if (fabs(distance_impact) <= EPSILON)
+		if (v3d_length(&temp) <= cone->radius)
+			return (TRUE);
 	return (FALSE);
 }
 
@@ -74,16 +77,14 @@ t_v3d	get_cone_normal(
 	t_object *cone,
 	t_v3d *impact)
 {
-	t_v3d	cone_tip;
+	t_v3d	cone_impact;
 	t_v3d	normal;
 
 	if (is_impact_on_cone_cap(cone, impact))
-		return (cone->axis);
-	cone_tip = get_shape_top(cone);
-	normal = v3d_subtract(&cone_tip, impact);
-	normal = v3d_unit_vector(&normal);
-	if (v3d_dot(&normal, &cone->axis) > EPSILON)
-		normal = v3d_multiply_scalar(&normal, -1);
+		return (v3d_multiply_scalar(&cone->axis, 1));
+	cone_impact = v3d_subtract(&cone->point, impact);
+	normal = v3d_cross(&cone_impact, &cone->axis);
+	normal = v3d_cross(&cone_impact, &normal);
 	return (normal);
 }
 
