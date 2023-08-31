@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/29 13:31:16 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/08/31 11:28:45 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_v3d	get_object_normal(
 	if (object->type == CYLINDER)
 		normal = get_cylinder_normal(object, impact);
 	if (object->type == PLANE)
-		normal = v3d_multiply_scalar(&object->axis, -1);
+		normal = object->axis;
 	normal = v3d_unit_vector(&normal);
 	return (normal);
 }
