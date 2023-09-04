@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_ray_hit_co_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:05:26 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/31 11:08:21 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/09/04 11:34:17 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ BOOL	get_cone_quadratic(
 	double *t0,
 	double *t1)
 {
-	// t_v3d	v3d_first;
-	// t_v3d	v3d_second;
 	t_v3d	cone_tip;
 	t_v3d	quadratic_params;
 	double	cone_angle;
@@ -67,12 +65,6 @@ BOOL	ray_hit_cone_main_body(
 	dist = v3d_dot(&cone->axis, &temp1);
 	if (!(dist >= -cone->height / 2 && dist <= cone->height / 2))
 		return (FALSE);
-	// tip_pos = get_shape_top(cone);
-	// temp1 = ray_at(ray, *impact_time);
-	// temp1 = v3d_subtract(&temp1, &tip_pos);
-	// dist = v3d_dot(&temp1, &cone->axis);
-	// if (dist < EPSILON || dist > cone->height)
-	// 	return (FALSE);
 	return (TRUE);
 }
 
@@ -85,4 +77,38 @@ BOOL	ray_hit_cone_cap(
 
 	set_cap_values(cone, &cap, TRUE);
 	return (ray_hit_cap(cap_time, &cap, ray));
+}
+
+BOOL	is_impact_on_cone_cap(
+	t_object *cone,
+	t_v3d *impact)
+{
+	t_v3d	cap_center;
+	t_v3d	temp;
+	double	distance_impact;
+
+	cap_center = get_shape_bottom(cone);
+	temp = v3d_subtract(impact, &cap_center);
+	distance_impact = v3d_dot(&temp, &cone->axis);
+	if (fabs(distance_impact) <= EPSILON)
+		if (v3d_length(&temp) <= cone->radius)
+			return (TRUE);
+	return (FALSE);
+}
+
+BOOL	is_impact_on_cylinder_cap(
+	t_object *cylinder,
+	t_v3d *impact)
+{
+	t_v3d	cap_center;
+	t_v3d	temp;
+	double	distance_impact;
+
+	cap_center = get_shape_bottom(cylinder);
+	temp = v3d_subtract(impact, &cap_center);
+	distance_impact = v3d_dot(&temp, &cylinder->axis);
+	if (fabs(distance_impact) <= EPSILON)
+		if (v3d_length(&temp) <= cylinder->radius)
+			return (TRUE);
+	return (FALSE);
 }
