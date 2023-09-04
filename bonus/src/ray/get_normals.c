@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normals.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/09/04 17:20:39 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/09/04 18:00:36 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_v3d	get_plane_normal(
 	t_v3d *plane_axis,
 	t_impact *impact)
 {
-	if (v3d_dot(plane_axis, &impact->to_source) < 0)
+	if (v3d_dot(plane_axis, &impact->to_source) < EPSILON)
 		return (v3d_multiply_scalar(plane_axis, -1));
 	return (*plane_axis);
 }
