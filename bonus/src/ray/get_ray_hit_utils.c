@@ -45,14 +45,8 @@ BOOL	is_inside_cylinder(
 	projection = v3d_dot(&temp, &cylinder->axis);
 	if (projection < 0 || projection > cylinder->height)
 		return (FALSE);
-	if (v3d_length_squared(&temp) - pow(projection, 2) < pow(cylinder->radius, 2))
+	if (v3d_length_squared(&temp) - pow(projection, 2) \
+		< pow(cylinder->radius, 2))
 		return (TRUE);
 	return (FALSE);
 }
-
-    // double perpendicularDistSquared = vec3_length_squared(BP) - projection * projection;
-    // if (perpendicularDistSquared < cylinder.radius * cylinder.radius) {
-    //     return true;
-    // }
-
-    // return false;
