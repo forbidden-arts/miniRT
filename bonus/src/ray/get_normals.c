@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/09/04 16:43:05 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/09/04 17:20:39 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,29 @@ t_v3d	get_cone_normal(
 	return (normal);
 }
 
+t_v3d	get_plane_normal(
+	t_v3d *plane_axis,
+	t_impact *impact)
+{
+	if (v3d_dot(plane_axis, &impact->to_source) < 0)
+		return (v3d_multiply_scalar(plane_axis, -1));
+	return (*plane_axis);
+}
+
 t_v3d	get_object_normal(
 	t_object *object,
-	t_v3d *impact)
+	t_impact *impact)
 {
 	t_v3d	normal;
 
 	if (object->type == SPHERE)
-		normal = get_sphere_normal(object, impact);
+		normal = get_sphere_normal(object, &impact->point);
 	if (object->type == CYLINDER)
-		normal = get_cylinder_normal(object, impact);
+		normal = get_cylinder_normal(object, &impact->point);
 	if (object->type == PLANE)
-		normal = object->axis;
+		normal = get_plane_normal(&object->axis, impact);
 	if (object->type == CONE)
-		normal = get_cone_normal(object, impact);
+		normal = get_cone_normal(object, &impact->point);
 	normal = v3d_unit_vector(&normal);
 	return (normal);
 }

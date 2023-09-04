@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:52:45 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/09/04 16:15:19 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/09/04 17:24:12 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,5 @@ void	populate_impact(
 	impact->to_source = v3d_unit_vector(&impact->to_source);
 	impact->color = scene->objects[impact->index].color;
 	impact->normal = get_object_normal(
-			&scene->objects[impact->index], &impact->point);
-	if (v3d_dot(&impact->normal, &scene->cameras[0].direction) < 0 \
-		&& scene->objects->type == PLANE)
-		impact->normal = v3d_multiply_scalar(&impact->normal, -1);
+			&scene->objects[impact->index], impact);
 }

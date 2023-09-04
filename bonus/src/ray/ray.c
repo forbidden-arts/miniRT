@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:52:45 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/09/04 15:34:29 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/09/04 17:20:47 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	populate_impact(
 	impact->to_source = v3d_unit_vector(&impact->to_source);
 	impact->color = scene->objects[impact->index].color;
 	impact->normal = get_object_normal(
-			&scene->objects[impact->index], &impact->point);
+			&scene->objects[impact->index], impact);
 }
