@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/09/04 15:52:01 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/09/04 18:00:36 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ t_v3d	get_cylinder_normal(
 	t_v3d	temp;
 	double	distance_along_axis;
 	BOOL	top_cap;
+	BOOL	cyl_inside;
 
+	cyl_inside = is_inside_cylinder(impact, cylinder);
 	if (is_impact_on_cylinder_cap(cylinder, impact, &top_cap))
 	{
-		if (top_cap)
+		if ((top_cap && !cyl_inside) || (!top_cap && cyl_inside))
 			return (v3d_multiply_scalar(&cylinder->axis, -1));
 		return (cylinder->axis);
 	}
@@ -41,7 +43,7 @@ t_v3d	get_cylinder_normal(
 	temp = v3d_multiply_scalar(&cylinder->axis,
 			distance_along_axis);
 	temp = v3d_add(&cylinder->point, &temp);
-	if (is_inside_cylinder(impact, cylinder))
+	if (cyl_inside)
 		return (v3d_subtract(impact, &temp));
 	return (v3d_subtract(&temp, impact));
 }
@@ -61,20 +63,29 @@ t_v3d	get_cone_normal(
 	return (normal);
 }
 
+t_v3d	get_plane_normal(
+	t_v3d *plane_axis,
+	t_impact *impact)
+{
+	if (v3d_dot(plane_axis, &impact->to_source) < EPSILON)
+		return (v3d_multiply_scalar(plane_axis, -1));
+	return (*plane_axis);
+}
+
 t_v3d	get_object_normal(
 	t_object *object,
-	t_v3d *impact)
+	t_impact *impact)
 {
 	t_v3d	normal;
 
 	if (object->type == SPHERE)
-		normal = get_sphere_normal(object, impact);
+		normal = get_sphere_normal(object, &impact->point);
 	if (object->type == CYLINDER)
-		normal = get_cylinder_normal(object, impact);
+		normal = get_cylinder_normal(object, &impact->point);
 	if (object->type == PLANE)
-		normal = object->axis;
+		normal = get_plane_normal(&object->axis, impact);
 	if (object->type == CONE)
-		normal = get_cone_normal(object, impact);
+		normal = get_cone_normal(object, &impact->point);
 	normal = v3d_unit_vector(&normal);
 	return (normal);
 }

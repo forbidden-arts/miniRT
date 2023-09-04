@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/09/04 15:58:41 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/09/04 17:15:36 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ BOOL		ray_hit_cone_cap(
 
 t_v3d		get_object_normal(
 				t_object *object,
-				t_v3d *impact);
+				t_impact *impact);
 t_v3d		get_sphere_normal(
 				t_object *sphere,
 				t_v3d *impact);

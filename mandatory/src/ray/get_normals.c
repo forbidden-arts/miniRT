@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/31 11:35:07 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/09/04 18:02:14 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ BOOL	is_impact_on_cylinder_cap(
 	return (FALSE);
 }
 
+t_v3d	get_sphere_normal(
+	t_object *sphere,
+	t_v3d *impact)
+{
+	if (v3d_get_dist(&sphere->point, impact) < sphere->radius)
+		return (v3d_subtract(impact, &sphere->point));
+	return (v3d_subtract(&sphere->point, impact));
+}
+
 t_v3d	get_cylinder_normal(
 	t_object *cylinder,
 	t_v3d *impact)
@@ -37,10 +46,12 @@ t_v3d	get_cylinder_normal(
 	t_v3d	temp;
 	double	distance_along_axis;
 	BOOL	top_cap;
+	BOOL	cyl_inside;
 
+	cyl_inside = is_inside_cylinder(impact, cylinder);
 	if (is_impact_on_cylinder_cap(cylinder, impact, &top_cap))
 	{
-		if (top_cap)
+		if ((top_cap && !cyl_inside) || (!top_cap && cyl_inside))
 			return (v3d_multiply_scalar(&cylinder->axis, -1));
 		return (cylinder->axis);
 	}
@@ -49,21 +60,32 @@ t_v3d	get_cylinder_normal(
 	temp = v3d_multiply_scalar(&cylinder->axis,
 			distance_along_axis);
 	temp = v3d_add(&cylinder->point, &temp);
+	if (cyl_inside)
+		return (v3d_subtract(impact, &temp));
 	return (v3d_subtract(&temp, impact));
+}
+
+t_v3d	get_plane_normal(
+	t_v3d *plane_axis,
+	t_impact *impact)
+{
+	if (v3d_dot(plane_axis, &impact->to_source) < EPSILON)
+		return (v3d_multiply_scalar(plane_axis, -1));
+	return (*plane_axis);
 }
 
 t_v3d	get_object_normal(
 	t_object *object,
-	t_v3d *impact)
+	t_impact *impact)
 {
 	t_v3d	normal;
 
 	if (object->type == SPHERE)
-		normal = v3d_subtract(&object->point, impact);
+		normal = get_sphere_normal(object, &impact->point);
 	if (object->type == CYLINDER)
-		normal = get_cylinder_normal(object, impact);
+		normal = get_cylinder_normal(object, &impact->point);
 	if (object->type == PLANE)
-		normal = object->axis;
+		normal = get_plane_normal(&object->axis, impact);
 	normal = v3d_unit_vector(&normal);
 	return (normal);
 }
