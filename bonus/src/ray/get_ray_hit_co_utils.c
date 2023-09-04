@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_ray_hit_co_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:05:26 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/09/04 14:26:01 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/09/04 15:52:41 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ BOOL	ray_hit_cone_main_body(
 
 	if (!get_cone_quadratic(cone, ray, &t_params.e[0], &t_params.e[1]))
 		return (FALSE);
-	if (!get_closest_t(t_params.e[0], t_params.e[1], impact_time))
+	if (!get_closest_t(t_params.e[1], t_params.e[0], impact_time))
 		return (FALSE);
 	temp1 = v3d_multiply_scalar(&ray->direction, *impact_time);
 	temp2 = v3d_subtract(&cone->point, &ray->origin);

@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:52:45 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/09/04 12:38:40 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/09/04 15:34:29 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	populate_impact(
 	const t_ray *ray,
 	t_impact *impact)
 {
-	impact->point = ray_at(ray, impact->time);
+	impact->point = ray_at(ray, impact->time - (EPSILON / 10));
 	impact->distance = v3d_get_dist(&ray->origin, &impact->point);
 	impact->to_source = v3d_subtract(&impact->point, &ray->origin);
 	impact->to_source = v3d_unit_vector(&impact->to_source);

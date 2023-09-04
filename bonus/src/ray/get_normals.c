@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normals.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/09/04 14:28:43 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/09/04 15:52:01 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_v3d	get_sphere_normal(
 	t_object *sphere,
 	t_v3d *impact)
 {
+	if (v3d_get_dist(&sphere->point, impact) < sphere->radius)
+		return (v3d_subtract(impact, &sphere->point));
 	return (v3d_subtract(&sphere->point, impact));
 }
 
@@ -39,6 +41,8 @@ t_v3d	get_cylinder_normal(
 	temp = v3d_multiply_scalar(&cylinder->axis,
 			distance_along_axis);
 	temp = v3d_add(&cylinder->point, &temp);
+	if (is_inside_cylinder(impact, cylinder))
+		return (v3d_subtract(impact, &temp));
 	return (v3d_subtract(&temp, impact));
 }
 
