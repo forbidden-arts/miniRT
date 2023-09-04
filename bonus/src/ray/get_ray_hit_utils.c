@@ -31,3 +31,28 @@ BOOL	get_closest_t(
 		*impact_time = t0;
 	return (TRUE);
 }
+
+BOOL	is_inside_cylinder(
+	t_v3d *point,
+	t_object *cylinder)
+{
+	t_v3d	bottom;
+	t_v3d	temp;
+	double	projection;
+
+	bottom = get_shape_bottom(cylinder);
+	temp = v3d_subtract(point, &bottom);
+	projection = v3d_dot(&temp, &cylinder->axis);
+	if (projection < 0 || projection > cylinder->height)
+		return (FALSE);
+	if (v3d_length_squared(&temp) - pow(projection, 2) < pow(cylinder->radius, 2))
+		return (TRUE);
+	return (FALSE);
+}
+
+    // double perpendicularDistSquared = vec3_length_squared(BP) - projection * projection;
+    // if (perpendicularDistSquared < cylinder.radius * cylinder.radius) {
+    //     return true;
+    // }
+
+    // return false;
