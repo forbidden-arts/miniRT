@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 16:05:26 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/09/04 15:16:07 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/09/04 15:52:41 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,17 +98,18 @@ BOOL	is_impact_on_cone_cap(
 
 BOOL	is_impact_on_cylinder_cap(
 	t_object *cylinder,
-	t_v3d *impact)
+	t_v3d *impact,
+	BOOL *top_cap)
 {
 	t_v3d	cap_center;
-	t_v3d	temp;
-	double	distance_impact;
+	double	distance_to_cap_center;
 
-	cap_center = get_shape_bottom(cylinder);
-	temp = v3d_subtract(impact, &cap_center);
-	distance_impact = v3d_dot(&temp, &cylinder->axis);
-	if (fabs(distance_impact) <= EPSILON)
-		if (v3d_length(&temp) <= cylinder->radius)
-			return (TRUE);
+	if (is_point_closer_to_top_cap(cylinder, impact, &cap_center))
+		*top_cap = TRUE;
+	else
+		*top_cap = FALSE;
+	distance_to_cap_center = v3d_get_dist(impact, &cap_center);
+	if (distance_to_cap_center <= cylinder->radius)
+		return (TRUE);
 	return (FALSE);
 }

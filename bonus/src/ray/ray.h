@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/09/04 15:47:47 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/09/04 15:53:20 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,5 @@ BOOL		is_impact_on_cone_cap(
 BOOL		is_impact_on_cylinder_cap(
 				t_object *cylinder,
 				t_v3d *impact);
-BOOL		is_inside_cylinder(
-				t_v3d *point,
-				t_object *cylinder);
 
 #endif
