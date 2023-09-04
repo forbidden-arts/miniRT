@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/09/04 11:32:51 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/09/04 14:26:19 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ BOOL		is_impact_on_cone_cap(
 				t_v3d *impact);
 BOOL		is_impact_on_cylinder_cap(
 				t_object *cylinder,
-				t_v3d *impact);
+				t_v3d *impact,
+				BOOL	*top_cap);
 
 #endif
