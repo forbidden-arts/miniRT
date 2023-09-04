@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/09/04 11:43:15 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/09/04 12:28:55 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_v3d	get_cylinder_normal(
 	t_v3d *impact)
 {
 	t_v3d	temp;
+	t_v3d	to_axis;
+	t_v3d	to_axis_norm;
 	double	distance_along_axis;
 
 	if (is_impact_on_cylinder_cap(cylinder, impact))
@@ -49,6 +51,10 @@ t_v3d	get_cylinder_normal(
 	temp = v3d_multiply_scalar(&cylinder->axis,
 			distance_along_axis);
 	temp = v3d_add(&cylinder->point, &temp);
+	to_axis = v3d_subtract(&temp, impact);
+	to_axis_norm = v3d_unit_vector(&to_axis);
+	if (v3d_dot(&to_axis, &to_axis_norm) > 0)
+		return (v3d_subtract(impact, &temp));
 	return (v3d_subtract(&temp, impact));
 }
 
