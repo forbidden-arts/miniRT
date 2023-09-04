@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/31 11:02:21 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/09/04 11:32:51 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,6 @@ BOOL		get_closest_t(
 t_light		check_light(
 				t_scene *scene,
 				t_impact *impact);
-t_ray		reflect_ray(
-				const t_ray *original,
-				const t_impact *impact);
 
 BOOL		ray_hit_cylinder_main_body(
 				t_object *cylinder,
@@ -112,6 +109,9 @@ BOOL		ray_hit_cone_cap(
 t_v3d		get_object_normal(
 				t_object *object,
 				t_v3d *impact);
+t_v3d		get_sphere_normal(
+				t_object *sphere,
+				t_v3d *impact);
 
 BOOL		get_cylinder_quadratic(
 				t_object *cylinder,
@@ -131,5 +131,11 @@ BOOL		is_point_closer_to_top_cap(
 				t_object *object,
 				t_v3d *point,
 				t_v3d *cap_center);
+BOOL		is_impact_on_cone_cap(
+				t_object *cone,
+				t_v3d *impact);
+BOOL		is_impact_on_cylinder_cap(
+				t_object *cylinder,
+				t_v3d *impact);
 
 #endif
