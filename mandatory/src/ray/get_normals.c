@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normals.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/31 11:35:07 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/09/04 16:18:59 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ BOOL	is_impact_on_cylinder_cap(
 	return (FALSE);
 }
 
+t_v3d	get_sphere_normal(
+	t_object *sphere,
+	t_v3d *impact)
+{
+	if (v3d_get_dist(&sphere->point, impact) < sphere->radius)
+		return (v3d_subtract(impact, &sphere->point));
+	return (v3d_subtract(&sphere->point, impact));
+}
+
 t_v3d	get_cylinder_normal(
 	t_object *cylinder,
 	t_v3d *impact)
@@ -49,6 +58,8 @@ t_v3d	get_cylinder_normal(
 	temp = v3d_multiply_scalar(&cylinder->axis,
 			distance_along_axis);
 	temp = v3d_add(&cylinder->point, &temp);
+	if (is_inside_cylinder(impact, cylinder))
+		return (v3d_subtract(impact, &temp));
 	return (v3d_subtract(&temp, impact));
 }
 
@@ -59,7 +70,7 @@ t_v3d	get_object_normal(
 	t_v3d	normal;
 
 	if (object->type == SPHERE)
-		normal = v3d_subtract(&object->point, impact);
+		normal = get_sphere_normal(object, impact);
 	if (object->type == CYLINDER)
 		normal = get_cylinder_normal(object, impact);
 	if (object->type == PLANE)

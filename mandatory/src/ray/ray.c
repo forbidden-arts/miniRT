@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:52:45 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/31 11:34:57 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/09/04 16:15:19 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	populate_impact(
 	const t_ray *ray,
 	t_impact *impact)
 {
-	impact->point = ray_at(ray, impact->time);
+	impact->point = ray_at(ray, impact->time - (EPSILON / 10));
 	impact->distance = v3d_get_dist(&ray->origin, &impact->point);
 	impact->to_source = v3d_subtract(&impact->point, &ray->origin);
 	impact->to_source = v3d_unit_vector(&impact->to_source);

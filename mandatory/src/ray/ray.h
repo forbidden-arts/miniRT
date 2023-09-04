@@ -6,7 +6,7 @@
 /*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:48:32 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/08/31 10:56:59 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/09/04 16:16:16 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,9 @@ BOOL		is_point_closer_to_top_cap(
 				t_object *object,
 				t_v3d *point,
 				t_v3d *cap_center);
+
+BOOL		is_inside_cylinder(
+				t_v3d *point,
+				t_object *cylinder);
 
 #endif
