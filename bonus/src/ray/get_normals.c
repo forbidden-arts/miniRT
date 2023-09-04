@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normals.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:29:10 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/09/04 15:52:01 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/09/04 16:43:05 by ssalmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ t_v3d	get_cylinder_normal(
 	t_v3d	temp;
 	double	distance_along_axis;
 	BOOL	top_cap;
+	BOOL	cyl_inside;
 
+	cyl_inside = is_inside_cylinder(impact, cylinder);
 	if (is_impact_on_cylinder_cap(cylinder, impact, &top_cap))
 	{
-		if (top_cap)
+		if ((top_cap && !cyl_inside) || (!top_cap && cyl_inside))
 			return (v3d_multiply_scalar(&cylinder->axis, -1));
 		return (cylinder->axis);
 	}
@@ -41,7 +43,7 @@ t_v3d	get_cylinder_normal(
 	temp = v3d_multiply_scalar(&cylinder->axis,
 			distance_along_axis);
 	temp = v3d_add(&cylinder->point, &temp);
-	if (is_inside_cylinder(impact, cylinder))
+	if (cyl_inside)
 		return (v3d_subtract(impact, &temp));
 	return (v3d_subtract(&temp, impact));
 }
