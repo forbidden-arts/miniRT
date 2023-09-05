@@ -45,7 +45,7 @@ Remove everything:
 - Planning is the most important thing. EVER.
 - Linked Lists are crazy slow and should only be used in emergencies.
 - Allocating is for chumps! All stack, all the time. (except where forbidden).
-- [Phong Reflection Model](https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_reflection_model) Kinda crazy that adding those slight reflections makes everthing look so much better.
+- [Phong Reflection Model](https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_reflection_model) Kinda crazy that adding those slight reflections makes everything look so much better.
 - Git Branching. ALL THE TIME. What has four thumbs and never over-wrote their partner's work? 👍👍These guys👍👍.
 
 ## 📷 Preview
