@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:09:43 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/29 13:32:06 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/09/05 11:11:08 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,7 @@
 
 #include <stdio.h>
 
-static void	free_mlx_data(
-	t_data *data)
-{
-	if (data->mlx_ptr)
-		free(data->mlx_ptr);
-	if (data->win_ptr)
-		free(data->win_ptr);
-	if (data->img.img)
-		free(data->img.img);
-	if (data->img.addr)
-		free(data->img.addr);
-}
-
-void	free_data(
-	t_data *data)
-{
-	free_scene(&data->scene);
-	free_mlx_data(data);
-}
-
+/*	Function to initiate all mlx data to NULL	*/
 static void	init_mlx_data(
 	t_data *data)
 {
@@ -44,6 +25,8 @@ static void	init_mlx_data(
 	data->img.addr = NULL;
 }
 
+/*	Function to initiate all data variables to NULL
+	Call in the beginning of program	*/
 void	init_data(
 	t_data *data)
 {
@@ -51,11 +34,15 @@ void	init_data(
 	init_mlx_data(data);
 }
 
+/*	This function frees everything allocated for data and exits with
+	the given exit code.*/
 void	exit_minirt(
 	t_data *data,
 	int exit_code)
 {
 	printf("\nClosing program\n");
-	free_data(data);
+	free_scene(&data->scene);
+	if (data->win_ptr)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	exit(exit_code);
 }
