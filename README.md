@@ -6,6 +6,8 @@
 <!-- ![dpalmer's 42 FdF Score](https://badge42.vercel.app/api/v2/cli5pb141011308mh1fmi5qrq/project/2909195) -->
 
 ## 🤓 Overview
+Finally! A sexy project! Where have you been all my life?
+
 Who can take a small text file and turn it into a 3D rendering? Me and [This Guy](https://github.com/sakarisalmi/). It's rather impressive since we both had extremely limited experience with anything graphics-related. It's *even more impressive* that we didn't kill each other.
 
 But we did think about it...a lot.
