@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssalmi <ssalmi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:55:26 by ssalmi            #+#    #+#             */
-/*   Updated: 2023/08/29 13:32:38 by ssalmi           ###   ########.fr       */
+/*   Updated: 2023/09/05 11:11:36 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ void	free_scene(
 {
 	if (scene->objects)
 		free(scene->objects);
+	scene->objects = NULL;
 	if (scene->lights)
 		free(scene->lights);
+	scene->lights = NULL;
 	if (scene->cameras)
 		free(scene->cameras);
+	scene->cameras = NULL;
 }
 
 void	init_scene(
